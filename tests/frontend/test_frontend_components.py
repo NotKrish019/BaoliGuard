@@ -89,3 +89,22 @@ def test_phase2_inspection_components_exist() -> None:
     sample_asset = Path(__file__).resolve().parent.parent.parent / "frontend" / "public" / "samples" / "stepwell_ashlar_wall.svg"
     assert sample_asset.exists(), "Sample stepwell SVG asset must exist in public/samples/"
 
+
+def test_phase3_iks_material_restoration_components_exist() -> None:
+    """Verify presence of Phase 3 IKS, Material DNA, and Restoration components."""
+    frontend_src = Path(__file__).resolve().parent.parent.parent / "frontend" / "src"
+    components_dir = frontend_src / "components"
+
+    phase3_components = [
+        "ConservationChain.tsx",
+        "MaterialDnaCard.tsx",
+        "WhyThisRecommendation.tsx",
+        "RootCauseAnalysisCard.tsx",
+        "RestorationRoadmap.tsx",
+    ]
+
+    for comp in phase3_components:
+        target = components_dir / comp
+        assert target.exists(), f"Missing required Phase 3 component: {comp}"
+
+
