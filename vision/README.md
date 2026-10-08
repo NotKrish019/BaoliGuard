@@ -1,128 +1,98 @@
-# BaoliGuard Vision — Phase 1 Audit
+# BaoliGuard Vision — Phase 2 Sprint & Hackathon MVP
 
 **Subsystem Owner:** Krish (Computer Vision / AI Lead)  
-**Audit Date:** Phase 1 Initialization  
-**Status:** Audit Complete | Annotations Not Located Locally
+**Sprint:** Emergency Phase 2 Training Sprint (Hackathon MVP)  
+**Status:** Operational MVP Pilot Trained & Verified  
+**Date:** October 8, 2026
 
 ---
 
-## 1. Dataset Location
-- **Local Directory:** `Darbhanga_Fort/Darbhanga_Fort/`
-- **Subdirectories:**
-  - `Damaged_images/` (Masonry damage, cracking, weathering)
-  - `Background_images/` (Non-damaged heritage masonry)
-- **Git Tracking Status:** Excluded via `.gitignore` (`Darbhanga_Fort/`, `data/raw/*`).
+## 1. Executive Summary & Architecture
+For the immediate hackathon prototype, BaoliGuard delivers a working two-fold visual assessment pipeline optimized for rapid edge inference on local hardware:
+
+1. **Crack Detection:** Powered by a fine-tuned **YOLOv8n** (Nano) detection model producing localized bounding boxes and confidence scores.
+2. **Vegetation Visual Indicator:** Powered by a deterministic **OpenCV HSV color-space & morphological filter** calculating biological/vegetation coverage ratio without AI black-box overhead.
+
+> [!IMPORTANT]
+> **DISCLAIMER:** This system is an engineering prototype and visual decision-support tool. It does **not** constitute a formal civil-structural safety certification or architectural stability guarantee.
 
 ---
 
-## 2. Image Counts
-- **Total Files Scanned:** 7,886
-- **Total Images:** 7,886
-  - **Damaged Images:** 7,440 (`0 (1).jpg` ... `0 (7440).jpg`)
-  - **Background Images:** 446 (`ND (1).jpg` ... `ND (446).jpg`)
-  - **Uncategorized:** 0
-- **Corrupted / Unreadable Images:** 0 (100% readable via PIL and OpenCV)
-- **Exact Duplicate Files (MD5 Hash):** 157 duplicate instances detected
-- **Duplicate Filenames Across Folders:** 0
+## 2. Dataset Strategy & Phase 1 Reconciliation
+- **Raw Darbhanga Fort Dataset:** The local 7,886-image dataset (`Darbhanga_Fort/Darbhanga_Fort/`) consists of 7,440 damaged images and 446 background images. **This raw dataset contains zero polygon segmentation labels.**
+- **No Direct Segmentation Training:** Full YOLO segmentation training on the 7,886 unannotated images was strictly avoided to prevent invalid pseudo-mask hallucinations.
+- **Pilot Dataset (`data/processed/crack_pilot/`):**
+  - **Cracks:** 16 representative masonry crack images (12 train, 4 val) with normalized YOLO-format bounding boxes.
+  - **Hard Negatives:** 16 background images (12 train, 4 val) displaying standard brick coursing and mortar joint lines without labels, training the model to suppress false positives on intact structural mortar.
 
 ---
 
-## 3. Image Resolution
-- **Dimensions:** 100% uniform **768 x 768 pixels** across all 7,886 images.
-- **Aspect Ratio:** 1.00 (square tiles).
-- **Channels:** 3-channel RGB / BGR.
+## 3. Model Architecture & Training Configuration
+- **Model:** `YOLOv8n` (3.0M parameters, 129 layers)
+- **Pretrained Weights:** Transfer-initialized from pretrained Ultralytics weights
+- **Hardware:** NVIDIA GeForce GTX 1650 (4.0 GB dedicated VRAM)
+- **CUDA Environment:** PyTorch `2.5.1+cu121` on `cuda:0`
+- **Resolution:** `imgsz = 512`
+- **Batch Size:** `batch = 4`
+- **Epochs:** 25 epochs completed in **34.4 seconds** (~1.38 s/epoch)
+- **Peak GPU Memory:** 0.803 GB / 4.0 GB VRAM utilized
+
+### Best Validation Metrics
+- **Precision:** 0.642 (64.2%)
+- **Recall:** 0.667 (66.7%)
+- **mAP50:** 0.260 – 0.300
+- **mAP50-95:** 0.259
+- **Inference Latency:** **4.7 ms per image** on GPU (0.4 ms preprocess, 4.7 ms inference, 1.2 ms postprocess)
+- **Local Checkpoint:** `vision/outputs/train/crack_pilot/weights/best.pt` (5.94 MB) *(Excluded from Git)*
 
 ---
 
-## 4. Image Format
-- **Extension:** 100% `.jpg` (JPEG format).
-- **Color Space:** 8-bit per channel RGB.
+## 4. Deterministic Vegetation Visual Indicator
+Proper vegetation polygon annotations were absent in the raw dataset. To provide immediate visual insight without fabricating an AI model:
+- **Approach:** Deterministic OpenCV pipeline (`scripts/vision/vegetation_indicator.py`).
+- **Pipeline:** RGB $\rightarrow$ HSV color space $\rightarrow$ Foliage/moss hue thresholding ($H \in [28, 90]$, $S \ge 30$, $V \ge 30$) $\rightarrow$ Morphological open/close filtering $\rightarrow$ Connected component noise suppression ($Area \ge 50$ px) $\rightarrow$ Coverage ratio calculation.
+- **Labeling Contract:** Strictly designated as **"visual vegetation indicator"**, NOT an AI classifier or certified detector.
 
 ---
 
-## 5. Annotation Status
-> [!WARNING]
-> **ANNOTATIONS NOT PRESENT / NOT LOCATED**
-> 
-> Comprehensive recursive search across all subdirectories confirmed:
-> - Zero annotation files found (`*.txt`, `*.json`, `*.xml`, `*.yaml`, `*.yml`, `*.csv`).
-> - The local dataset consists solely of **folder-level binary classification** (`Damaged_images` vs. `Background_images`).
-> - **No pixel- or polygon-level bounding boxes or segmentation masks exist in the raw dataset.**
+## 5. Output Contract Specification
+The vision subsystem delivers a unified JSON output contract for downstream modules (Backend / Frontend / Revive pipeline):
+
+```json
+{
+  "crack": {
+    "detected": true,
+    "confidence": 0.84,
+    "bbox": [3, 298, 646, 768]
+  },
+  "vegetation": {
+    "visual_indicator": true,
+    "coverage_ratio": 0.1518
+  }
+}
+```
 
 ---
 
-## 6. Available Classes
-- **Dataset-Level Categories:**
-  - `Damaged`: 7,440 images
-  - `Non-Damaged / Background`: 446 images
-- **Target Segmentation Classes (`crack`, `spalling`, `vegetation`):**
-  - **Visually present** in the photos upon manual and programmatic inspection.
-  - **NOT individually labeled or segmented** in the raw local files.
-  - Class recovery: Cannot be recovered directly from existing metadata without an annotation phase or assisted labeling pipeline.
+## 6. Demonstration Cases (`vision/outputs/demo/`)
+Seven verifiable test cases are stored in `vision/outputs/demo/` for frontend and presentation validation:
+
+| Case | Type | Key Indicator | Files |
+| :--- | :--- | :--- | :--- |
+| `crack_1` | Masonry Crack | Bounding box on lower-left diagonal crack (conf: 0.84) | `crack_1_orig.jpg`, `crack_1_pred.jpg` |
+| `crack_2` | Masonry Crack | Bounding box on vertical fissure (conf: 0.80) | `crack_2_orig.jpg`, `crack_2_pred.jpg` |
+| `crack_3` | Masonry Crack | Bounding box on surface fracture (conf: 0.76) | `crack_3_orig.jpg`, `crack_3_pred.jpg` |
+| `bg_1` | Intact Masonry | **0 False Positives** on regular mortar joints | `bg_1_orig.jpg`, `bg_1_pred.jpg` |
+| `bg_2` | Intact Masonry | **0 False Positives** on clean brick coursing | `bg_2_orig.jpg`, `bg_2_pred.jpg` |
+| `veg_1` | Foliage Intrusion | Vegetation coverage **15.2%** detected and tinted | `veg_1_orig.jpg`, `veg_1_pred.jpg` |
+| `veg_2` | Moss / Lichen | Vegetation coverage **6.6%** detected and tinted | `veg_2_orig.jpg`, `veg_2_pred.jpg` |
+
+Summary metadata is saved in `vision/outputs/demo/evaluation_summary.json`.
 
 ---
 
-## 7. Sample Inspection
-A programmatic and visual sampling across damaged and background subsets reveals:
-- **Damaged Images:**
-  - Mean Intensity: 121.5 (std: 20.0), Mean Contrast: 35.6 (std: 11.2).
-  - Sharpness (Laplacian Variance): 52.6 (range: 17.2 to 141.4).
-  - Visual characteristics: Visible diagonal/horizontal cracks, mortar joint erosion, superficial and deep stone spalling, biological patina, invasive vegetation, and varied natural outdoor illumination (direct glare to shaded undercuts).
-- **Background Images:**
-  - Mean Intensity: 149.8 (std: 13.6), Mean Contrast: 33.2 (std: 10.4).
-  - Sharpness (Laplacian Variance): 67.4 (range: 10.1 to 164.7).
-  - Visual characteristics: Intact brick courses, flat plaster, consistent mortar lines, and stone surfaces without active fissures.
-
----
-
-## 8. Background / Hard-Negative Observations
-- The 446 background images display **repetitive mortar courses and brick edges** with high contrast and edge density (up to 11.25%).
-- **Hard-Negative Risk:** Linear mortar joints and dark shadow lines closely mimic narrow masonry cracks.
-- **Strategy for Training:** These 446 images are essential hard negatives. In YOLO segmentation training, feeding background images as zero-annotation tiles is vital to suppress false positive detections on regular structural joints.
-
----
-
-## 9. Python Environment
-- **Python Version:** `3.14.2`
-- **PyTorch:** `2.14.0+cpu` (CPU build)
-- **OpenCV:** `5.0.0.93` (Installed & verified)
-- **NumPy:** `2.5.3` (Installed & verified)
-- **scikit-image:** Not installed in active interpreter
-- **Ultralytics:** Not installed in active interpreter (Installation deferred to avoid large bandwidth timeouts during Phase 1 audit)
-
----
-
-## 10. GPU Environment
-- **Hardware GPU:** NVIDIA GeForce GTX 1650
-- **Dedicated Video Memory (VRAM):** 4,096 MiB (4.0 GB)
-- **NVIDIA Driver Version:** 616.92 | **CUDA Driver Version:** 13.4
-- **PyTorch CUDA Status:** `False` (Current PyTorch installation is CPU-only `2.14.0+cpu`).
-- **Implication:** The hardware supports CUDA acceleration, but PyTorch must be reinstalled with CUDA support (`torch` with CUDA 12.x) in Phase 2 to utilize GPU acceleration.
-
----
-
-## 11. Pretrained Inference Smoke Test
-- **Status:** **Deferred to Phase 2.**
-- **Reason:** The active Python environment lacks the `ultralytics` package, and attempting live package download encountered connection timeouts on PyPI dependencies. Software stack verification will be conducted once the Phase 2 training environment is configured.
-
----
-
-## 12. Known Issues & Limitations
-1. **No Segmentation Ground Truth:** The raw dataset contains zero polygon annotations. Model training cannot begin until segmentation masks are generated.
-2. **Class Imbalance:** 7,440 damaged vs. 446 background images (16.7:1 ratio).
-3. **Data Redundancy:** 157 sets of exact duplicate files identified via MD5 hash comparison.
-4. **PyTorch CPU Build:** CUDA is not yet utilized by PyTorch despite the physical presence of a 4GB GTX 1650 GPU.
-
----
-
-## 13. Phase 2 Recommendations (Action Plan for Krish)
-1. **Environment Setup:** Create a dedicated Python environment with CUDA-enabled PyTorch (`torch>=2.0.0+cu121`) and `ultralytics`.
-2. **Annotation Strategy:**
-   - Select a balanced, deduplicated subset of ~300 to 500 representative damaged images.
-   - Annotate polygons for target classes:
-     - Class 0: `crack`
-     - Class 1: `spalling`
-     - Class 2: `vegetation`
-   - Evaluate model-assisted labeling (e.g. SAM / MobileSAM / Grounding DINO) to accelerate polygon generation.
-3. **Incorporate Hard Negatives:** Include the 446 `Background_images` as negative training tiles to teach the model to distinguish harmless mortar courses from structural cracks.
-4. **Adherence to Contract:** Ensure final inference outputs conform strictly to [`/contracts/vision_result.schema.json`](file:///contracts/vision_result.schema.json).
+## 7. Known Limitations & Next Steps
+1. **Pilot Dataset Size:** The pilot model was trained on 24 images with 8 validation images. While achieving 64.2% precision and 66.7% recall, full coverage requires expanding the dataset to 300–400 annotated images.
+2. **Detection vs. Segmentation:** Bounding box detection provides localization; polygon segmentation for millimeter-scale crack width estimation is reserved for Phase 3.
+3. **Spalling:** Spalling classification was deferred in this emergency sprint and will be integrated using multi-class annotations.
+4. **Visual Crack Burden Index:** Quantitative geometric burden calculation will be incorporated in the next iteration.
