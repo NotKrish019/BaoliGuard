@@ -1,0 +1,108 @@
+[
+  {
+    "image": "crack_1.jpg",
+    "source_file": "0 (20).jpg",
+    "crack": {
+      "detected": true,
+      "confidence": 0.84,
+      "bbox": [
+        3,
+        298,
+        646,
+        768
+      ]
+    },
+    "vegetation": {
+      "visual_indicator": false,
+      "coverage_ratio": 0.0
+    }
+  },
+  {
+    "image": "crack_2.jpg",
+    "source_file": "0 (25).jpg",
+    "crack": {
+      "detected": true,
+      "confidence": 0.8,
+      "bbox": [
+        1,
+        0,
+        768,
+        765
+      ]
+    },
+    "vegetation": {
+      "visual_indicator": false,
+      "coverage_ratio": 0.0
+    }
+  },
+  {
+    "image": "crack_3.jpg",
+    "source_file": "0 (30).jpg",
+    "crack": {
+      "detected": true,
+      "confidence": 0.76,
+      "bbox": [
+        0,
+        0,
+        767,
+        767
+      ]
+    },
+    "vegetation": {
+      "visual_indicator": false,
+      "coverage_ratio": 0.0
+    }
+  },
+  {
+    "image": "bg_1.jpg",
+    "source_file": "ND (20).jpg",
+    "crack": {
+      "detected": false,
+      "confidence": 0.0,
+      "bbox": null
+    },
+    "vegetation": {
+      "visual_indicator": false,
+      "coverage_ratio": 0.0
+    }
+  },
+  {
+    "image": "bg_2.jpg",
+    "source_file": "ND (25).jpg",
+    "crack": {
+      "detected": false,
+      "confidence": 0.0,
+      "bbox": null
+    },
+    "vegetation": {
+      "visual_indicator": false,
+      "coverage_ratio": 0.0004
+    }
+  },
+  {
+    "image": "veg_1.jpg",
+    "source_file": "0 (144).jpg",
+    "crack": {
+      "detected": false,
+      "confidence": 0.0,
+      "bbox": null
+    },
+    "vegetation": {
+      "visual_indicator": true,
+      "coverage_ratio": 0.1518
+    }
+  },
+  {
+    "image": "veg_2.jpg",
+    "source_file": "0 (105).jpg",
+    "crack": {
+      "detected": false,
+      "confidence": 0.0,
+      "bbox": null
+    },
+    "vegetation": {
+      "visual_indicator": true,
+      "coverage_ratio": 0.0658
+    }
+  }
+]

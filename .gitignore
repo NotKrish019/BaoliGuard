@@ -34,6 +34,7 @@ frontend/.vite/
 *.bin
 runs/
 wandb/
+!vision/models/crack_pilot_yolov8n.pt
 
 # Datasets and Large Folders
 data/raw/*
