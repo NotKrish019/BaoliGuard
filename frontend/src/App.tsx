@@ -6,7 +6,6 @@ import { HomePage } from './pages/HomePage';
 import { UploadPage } from './pages/UploadPage';
 import { AnalysisPage } from './pages/AnalysisPage';
 import { ReportPage } from './pages/ReportPage';
-import { DigitalTwinPage } from './pages/DigitalTwinPage';
 import { AppRoute, AnalysisResultContract, AnalysisRequestPayload } from './types';
 import { submitAnalysisRequest, getDevelopmentMockFixture } from './services/api';
 
@@ -14,7 +13,7 @@ export const App: React.FC = () => {
   // Sync initial route from browser URL or default to '/'
   const getInitialRoute = (): AppRoute => {
     const path = window.location.pathname;
-    if (path === '/upload' || path === '/analysis' || path === '/report' || path === '/twin') {
+    if (path === '/upload' || path === '/analysis' || path === '/report') {
       return path as AppRoute;
     }
     return '/';
@@ -30,7 +29,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path === '/upload' || path === '/analysis' || path === '/report' || path === '/twin' || path === '/') {
+      if (path === '/upload' || path === '/analysis' || path === '/report' || path === '/') {
         setCurrentRoute(path as AppRoute);
       } else {
         setCurrentRoute('/');
@@ -164,13 +163,6 @@ export const App: React.FC = () => {
               isMockFixture={isMockFixture}
               onRouteChange={handleNavigate}
               onLoadDemoFixture={handleLoadDemoFixture}
-            />
-          )}
-
-          {currentRoute === '/twin' && (
-            <DigitalTwinPage
-              result={analysisResult}
-              onRouteChange={handleNavigate}
             />
           )}
         </>

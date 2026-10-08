@@ -61,7 +61,6 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'KNOWLEDGE',
       badge: hasAnalysisResult ? 'Ready' : undefined,
     },
-    { route: '/twin', label: 'DIGITAL TWIN', badge: '3D' },
   ];
 
   return (

@@ -35,12 +35,6 @@ export const Navigation: React.FC<NavigationProps> = ({
       subtitle: 'IKS & REVIVE',
       badge: hasAnalysisResult ? 'Ready' : undefined,
     },
-    {
-      route: '/twin',
-      label: 'Digital Twin 3D',
-      subtitle: 'Spatial Simulation',
-      badge: '3D Live',
-    },
   ];
 
   return (

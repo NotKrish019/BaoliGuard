@@ -110,35 +110,3 @@ def test_phase3_iks_material_restoration_components_exist() -> None:
         assert target.exists(), f"Missing required Phase 3 component: {comp}"
 
 
-def test_phase4_digital_twin_assets_and_components() -> None:
-    """Verify presence of Phase 4 Digital Twin, 3D simulation components, and assets."""
-    repo_root = Path(__file__).resolve().parent.parent.parent
-    frontend_src = repo_root / "frontend" / "src"
-
-    assert (frontend_src / "components" / "DigitalTwinViewer.tsx").exists(), "DigitalTwinViewer.tsx must exist"
-    assert (frontend_src / "pages" / "DigitalTwinPage.tsx").exists(), "DigitalTwinPage.tsx must exist"
-
-    # Verify GLTF model exists in both digital_twin/models and frontend/public/models
-    gltf_twin = repo_root / "digital_twin" / "models" / "baoli_stepwell.gltf"
-    gltf_public = repo_root / "frontend" / "public" / "models" / "baoli_stepwell.gltf"
-    assert gltf_twin.exists(), "baoli_stepwell.gltf must exist in digital_twin/models/"
-    assert gltf_public.exists(), "baoli_stepwell.gltf must exist in frontend/public/models/"
-
-    with open(gltf_public, "r", encoding="utf-8") as f:
-        gltf_data = json.load(f)
-    assert gltf_data.get("asset", {}).get("version") == "2.0", "GLTF asset version must be 2.0"
-    assert "scenes" in gltf_data and "nodes" in gltf_data and "meshes" in gltf_data
-
-    # Verify Hotspots & Simulation metadata exists
-    metadata_twin = repo_root / "digital_twin" / "metadata" / "defect_hotspots.json"
-    metadata_public = repo_root / "frontend" / "public" / "models" / "defect_hotspots.json"
-    assert metadata_twin.exists(), "defect_hotspots.json must exist in digital_twin/metadata/"
-    assert metadata_public.exists(), "defect_hotspots.json must exist in frontend/public/models/"
-
-    with open(metadata_public, "r", encoding="utf-8") as f:
-        meta_data = json.load(f)
-    assert "hotspots" in meta_data, "Metadata must contain hotspots"
-    assert "restoration_zones" in meta_data, "Metadata must contain restoration_zones"
-    assert len(meta_data["hotspots"]) >= 5, "Metadata should contain at least 5 spatial defect hotspots"
-
-

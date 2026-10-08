@@ -196,7 +196,7 @@ export interface AnalysisResultContract {
 /**
  * Frontend Navigation & Application State Types
  */
-export type AppRoute = '/' | '/upload' | '/analysis' | '/report' | '/twin';
+export type AppRoute = '/' | '/upload' | '/analysis' | '/report';
 
 /**
  * Region of Interest (ROI) coordinates for focused defect inspection
@@ -217,58 +217,4 @@ export interface AnalysisRequestPayload {
   region?: string;
   notes?: string;
   roi?: InspectionROI;
-}
-
-/**
- * Digital Twin 3D Spatial Types & Simulation Contracts
- */
-export type HotspotType = 'crack' | 'vegetation' | 'spalling' | 'blocked_inlet' | 'siltation';
-
-export interface SpatialHotspot {
-  id: string;
-  type: HotspotType;
-  name: string;
-  position: [number, number, number];
-  normal?: [number, number, number];
-  severity: 'low' | 'moderate' | 'high' | 'critical' | 'severe';
-  confidence: number;
-  pixel_area: number;
-  length_pixels?: number;
-  status_before: string;
-  status_after: string;
-  description: string;
-}
-
-export interface RestorationZone {
-  zone_id: string;
-  title: string;
-  action_key: string;
-  target_hotspots: string[];
-  phase: string;
-  technique: string;
-}
-
-export interface DigitalTwinMetadata {
-  model_version: string;
-  structure_id: string;
-  name: string;
-  camera_defaults: {
-    position: [number, number, number];
-    target: [number, number, number];
-    fov: number;
-  };
-  hotspots: SpatialHotspot[];
-  restoration_zones: RestorationZone[];
-}
-
-export interface SimulationStateResult {
-  state: 'before' | 'after' | 'in_progress';
-  active_actions: string[]; // ['clear_vegetation', 'restore_inlet', 'desilt', 'restore_catchment']
-  visual_condition_score: number;
-  water_viability_score: number;
-  silt_volume_reduction_percent: number;
-  aquifer_recharge_potential: string;
-  resolved_hotspots: string[];
-  active_hotspots: string[];
-  summary: string;
 }

@@ -328,44 +328,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 6. SECTION E — DIGITAL TWIN PREVIEW */}
-      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/80">
-        <div className="max-w-6xl mx-auto">
-          <div className="rounded-3xl bg-[#063B63] p-8 sm:p-12 text-white relative overflow-hidden shadow-lg">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#8FD5F2] font-bold">
-                  Three.js Spatial Intelligence
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
-                  Interact with the 3D Digital Twin &amp; Before/After Simulation
-                </h2>
-                <p className="text-sm sm:text-base text-[#EAF7FB]/90 leading-relaxed font-light">
-                  Inspect anchored defect hotspots directly on stepwell geometry. Test conservation interventions in real time and observe aquifer recharge potential and visual recovery without manual guesswork.
-                </p>
-
-                <div className="pt-2">
-                  <button
-                    onClick={() => onRouteChange('/twin')}
-                    className="px-6 py-3 rounded-full bg-[#2498D5] hover:bg-[#8FD5F2] hover:text-[#063B63] text-white font-semibold text-xs tracking-wider uppercase transition-all duration-200 shadow-md"
-                  >
-                    LAUNCH 3D DIGITAL TWIN →
-                  </button>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 flex items-center justify-center">
-                <div className="w-full aspect-video rounded-2xl bg-[#04253e] border border-[#2498D5]/30 flex flex-col items-center justify-center p-6 text-center">
-                  <div className="text-4xl mb-3">🌐</div>
-                  <span className="text-sm font-bold text-white mb-1">Interactive Stepwell Mesh</span>
-                  <span className="text-xs font-mono text-[#8FD5F2]">GLTF 2.0 • 5 Defect Hotspots • Live Simulation</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 7. SECTION F — CLOSING EDITORIAL CTA & FOOTER */}
       <footer className="bg-[#052642] text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-6">
