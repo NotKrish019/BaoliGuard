@@ -1,0 +1,120 @@
+{
+  "id": "kund",
+  "name": "Kund",
+  "alternate_names": [
+    "Kunda",
+    "Kundi",
+    "Tanka-Kund",
+    "Temple Kund",
+    "Talab-Kund"
+  ],
+  "regions": [
+    "Western and Northern India",
+    "Gujarat",
+    "Rajasthan",
+    "Braj / Uttar Pradesh",
+    "Bundelkhand",
+    "Bihar",
+    "Varanasi"
+  ],
+  "traditional_function": [
+    "Dedicated rainwater harvesting reservoir functioning as an artificial perched freshwater lens.",
+    "Civic ritual bathing, religious ablution, and sacred gathering associated with temples and community shrines.",
+    "Hyper-local potable water reserve specifically isolated from saline or non-potable deep groundwater tables."
+  ],
+  "engineering_principles": [
+    {
+      "principle": "Inverted Stepped Pyramid Geometric Concentration",
+      "what": "Symmetrical stepped terracing sloping inward from four directions at 35° to 45° angles toward a compact central floor.",
+      "why": "In arid and semi-arid zones where rainfall is scarce, stored surface water must be concentrated into minimal surface area as depth recedes to limit evaporation.",
+      "how": "Each descending terrace steps inward with triangular or square step modules, funneling receding water into a deep central cistern.",
+      "engineering_significance": "Minimizes evaporative water loss as reservoir volume depletes while maintaining safe, continuous foot access to the water's edge at all depths."
+    },
+    {
+      "principle": "Triangular Interlocking Step Rhythms (Chhatri-pattern steps)",
+      "what": "Rhomboidal and triangular interlocking stone stair configurations arranged along descending revetments.",
+      "why": "Continuous straight staircases along steep 45° masonry slopes create lateral slip hazards and concentrated live loads.",
+      "how": "Triangular step groupings allow descent or ascent along multiple diagonal vectors, distributing pedestrian live loads and providing three-dimensional stone interlock.",
+      "engineering_significance": "Functions as a self-buttressing stepped masonry revetment that resists outward water pressure when full and inward earth pressure when empty."
+    },
+    {
+      "principle": "Engineered Sloped Catchment Apron (Paytan)",
+      "what": "Paved circular or rectangular catchment apron sloping gently inward toward perimeter inlet apertures.",
+      "why": "Unlike baolis that tap regional aquifers, many kunds rely predominantly on pure surface rainwater harvesting.",
+      "how": "The surrounding ground apron (paytan) is paved with dressed flagstones treated with impervious lime-ash renders, sloped at 1:50 to 1:100 toward stone intake chambers.",
+      "engineering_significance": "Maximizes rainfall runoff collection efficiency (capturing >85% of incident precipitation) while excluding surrounding mud and organic contaminants."
+    },
+    {
+      "principle": "Multi-Stage Stone Sedimentation Inlets",
+      "what": "Intake chutes (moris) containing successive stone settlement sumps and perforated stone screens.",
+      "why": "Rainwater harvested from open aprons carries dust, leaves, and suspended particles that would decompose and spoil stored water.",
+      "how": "Inflow passes through an external silt trap pit where heavy mineral grains settle, followed by passing through carved stone lattice grates that trap leaves and debris.",
+      "engineering_significance": "Prevents organic debris from reaching the main holding reservoir, preserving biochemical water quality without synthetic chemicals."
+    }
+  ],
+  "water_management_principles": [
+    {
+      "principle": "Surface Rainwater Harvesting Priority",
+      "description": "Exclusively captures and preserves rainwater rather than relying on subterranean groundwater inflow.",
+      "hydrological_mechanism": "Operates as an impervious perched retention basin; essential in geographic zones where underlying groundwater is brackish, saline, or fluoride-contaminated."
+    },
+    {
+      "principle": "Controlled Gravity Drainage and Siphon Overflow",
+      "description": "Stone overflow conduits (moris) discharge excess water at high-water level to prevent erosion of the surrounding foundation apron.",
+      "hydrological_mechanism": "Regulates maximum storage hydraulic head to avoid hydrostatic surcharge behind the upper stepped terraces."
+    }
+  ],
+  "environmental_adaptations": [
+    "Evolved specifically for semi-arid plains, desert fringes, and pilgrimage centers where large numbers of people gather during religious festivals.",
+    "Thermal inertia of the deep stone terraces moderates daily temperature swings, inhibiting microbial bacterial bloom.",
+    "Impervious lime plaster lining isolates stored sweet rainwater from contaminated or saline surrounding soil water."
+  ],
+  "traditional_materials": [
+    {
+      "material_family": "Dressed Stone Ashlar (Sandstone / Basalt / Granite)",
+      "usage": "Stepped revetments, corner bastions, and perimeter paytan.",
+      "traditional_role": "High-density stone blocks dressed with precise chamfered edges to withstand high pedestrian friction, hydraulic immersion, and algal growth."
+    },
+    {
+      "material_family": "Hydraulic Lime-Surkhi Waterproofing Plaster (Ghootai)",
+      "usage": "Reservoir floor and lower submerged step joints.",
+      "traditional_role": "Multi-layered fat lime mortar enriched with finely pulverized brick pozzolana (surkhi) and marble dust, hand-compacted and burnished with agate stones for water tightness."
+    },
+    {
+      "material_family": "Natural Gum and Vegetable Waterproofing Admixtures",
+      "usage": "Additive in mortar mixing and surface sealing washes.",
+      "traditional_role": "Extracts of methi (fenugreek), guggal (resin), aloe vera, and bel fruit pulp incorporated into lime slurry to reduce capillary porosity and improve water tightness."
+    }
+  ],
+  "construction_features": [
+    "Symmetrical inverted stepped pyramid basin (square or octagonal footprint).",
+    "Intricate interlocking triangular step modules descending on all four facets.",
+    "Sloped paved catchment apron (paytan) encircling the perimeter.",
+    "Screened inlet chutes (moris) with built-in stone sediment settling traps.",
+    "Corner decorative pavilions (chhatris) and access toranas (arched entrance gates)."
+  ],
+  "common_deterioration_factors": [
+    "Delamination, cracking, and loss of the authentic waterproofing lime render (ghootai) from cyclic drying and wetting.",
+    "Dislodgement and rocking of stepped stone blocks due to joint mortar dissolution from submerged hydrostatic pressure.",
+    "Eutrophication and severe anaerobic water pollution resulting from religious offerings, decaying flower waste, and organic debris.",
+    "Application of non-breathable polymer sealers or Portland cement patches, causing moisture entrapment and spalling of underlying stone treads."
+  ],
+  "conservation_considerations": [
+    "Preserve the water tightness of the floor and step terraces; avoid structural punctures that compromise the retention basin.",
+    "Re-lay loosened step blocks on breathable, flexible hydraulic lime-surkhi bedding mortar matching original stone compressive strength.",
+    "Non-chemical biological water purification: deploy traditional floating wetlands, aeration, and sand-gravel filter beds rather than harmful chemical coagulants.",
+    "Re-establish the clean drainage gradient of the surrounding paytan apron to avoid contamination from unpaved peripheral mud."
+  ],
+  "sources": [
+    "SRC_CSE_DYING_WISDOM_1997",
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_CPWD_HERITAGE_2013",
+    "SRC_CGWB_TRADITIONAL_2021"
+  ],
+  "limitations": [
+    "Distinction between pure rainwater-holding kunds and spring-fed kunds requires local catchment and hydrogeological tracing.",
+    "Waterproofing integrity of floor seals cannot be determined visually and requires non-destructive hydrostatic drop-testing.",
+    "Mechanical mortar testing must precede any consolidation to prevent placing overly rigid mortars on ductile historic stones."
+  ]
+}

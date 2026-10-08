@@ -1,0 +1,118 @@
+{
+  "id": "baoli",
+  "name": "Baoli",
+  "alternate_names": [
+    "Baodi",
+    "Bawdi",
+    "Bawli",
+    "Bavadi"
+  ],
+  "regions": [
+    "Indo-Gangetic Plains",
+    "Delhi NCR",
+    "Uttar Pradesh",
+    "Haryana",
+    "Madhya Pradesh",
+    "Northern Rajasthan"
+  ],
+  "traditional_function": [
+    "Potable water supply via manual pedestrian descent across severe seasonal groundwater level fluctuations.",
+    "Integrated subterranean thermal refuge for travelers, caravans, and community assemblies during extreme summer heat.",
+    "Dual-function hydraulic node combining gravity sediment settling in open stepped basins with clean vertical shaft abstraction."
+  ],
+  "engineering_principles": [
+    {
+      "principle": "Stepped Pedestrian Hydraulic Gradient Access",
+      "what": "Descending linear stone staircase flanked by tiered masonry retaining walls connecting ground surface to fluctuating water table.",
+      "why": "Seasonal monsoon fluctuations cause water tables in northern alluvium to vary by 8 to 15 meters between post-monsoon and pre-monsoon periods.",
+      "how": "Multi-flight stone steps with intermediate resting landings (chowkis) allow users to reach the safe water edge at any hydraulic elevation without requiring mechanical pumps.",
+      "engineering_significance": "Translates vertical hydrological variation into a safe, horizontal-stepped human circulation path while providing structural counter-weighting to base foundations."
+    },
+    {
+      "principle": "Hydrostatic and Active Earth Pressure Retaining System",
+      "what": "Battered stone retaining masonry walls reinforced with transverse arched beams and tiered horizontal landings.",
+      "why": "Deep excavations (10-25m) in alluvial soil exert massive lateral earth pressure and fluctuating pore-water pressure against side walls, especially when the reservoir is emptied.",
+      "how": "Retaining walls are designed with an inward batter (slope) and linked across the open trench by multi-level vaulted masonry struts that act as compression members.",
+      "engineering_significance": "Prevents catastrophic inward wall shear failure under unbalanced active soil thrust without modern steel reinforcement."
+    },
+    {
+      "principle": "Subterranean Thermal Mass and Evaporative Loss Mitigation",
+      "what": "Sunken subterranean architectural volume insulated by deep enclosing earth and shaded by arcaded galleries.",
+      "why": "Northern Indian semi-arid summers generate ambient temperatures exceeding 45°C, which would cause severe evaporative water losses in open surface tanks.",
+      "how": "Subterranean depth, high thermal inertia of surrounding soil, and structural shading limit solar radiation penetration, keeping water and air temperatures between 22°C and 26°C.",
+      "engineering_significance": "Suppresses open-water evaporation rates by up to 60-75% compared to surface retention ponds while creating a passive bioclimatic cooling microclimate."
+    },
+    {
+      "principle": "Zonal Water Segregation (Bathing Basin vs. Potable Well Cylinder)",
+      "what": "Structural bifurcation separating the open stepped descent basin from the deep vertical circular well shaft.",
+      "why": "Pedestrian water contact in stepped basins carries microbiological contamination, rendering water unsafe for direct ingestion.",
+      "how": "Water filters through submerged masonry sluices or perforated stone grates connecting the stepped tank to an isolated cylindrical well shaft fitted with pulley brackets (charkhi) for clean rope abstraction.",
+      "engineering_significance": "Implements an indigenous gravity filtration and hygiene zoning architecture preventing contamination of primary potable supplies."
+    }
+  ],
+  "water_management_principles": [
+    {
+      "principle": "Unconfined Aquifer Equilibrium Interaction",
+      "description": "The base of the baoli cylinder cuts directly into unconfined permeable sandy-gravel water-bearing strata.",
+      "hydrological_mechanism": "Operates under hydrostatic equilibrium: in dry seasons, water seeps into the well shaft by gravity; during peak monsoon floods, excess surface flow percolates into the surrounding unconfined aquifer."
+    },
+    {
+      "principle": "Deceleration Silt Settling Chambers",
+      "description": "Stepped entry landings and forebay chambers slow incoming stormwater velocity.",
+      "hydrological_mechanism": "Decreased hydraulic Reynolds number allows coarse suspended silt and bedload particles to settle on external paved terraces before clarified water reaches the well intake."
+    }
+  ],
+  "environmental_adaptations": [
+    "Engineered for alluvial plains and semi-arid river basins characterized by intense, short-duration monsoons and long dry winters/summers.",
+    "Orientation of the stepped corridor typically along north-south axes to minimize direct solar insolation along descending galleries.",
+    "Deep earth-sheltered volume protects water stores from hot, desiccating dust storms (loo) common in northern plains."
+  ],
+  "traditional_materials": [
+    {
+      "material_family": "Dressed Stone Masonry",
+      "usage": "Structural retaining walls, steps, columns, and vaulted pavilions.",
+      "traditional_role": "Locally quarried Delhi quartzite, red/buff sandstone, or limestone laid in ashlar or coursed rubble courses to withstand high compressive stresses and continuous moisture exposure."
+    },
+    {
+      "material_family": "Hydraulic Lime Mortar (Chuna-Surkhi)",
+      "usage": "Bedding mortar, joint pointing, and waterproof plaster renders.",
+      "traditional_role": "Class A or B hydraulic slaked fat lime blended with calcined clay pozzolana (surkhi) in 1:2 or 1:3 volume ratios, providing high vapor permeability, self-healing microcrack capacity, and water resistance."
+    },
+    {
+      "material_family": "Organic and Herbal Additives",
+      "usage": "Admixture in lime plaster and mortar slaking water.",
+      "traditional_role": "Fermented jaggery (gur), black gram pulse (urad dal paste), bael fruit extract, and neem decoction added to regulate setting time, improve adhesion, retard rapid surface drying, and inhibit insect/fungal infestation."
+    }
+  ],
+  "construction_features": [
+    "Stepped linear descent corridor (flight of steps) flanked by retaining masonry.",
+    "Intermediate pavilion landings (kuts) providing structural cross-bracing and resting platforms.",
+    "Circular or octagonal deep masonry well cylinder (kua) at the terminal end.",
+    "Overhead stone cantilevered pulley brackets (moat / charkhi mounts) for vertical rope drawing.",
+    "Perimeter runoff interception drains and stone silt filtration grates."
+  ],
+  "common_deterioration_factors": [
+    "Invasive woody vegetation (Ficus religiosa, Ficus benghalensis) root wedging splitting stone joints and displacing retaining wall masonry.",
+    "Mortar leaching and joint washout caused by uncontrolled acidic surface runoff cascades.",
+    "Heavy bed siltation and municipal garbage dumping choking lower aquifer filtration interface.",
+    "Incompatible modern cementitious repairs: application of non-breathable Portland cement renders that trap sub-surface moisture, creating salt cryptoflorescence and accelerated stone spalling."
+  ],
+  "conservation_considerations": [
+    "Prioritize mechanical and gentle biochemical elimination of woody tree root systems without destabilizing structural wall blocks.",
+    "Maintain the breathable hydrological envelope: never apply impermeable synthetic coatings or Ordinary Portland Cement mortars.",
+    "Use authentic, slow-curing slaked lime-surkhi mortars matching original binder-to-aggregate proportions, elasticity, and vapor permeability.",
+    "Systematic manual desiltation of the well cylinder bed down to the original stone pavement to reactivate subterranean aquifer connectivity."
+  ],
+  "sources": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_LIVINGSTON_2002",
+    "SRC_CPWD_HERITAGE_2013",
+    "SRC_CGWB_TRADITIONAL_2021"
+  ],
+  "limitations": [
+    "Regional variations between Delhi quartzite rubble baolis and sandstone ashlar baolis require site-specific petrographic confirmation.",
+    "Visual assessment of mortar cannot confirm exact chemical binder ratios without acid-dissolution and XRD laboratory characterization.",
+    "Hydrological reactivation depends on regional groundwater table status and local catchment continuity."
+  ]
+}

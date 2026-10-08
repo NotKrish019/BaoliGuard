@@ -1,0 +1,117 @@
+{
+  "id": "bawari",
+  "name": "Bawari",
+  "alternate_names": [
+    "Bavdi",
+    "Bawadi",
+    "Bawri",
+    "Bori"
+  ],
+  "regions": [
+    "Arid and Semi-Arid Western India",
+    "Rajasthan (Marwar, Mewar, Shekhawati)",
+    "Malwa Plateau",
+    "Bundelkhand",
+    "Northern Gujarat"
+  ],
+  "traditional_function": [
+    "Decentralized drought-proofing reservoir capturing localized flash runoff in hyper-arid terrains.",
+    "Dual-action water harvesting: stores monsoonal surface runoff while recharging and tapping shallow perched fractured bedrock aquifers.",
+    "Community gathering hub, livestock watering refuge, and sacred ablution site in water-scarce settlements."
+  ],
+  "engineering_principles": [
+    {
+      "principle": "Steep-Sided Funnel Retaining Geometry",
+      "what": "High-angle stepped masonry walls enclosing an open square, rectangular, or inverted pyramidal tank.",
+      "why": "Hyper-arid desert climates (Thar desert margin) experience annual potential evapotranspiration exceeding 2000 mm, far outstripping annual precipitation (200-400 mm).",
+      "how": "Steep stone staircases descending on three or four walls maximize reservoir water depth while minimizing exposed horizontal surface area.",
+      "engineering_significance": "Minimizes open surface area to volume ratio, drastically curtailing solar-driven evaporative volume losses during peak dry seasons."
+    },
+    {
+      "principle": "Gravity Silt Baffle Inflow Interception",
+      "what": "Peripheral masonry catchment channels (aagore) equipped with stone sediment baffle basins and grates.",
+      "why": "Arid flash floods carry dense loads of suspended abrasive sand, gravel, and organic debris that would rapidly fill and choke the storage basin.",
+      "how": "Inflow channels are built with graded slopes and drop-settling sumps where turbulent flow velocity drops, depositing coarse sands prior to cresting the overflow lip into the bawari.",
+      "engineering_significance": "Protects deep storage volume from rapid siltation while preventing mechanical abrasion of interior step masonry."
+    },
+    {
+      "principle": "Fractured Bedrock Hydraulic Interconnection",
+      "what": "Deep quarrying into fissured sandstone, quartzite, or basalt bedrock with unmortared or porous lower joints.",
+      "why": "Shallow perched aquifers in rocky arid plateaus yield seasonal groundwater seepage through joint planes and bedding fractures.",
+      "how": "The base excavation intersects secondary bedrock permeability zones, allowing groundwater to weep into the bawari during dry months and monsoonal recharge to percolate outward into local rock fissures.",
+      "engineering_significance": "Transforms the structure into a seasonal two-way groundwater buffer node without requiring mechanical borehole pumps."
+    },
+    {
+      "principle": "Multidirectional Stepped Ingress and Load Distribution",
+      "what": "Pyramidal stepped flights arranged symmetrically on three or four reservoir facets.",
+      "why": "Simultaneous community access is required while masonry walls must withstand lateral earth pressure from exterior backfill.",
+      "how": "Stepped stone courses are stepped back progressively with interlocking dry or lime-bonded masonry, creating an integrated gravity retaining mass that distributes soil pressure evenly around the perimeter.",
+      "engineering_significance": "Provides omnidirectional structural stability against external soil thrust while ensuring safe pedestrian descent as water level drops."
+    }
+  ],
+  "water_management_principles": [
+    {
+      "principle": "Micro-Catchment Runoff Harvesting (Aagore Yield)",
+      "description": "Every square meter of surrounding rocky outcrop or paved catchment is sloped toward stone feeder channels leading to the bawari.",
+      "hydrological_mechanism": "Converts high-intensity short-duration monsoon convective rainfall (cloudbursts) into immediate deep-seated gravity storage before evaporation can occur."
+    },
+    {
+      "principle": "Perched Aquifer Equilibrium Recharge",
+      "description": "Monsoon flood volumes held in the deep basin head recharge local perched water tables; during post-monsoon depletion, bedrock joints slowly seep water back into the basin.",
+      "hydrological_mechanism": "Two-way hydraulic conductivity through fractured rock bedding planes regulates year-round water availability."
+    }
+  ],
+  "environmental_adaptations": [
+    "Custom-engineered for hyper-arid and rocky terrains with erratic monsoons, high salinity in deep aquifers, and high summer winds.",
+    "Masonry walls are constructed from locally sourced dense quartzitic or calcareous sandstones exhibiting high resistance to salt crystallization.",
+    "Perimeter parapet walls prevent desert sandstorm drift from filling the basin."
+  ],
+  "traditional_materials": [
+    {
+      "material_family": "Dressed Sandstone Masonry",
+      "usage": "Stepped revetments, coping parapets, and entrance kiosks.",
+      "traditional_role": "Locally quarried red, yellow, or pink sandstone (e.g. Jodhpur, Jaisalmer, Dhrangadhra stone) dressed with tight interlocking joints to resist scour and cyclic wetting-drying fatigue."
+    },
+    {
+      "material_family": "Burnished Hydraulic Lime Plaster (Ghootai)",
+      "usage": "Impervious linings on lower basin retaining walls and floors.",
+      "traditional_role": "Fat lime mixed with finely sifted marble dust or quartz sand, slaked with curd, jaggery, and methi (fenugreek) water, burnished with smooth agate stones to form an impervious, mirror-smooth water-retaining face."
+    },
+    {
+      "material_family": "Natural Hydraulic Lime Mortar",
+      "usage": "Core masonry bedding and structural joint pointing.",
+      "traditional_role": "Naturally hydraulic or semi-hydraulic lime mortar capable of setting under damp conditions and accommodating thermal movements in extreme arid diurnal cycles."
+    }
+  ],
+  "construction_features": [
+    "Rectangular or square stepped water tank with steep tiered revetments.",
+    "Ornamented entrance gateway (torana) and perimeter protective parapet.",
+    "Feeder channels (aagore) with stone drop pits for silt deposition.",
+    "Overhead stone lintels, brackets, and resting platforms for community gathering.",
+    "Emergency overflow weir to divert extreme flood peaks safely away from settlement foundations."
+  ],
+  "common_deterioration_factors": [
+    "Catchment severance: modern urban encroachment and road construction cutting off traditional feeder channels (aagore), starving the bawari of inflow runoff.",
+    "Heavy accumulation of organic sediment, plastics, and debris choking bottom bedrock fractures.",
+    "Severe biological growth (algal blooms and cyanobacteria) resulting from stagnant, uncirculated water bodies.",
+    "Inappropriate Portland cement pointing over sandstone joints, causing edge spalling and accelerated salt weathering (sub-florescence)."
+  ],
+  "conservation_considerations": [
+    "Catchment-first restoration: clearing and re-establishing feeder channels is an indispensable prerequisite before masonry interventions.",
+    "Manual desiltation using soft tools to preserve original unmortared bedrock joints and carved stone pavements.",
+    "Extraction of modern impermeable cement mortars and replacement with compatible breathing lime-sand mortars matching original flexural modulus.",
+    "Bio-remediation using native aquatic vegetation and sand-gravel filter beds rather than chemical algaecides that damage historic limestone binders."
+  ],
+  "sources": [
+    "SRC_CSE_DYING_WISDOM_1997",
+    "SRC_CGWB_TRADITIONAL_2021",
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_CPWD_HERITAGE_2013"
+  ],
+  "limitations": [
+    "Hydrogeological connection to fractured rock aquifers varies sharply with localized bedrock lithology and requires geoelectrical sounding.",
+    "Field observations of sandstone decay must be supplemented by non-destructive ultrasonic pulse velocity and salt crystallization testing.",
+    "Water viability assessment requires validation of contemporary catchment connectivity outside the monument boundary."
+  ]
+}

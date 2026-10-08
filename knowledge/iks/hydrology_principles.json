@@ -1,0 +1,42 @@
+{
+  "title": "Indigenous Hydrological and Conservation Engineering Principles",
+  "version": "1.0.0",
+  "domain": "Indian Knowledge Systems (IKS)",
+  "principles": [
+    {
+      "code": "IKS_HYDRO_01",
+      "name": "Gradient-Driven Gravity Flow (Dhal-Yojana)",
+      "concept": "Complete reliance on natural topography, elevation head, and micro-catchment slopes to guide, decelerate, and store water without external energy.",
+      "application": "Inflow feeder channels, settling basins, and overflow sluices in Baolis, Bawaris, and Kunds.",
+      "engineering_significance": "Zero operational carbon footprint; self-regulating discharge velocities preventing bank erosion."
+    },
+    {
+      "code": "IKS_HYDRO_02",
+      "name": "Subterranean Thermal Dampening (Bhugarbha Sheetalata)",
+      "concept": "Leveraging soil thermal inertia and underground excavation to buffer surface heat extremes and suppress evaporation.",
+      "application": "Deep stepped shafts, enclosed pavilion galleries, and shaded water cylinders in Vavs and Baolis.",
+      "engineering_significance": "Reduces evaporation losses by up to 75% in arid summers while providing passive 22-26°C microclimatic cooling."
+    },
+    {
+      "code": "IKS_HYDRO_03",
+      "name": "Multi-Stage Gravity Siltation Interception (Gadh-Niyantran)",
+      "concept": "Sequenced settlement sumps, perforated stone screens, and deceleration terraces prior to primary reservoir entry.",
+      "application": "Outer settling pits in Kund paytan aprons and forebays of Bawaris.",
+      "engineering_significance": "Protects deep aquifers and storage cisterns from premature siltation without synthetic filtration media."
+    },
+    {
+      "code": "IKS_HYDRO_04",
+      "name": "Two-Way Aquifer Equilibrium (Jal-Samanvaya)",
+      "concept": "Hydraulic integration with unconfined or fractured bedrock aquifers, acting as monsoon recharge sinks and summer withdrawal nodes.",
+      "application": "Porous unmortared bedrock basements and well shafts of Baolis and Bawaris.",
+      "engineering_significance": "Recharges regional groundwater tables during flood events and provides continuous potable access during droughts."
+    },
+    {
+      "code": "IKS_HYDRO_05",
+      "name": "Functional Hydraulic Zoning (Pavitrata-Bhedana)",
+      "concept": "Physical and hydraulic separation between public access stepped basins (washing, community) and deep vertical well cylinders (potable abstraction).",
+      "application": "Divided well shafts in Baolis and Vavs equipped with overhead pulley brackets.",
+      "engineering_significance": "Prevents microbial cross-contamination of potable drinking water from pedestrian bathing contact."
+    }
+  ]
+}

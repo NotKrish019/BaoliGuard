@@ -1,0 +1,55 @@
+{
+  "material_id": "lakhori_brick",
+  "name": "Historic Lakhori Brick Masonry (Badshahi / Thin Flat Terracotta Brick)",
+  "material_family": "brick",
+  "category": "historic_substrate",
+  "traditional_use": "Vaults, arches, linings, and pavilions in Sultanate, Mughal, and regional Nawabi baolis and tanks across northern and eastern India.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [7.0, 16.0],
+    "elastic_modulus_gpa_range": [4.0, 9.0],
+    "porosity_pct_range": [16.0, 26.0],
+    "vapor_permeability_perm_range": [10.0, 20.0],
+    "thermal_expansion_coeff_1e6_k": 5.5
+  },
+  "moisture_behavior": {
+    "breathability": "High vapor permeability through open ceramic micro-capillaries",
+    "capillary_suction": "High capillary water suction",
+    "drying_rate": "Rapid drying under ventilated conditions",
+    "summary": "High porosity and thin cross-section require lime mortar with equal or higher breathability."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Low to moderate modulus of elasticity",
+    "ductility": "Brittle, susceptible to crumbling under stress concentration",
+    "sacrificial_behavior": "Historic substrate; mortar joints (typically 15-25mm thick) must be softer than the brick",
+    "summary": "Because joint thickness often equals brick thickness, the mortar system dominates overall structural behavior."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High tolerance to thermal shock",
+    "compatibility_with_historic_stones": "Compatible with lime-surkhi systems",
+    "summary": "Surkhi aggregate is made from identical crushed terracotta, ensuring thermal expansion equilibrium."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Neutral ceramic matrix",
+    "soluble_salts_risk": "Vulnerable to salt fretting and surface spalling if dampness cannot evaporate",
+    "reactivity_with_limestone": "Pozzolanic bonding between brick faces and hydraulic lime mortar",
+    "summary": "Chemical bonding with lime mortar creates a monolithic yet ductile structural masonry mass."
+  },
+  "reversibility": {
+    "reversibility_score": 10.0,
+    "extraction_method": "Permanent historic fabric",
+    "retreatability": "Original historic fabric"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Traditional hand-moulded alluvial clay fired in country clamps with herbal water tempering",
+    "asi_intach_compliance": "Protected historic fabric",
+    "authenticity_status": "Original authentic fabric"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_CPWD_HERITAGE_2013"
+  ],
+  "limitations": [
+    "Modern standard bricks (75mm thick) are dimensionally incompatible with historic lakhori brickwork (20-30mm thick).",
+    "Application of Portland cement mortar destroys lakhori bricks by causing edge crushing and salt blister spalling."
+  ]
+}

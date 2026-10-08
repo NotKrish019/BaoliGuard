@@ -1,0 +1,56 @@
+{
+  "material_id": "fat_lime_putty",
+  "name": "Non-Hydraulic Fat Lime Putty (Slaked White Lime / Class C Lime)",
+  "material_family": "lime-based mortar",
+  "category": "candidate_intervention",
+  "traditional_use": "Fine joint pointing, decorative stucco, burnished plaster (ghootai), and delicate carving repairs in sheltered or non-submerged zones.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [1.0, 2.5],
+    "elastic_modulus_gpa_range": [0.8, 2.0],
+    "porosity_pct_range": [28.0, 40.0],
+    "vapor_permeability_perm_range": [18.0, 30.0],
+    "thermal_expansion_coeff_1e6_k": 6.5
+  },
+  "moisture_behavior": {
+    "breathability": "Exceptional vapor breathability",
+    "capillary_suction": "High capillary openness allowing rapid vapor transport",
+    "drying_rate": "Very rapid drying",
+    "summary": "Maximum moisture transmission capability, ideal for salt-laden or highly humid upper masonry."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Extremely low modulus of elasticity (0.8-2.0 GPa)",
+    "ductility": "Highly plastic and deformable",
+    "sacrificial_behavior": "Ultra-sacrificial; protects delicate decorative friezes from cracking",
+    "summary": "Very soft and yielding; cannot be used in primary structural foundation retaining walls."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High compliance with host stone expansion",
+    "compatibility_with_historic_stones": "Zero shear stress generation",
+    "summary": "Cushions microscopic expansion of porous carved stones."
+  },
+  "chemical_considerations": {
+    "ph_nature": "High alkalinity (pH 12.5), anti-microbial and fungicidal",
+    "soluble_salts_risk": "Zero salt introduction",
+    "reactivity_with_limestone": "Pure calcium carbonate matrix upon atmospheric carbonation",
+    "summary": "Cannot set under water; requires atmospheric carbon dioxide to carbonate."
+  },
+  "reversibility": {
+    "reversibility_score": 9.8,
+    "extraction_method": "Gentle water softening and manual scraper",
+    "retreatability": "100% reversible without abrasion"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Traditional aging of slaked lime putty in pits for 6-12 months per ancient Shilpa Shastra prescriptions",
+    "asi_intach_compliance": "Fully compliant with ASI and INTACH conservation standards",
+    "authenticity_status": "Historically authentic finishing and fine-jointing material"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_BIS_IS712_LIME"
+  ],
+  "limitations": [
+    "Non-hydraulic: does NOT set under water and must not be used below high-water levels without pozzolanic admixture.",
+    "Slow carbonation rate requires extended protection from freezing and direct rain."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "material_id": "portland_cement_opc",
+  "name": "Ordinary Portland Cement (OPC 43 / OPC 53 Repair Mortar)",
+  "material_family": "cement-rich repair",
+  "category": "incompatible_modern_intervention",
+  "traditional_use": "Modern 20th-century unscientific repair; pointing, plastering, and structural patching.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [25.0, 50.0],
+    "elastic_modulus_gpa_range": [20.0, 35.0],
+    "porosity_pct_range": [6.0, 14.0],
+    "vapor_permeability_perm_range": [0.5, 3.0],
+    "thermal_expansion_coeff_1e6_k": 12.0
+  },
+  "moisture_behavior": {
+    "breathability": "Extremely low vapor permeability (impermeable barrier)",
+    "capillary_suction": "Dense micro-porous structure blocks vapor transmission",
+    "drying_rate": "Very slow; forces trapped water into adjacent porous stone units",
+    "summary": "Acts as an impermeable moisture dam, trapping rising damp inside historic walls and forcing salt crystallization behind the cement crust."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Excessively high stiffness (20-35 GPa), 5 to 10 times stiffer than historic lime mortar",
+    "ductility": "Brittle, zero plastic yield under low stress",
+    "sacrificial_behavior": "Anti-sacrificial: significantly stronger than historic sandstone, lakhori brick, and lime mortar",
+    "summary": "Transfers all thermal and structural movement stresses directly into historic stone edges, causing fracture and spalling."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High rigidity induces shear delamination under diurnal heating",
+    "compatibility_with_historic_stones": "High differential thermal expansion relative to soft historic stones",
+    "summary": "Shears away from host stone during hot-cold cycles, creating open fissures that admit rainwater."
+  },
+  "chemical_considerations": {
+    "ph_nature": "High alkalinity (pH 12.8 - 13.5)",
+    "soluble_salts_risk": "Introduces harmful soluble sodium and potassium sulfates (alkali-sulfate compounds)",
+    "reactivity_with_limestone": "Chemical reaction between cement sulfates and limestone forms expansive ettringite and thaumasite",
+    "summary": "Expansive mineral formation causes destructive cryptoflorescence and crumble of adjacent historic stone."
+  },
+  "reversibility": {
+    "reversibility_score": 1.5,
+    "extraction_method": "Extremely difficult; requires rotary diamond cutter or heavy chisel, inevitably cutting and scarring original stone arrises",
+    "retreatability": "Irreversible; removal often causes more mechanical damage than leaving it undisturbed without specialist conservators"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Zero alignment; completely alien to traditional Indian hydraulic masonry science",
+    "asi_intach_compliance": "Explicitly prohibited by ASI Conservation Manual (2020) and INTACH Charter (2004) on historic stone",
+    "authenticity_status": "Destructive incompatible modern material"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_RILEM_HISTORIC_MORTARS_2012"
+  ],
+  "limitations": [
+    "Contextual evaluation: OPC is not universally evil in modern reinforced concrete construction, but when applied to historic breathing masonry, its physical mismatch causes severe degradation.",
+    "Removing existing sound cement patches must be evaluated on a case-by-case basis to prevent tearing away friable stone face."
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "title": "BaoliGuard Material DNA Catalog Index",
+  "version": "1.0.0",
+  "material_families": [
+    "lime-based mortar",
+    "lime + compatible aggregate systems",
+    "stone",
+    "brick",
+    "cement-rich repair",
+    "generic modern filler"
+  ],
+  "materials": [
+    {
+      "material_id": "hydraulic_lime_mortar",
+      "name": "Traditional Hydraulic Lime Mortar (Chuna-Kankar)",
+      "family": "lime-based mortar",
+      "category": "historic_substrate",
+      "file": "hydraulic_lime_mortar.json"
+    },
+    {
+      "material_id": "surkhi_lime_mortar",
+      "name": "Traditional Lime-Surkhi Pozzolanic Mortar",
+      "family": "lime + compatible aggregate systems",
+      "category": "candidate_intervention",
+      "file": "surkhi_lime_mortar.json"
+    },
+    {
+      "material_id": "fat_lime_putty",
+      "name": "Non-Hydraulic Fat Lime Putty (Class C)",
+      "family": "lime-based mortar",
+      "category": "candidate_intervention",
+      "file": "fat_lime_putty.json"
+    },
+    {
+      "material_id": "natural_hydraulic_lime_nhl",
+      "name": "Natural Hydraulic Lime Mortar (NHL 2 / NHL 3.5)",
+      "family": "lime-based mortar",
+      "category": "candidate_intervention",
+      "file": "natural_hydraulic_lime_nhl.json"
+    },
+    {
+      "material_id": "historic_sandstone",
+      "name": "Historic Sandstone Masonry (Red/Yellow/Buff)",
+      "family": "stone",
+      "category": "historic_substrate",
+      "file": "historic_sandstone.json"
+    },
+    {
+      "material_id": "historic_quartzite",
+      "name": "Delhi Quartzite Rubble and Ashlar Masonry",
+      "family": "stone",
+      "category": "historic_substrate",
+      "file": "historic_quartzite.json"
+    },
+    {
+      "material_id": "lakhori_brick",
+      "name": "Historic Lakhori Brick Masonry",
+      "family": "brick",
+      "category": "historic_substrate",
+      "file": "lakhori_brick.json"
+    },
+    {
+      "material_id": "portland_cement_opc",
+      "name": "Ordinary Portland Cement (OPC 43 / 53)",
+      "family": "cement-rich repair",
+      "category": "incompatible_modern_intervention",
+      "file": "portland_cement_opc.json"
+    },
+    {
+      "material_id": "generic_acrylic_filler",
+      "name": "Generic Modern Synthetic Polymer / Epoxy Filler",
+      "family": "generic modern filler",
+      "category": "incompatible_modern_intervention",
+      "file": "generic_acrylic_filler.json"
+    }
+  ]
+}

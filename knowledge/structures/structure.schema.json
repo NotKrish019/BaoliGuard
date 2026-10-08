@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/structure.schema.json",
+  "title": "StructureKnowledgeContract",
+  "description": "Schema enforcing structural and hydrological IKS engineering documentation for traditional Indian water systems.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "alternate_names",
+    "regions",
+    "traditional_function",
+    "engineering_principles",
+    "water_management_principles",
+    "environmental_adaptations",
+    "traditional_materials",
+    "construction_features",
+    "common_deterioration_factors",
+    "conservation_considerations",
+    "sources",
+    "limitations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "enum": ["baoli", "bawari", "kund", "vav"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "alternate_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "traditional_function": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "engineering_principles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "principle",
+          "what",
+          "why",
+          "how",
+          "engineering_significance"
+        ],
+        "properties": {
+          "principle": {
+            "type": "string"
+          },
+          "what": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "how": {
+            "type": "string"
+          },
+          "engineering_significance": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "water_management_principles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "principle",
+          "description",
+          "hydrological_mechanism"
+        ],
+        "properties": {
+          "principle": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "hydrological_mechanism": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "environmental_adaptations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "traditional_materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "material_family",
+          "usage",
+          "traditional_role"
+        ],
+        "properties": {
+          "material_family": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string"
+          },
+          "traditional_role": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "construction_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "common_deterioration_factors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conservation_considerations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  }
+}

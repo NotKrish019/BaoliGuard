@@ -1,0 +1,57 @@
+{
+  "material_id": "historic_sandstone",
+  "name": "Historic Sandstone Masonry (Red/Yellow/Buff Sandstone)",
+  "material_family": "stone",
+  "category": "historic_substrate",
+  "traditional_use": "Primary structural ashlar blocks, retaining wall facades, pillars, beams, brackets, and steps in Vavs, Baolis, and Bawaris across Rajasthan, Gujarat, and UP.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [18.0, 45.0],
+    "elastic_modulus_gpa_range": [8.0, 18.0],
+    "porosity_pct_range": [8.0, 18.0],
+    "vapor_permeability_perm_range": [6.0, 14.0],
+    "thermal_expansion_coeff_1e6_k": 9.5
+  },
+  "moisture_behavior": {
+    "breathability": "Moderate vapor permeability along natural bedding planes",
+    "capillary_suction": "Active capillary suction drawing moisture from damp foundation soils",
+    "drying_rate": "Moderate drying rate dependent on surface air circulation and open joints",
+    "summary": "Porous natural stone that relies on breathable lime joints to evaporate absorbed groundwater."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Moderate stiffness with anisotropic behavior along sedimentary bedding planes",
+    "ductility": "Quasi-brittle in tension; vulnerable to edge spalling when subjected to point loads",
+    "sacrificial_behavior": "Primary historic substrate; must NEVER be sacrificed to save joint mortar",
+    "summary": "Strong in compression, but highly susceptible to edge fractures if bound with overly stiff modern cement."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "Good resistance to uniform diurnal heating",
+    "compatibility_with_historic_stones": "Self-compatible",
+    "summary": "Differential expansion occurs when covered by materials with differing thermal coefficients."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Neutral to slightly acidic depending on silica vs calcium carbonate matrix cementation",
+    "soluble_salts_risk": "Highly vulnerable to salt crystallization decay (sub-florescence) from trapped sulfates",
+    "reactivity_with_limestone": "Chemically stable in contact with lime; reacts destructively with alkaline cements",
+    "summary": "Trapped salts in sandstone pores exert crystallization pressures up to 50-100 MPa, causing granular disintegration."
+  },
+  "reversibility": {
+    "reversibility_score": 10.0,
+    "extraction_method": "Permanent historic fabric to be conserved in situ",
+    "retreatability": "Original irreplaceable historic fabric"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Core indigenous building material shaped by master stone carvers (Sompuras/Silawats)",
+    "asi_intach_compliance": "Protected historic fabric under Indian Ancient Monuments Act",
+    "authenticity_status": "Original authentic fabric"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_LIVINGSTON_2002",
+    "SRC_JAIN_NEUBAUER_1981",
+    "SRC_RILEM_HISTORIC_MORTARS_2012"
+  ],
+  "limitations": [
+    "Quarry provenance (Dholpur, Jodhpur, Dhrangadhra, Khatu) dictates pore structure and compressive strength.",
+    "Petrographic thin-section analysis is required to determine whether cementation is siliceous, ferruginous, or calcareous."
+  ]
+}

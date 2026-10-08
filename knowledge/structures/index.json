@@ -1,0 +1,34 @@
+{
+  "title": "BaoliGuard Traditional Water Structure Typology Index",
+  "version": "1.0.0",
+  "structures": [
+    {
+      "id": "baoli",
+      "name": "Baoli",
+      "primary_regions": ["Indo-Gangetic Plains", "Delhi NCR", "Uttar Pradesh", "Haryana", "Madhya Pradesh"],
+      "hydrological_type": "Unconfined alluvial aquifer stepwell with seasonal pedestrian descent",
+      "file": "baoli.json"
+    },
+    {
+      "id": "bawari",
+      "name": "Bawari",
+      "primary_regions": ["Rajasthan (Marwar, Mewar)", "Malwa Plateau", "Bundelkhand"],
+      "hydrological_type": "Steep funnel reservoir tapping fractured rock aquifers and micro-catchment runoff",
+      "file": "bawari.json"
+    },
+    {
+      "id": "kund",
+      "name": "Kund",
+      "primary_regions": ["Gujarat", "Rajasthan", "Braj / Uttar Pradesh", "Bihar", "Varanasi"],
+      "hydrological_type": "Inverted stepped pyramid rainwater harvesting cistern with paved apron (paytan)",
+      "file": "kund.json"
+    },
+    {
+      "id": "vav",
+      "name": "Vav",
+      "primary_regions": ["Gujarat (Patan, Ahmedabad, Adalaj, Modhera)", "Southwestern Rajasthan"],
+      "hydrological_type": "Multi-tier subterranean civic stepwell with structural pavilions and deep well cylinder",
+      "file": "vav.json"
+    }
+  ]
+}

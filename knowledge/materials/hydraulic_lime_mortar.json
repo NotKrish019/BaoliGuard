@@ -1,0 +1,57 @@
+{
+  "material_id": "hydraulic_lime_mortar",
+  "name": "Traditional Hydraulic Lime Mortar (Chuna-Kankar / Class A-B Lime)",
+  "material_family": "lime-based mortar",
+  "category": "historic_substrate",
+  "traditional_use": "Bedding mortar, submerged foundation masonry joints, and water-retaining revetments across Baolis and Vavs.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [2.0, 5.5],
+    "elastic_modulus_gpa_range": [1.5, 4.0],
+    "porosity_pct_range": [22.0, 34.0],
+    "vapor_permeability_perm_range": [12.0, 22.0],
+    "thermal_expansion_coeff_1e6_k": 7.5
+  },
+  "moisture_behavior": {
+    "breathability": "High vapor permeability",
+    "capillary_suction": "Moderate, open macro-porous pore network",
+    "drying_rate": "Rapid evaporation allows trapped moisture to escape without building hydraulic pore pressure",
+    "summary": "Maintains continuous hygric equilibrium with surrounding masonry, allowing subsurface moisture to breathe out naturally."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Low to moderate modulus of elasticity",
+    "ductility": "High deformability, accommodates foundation settlement and seasonal micro-movement without fracturing",
+    "sacrificial_behavior": "True sacrificial behavior: softer and more flexible than adjacent historic stone blocks",
+    "summary": "Acts as an elastic cushion that absorbs shear and ground settlement stresses, preserving the stone units."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High tolerance to diurnal thermal cycles",
+    "compatibility_with_historic_stones": "Thermal expansion coefficient (6-8 x 10^-6 /K) closely matches sandstone and quartzite (7-11 x 10^-6 /K)",
+    "summary": "Prevents interfacial shearing stress between mortar and stone during extreme semi-arid temperature swings."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Alkaline (pH 11.5 - 12.5), protecting embedded metal cramps from galvanic oxidation",
+    "soluble_salts_risk": "Zero introduced soluble sulfates or sodium/potassium alkalis",
+    "reactivity_with_limestone": "Fully compatible chemically; undergoes autogenous healing via carbonation (Ca(OH)2 + CO2 -> CaCO3)",
+    "summary": "Chemically harmonious with historic stone minerals; autogenous healing seals microcracks naturally over decades."
+  },
+  "reversibility": {
+    "reversibility_score": 9.0,
+    "extraction_method": "Soft mechanical chisel, rake, or pneumatic micro-chisel without damaging host stone edges",
+    "retreatability": "Fully retreatable; leaves no insoluble synthetic residue in stone pore structure"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Direct continuation of traditional Indian kankar-chuna and hydraulic slaking methods",
+    "asi_intach_compliance": "Conforms fully to ASI Architectural Conservation Manual (2020) and INTACH Charter (2004)",
+    "authenticity_status": "Authentic historic building material"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_CPWD_HERITAGE_2013",
+    "SRC_BIS_IS712_LIME",
+    "SRC_RILEM_HISTORIC_MORTARS_2012"
+  ],
+  "limitations": [
+    "Historic mortar composition varies regionally based on kankar nodule calcination and slaking age.",
+    "Laboratory petrographic and XRD characterization is mandatory before formulating exact replication mixes."
+  ]
+}
