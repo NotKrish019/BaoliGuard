@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { PageContainer } from '../components/PageContainer';
-import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { StatusBadge } from '../components/StatusBadge';
+import { ScoreBar } from '../components/ScoreBar';
 import { InspectionCanvas } from '../components/InspectionCanvas';
 import { AnalysisResultContract, AppRoute, MetricScore } from '../types';
 
@@ -34,7 +34,7 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
     });
   };
 
-  // STANDBY STATE (No Survey Loaded): Authentic Inspection Workspace Standby (NOT generic empty card)
+  // STANDBY STATE (No Survey Loaded): Authentic Inspection Workspace Standby
   if (!result) {
     return (
       <PageContainer
@@ -43,23 +43,22 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left 68%: Inactive Dark Canvas Frame */}
-          <div className="lg:col-span-8 bg-[#081E31] border border-white/10 rounded-xs overflow-hidden">
-            <div className="h-10 px-4 bg-[#051624] border-b border-white/10 flex items-center justify-between text-xs font-mono text-[#7E98A8]">
-              <span>STANDBY INSPECTION VIEWPORT</span>
-              <span>NO FEED</span>
+          <div className="lg:col-span-8 bg-[#083358]/80 border border-[#28A9E0]/25 rounded-sm overflow-hidden">
+            <div className="h-10 px-4 bg-[#062B49] border-b border-[#28A9E0]/20 flex items-center justify-between text-xs text-[#8CD8F5]">
+              <span className="font-semibold uppercase tracking-wider">Standby Inspection Viewport</span>
+              <span className="text-[11px] text-[#587286]">NO FEED</span>
             </div>
-            <div className="h-[440px] flex flex-col items-center justify-center p-8 text-center bg-[#030D16] relative">
-              {/* Subtle architectural contour backdrop */}
-              <div className="w-16 h-16 border border-white/15 flex items-center justify-center text-[#7E98A8] mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="h-[440px] flex flex-col items-center justify-center p-8 text-center bg-[#041B2E] relative">
+              <div className="w-14 h-14 rounded-sm border border-[#28A9E0]/30 flex items-center justify-center text-[#28A9E0] mb-4 bg-[#083358]">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h2 className="text-base font-semibold text-[#F4F7F9] font-sans mb-1">
+              <h2 className="text-base font-semibold text-white mb-1.5">
                 Diagnostic Workspace Standby
               </h2>
-              <p className="text-xs text-[#7E98A8] max-w-md font-sans mb-6 leading-relaxed">
+              <p className="text-xs text-[#8CD8F5]/80 max-w-md mb-6 leading-relaxed">
                 No active survey analysis in memory. Upload field survey photographs or load the reference dharohar dossier to begin image-space damage quantification.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
@@ -75,39 +74,39 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
                   size="md"
                   onClick={onLoadDemoFixture}
                 >
-                  LOAD REFERENCE (AGRASEN KI BAOLI)
+                  Load Reference (Agrasen Ki Baoli)
                 </Button>
               </div>
             </div>
           </div>
 
           {/* Right 32%: Standby Diagnostic Rail */}
-          <div className="lg:col-span-4 bg-[#081E31] border border-white/10 rounded-xs p-5 font-mono text-xs space-y-6">
+          <div className="lg:col-span-4 bg-[#083358]/80 border border-[#28A9E0]/25 rounded-sm p-5 text-xs space-y-6">
             <div>
-              <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider mb-1 font-semibold">
-                STRUCTURE STATUS
+              <div className="text-[11px] text-[#8CD8F5]/70 uppercase tracking-wider mb-1 font-semibold">
+                Structure Status
               </div>
-              <div className="text-sm font-semibold text-white">AWAITING SURVEY DATA</div>
-              <div className="text-[11px] text-[#516A7A] mt-0.5">--</div>
+              <div className="text-sm font-semibold text-white">Awaiting Survey Data</div>
+              <div className="text-xs text-[#587286] mt-0.5">--</div>
             </div>
 
-            <div className="pt-4 border-t border-white/10">
-              <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider mb-1 font-semibold">
-                VISUAL CONDITION
+            <div className="pt-4 border-t border-[#28A9E0]/15">
+              <div className="text-[11px] text-[#8CD8F5]/70 uppercase tracking-wider mb-1 font-semibold">
+                Visual Condition
               </div>
-              <div className="text-2xl font-semibold text-[#516A7A]">-- / 100</div>
-              <div className="text-[10px] text-[#516A7A] mt-1">STANDBY</div>
+              <div className="text-2xl font-bold text-[#587286]">-- / 100</div>
+              <div className="text-[11px] text-[#587286] mt-1">Standby</div>
             </div>
 
-            <div className="pt-4 border-t border-white/10">
-              <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider mb-2 font-semibold">
-                DETECTED DEFECT CLASSES
+            <div className="pt-4 border-t border-[#28A9E0]/15">
+              <div className="text-[11px] text-[#8CD8F5]/70 uppercase tracking-wider mb-2 font-semibold">
+                Detected Defect Classes
               </div>
-              <div className="space-y-1.5 text-[11px] text-[#516A7A]">
-                <div className="flex justify-between"><span>CRACK MASK</span><span>--</span></div>
-                <div className="flex justify-between"><span>VEGETATION ROOTS</span><span>--</span></div>
-                <div className="flex justify-between"><span>SPALLING</span><span>--</span></div>
-                <div className="flex justify-between"><span>EFFLORESCENCE</span><span>--</span></div>
+              <div className="space-y-1.5 text-xs text-[#587286]">
+                <div className="flex justify-between"><span>Crack Mask</span><span>--</span></div>
+                <div className="flex justify-between"><span>Vegetation Roots</span><span>--</span></div>
+                <div className="flex justify-between"><span>Spalling</span><span>--</span></div>
+                <div className="flex justify-between"><span>Efflorescence</span><span>--</span></div>
               </div>
             </div>
           </div>
@@ -145,13 +144,13 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
       badge={
         isMockFixture ? (
           <StatusBadge
-            label="REFERENCE SURVEY"
+            label="Reference Survey"
             variant="warning"
             size="sm"
           />
         ) : (
           <StatusBadge
-            label="LIVE CV ANALYSIS"
+            label="Live CV Analysis"
             variant="success"
             size="sm"
           />
@@ -164,14 +163,14 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
             size="sm"
             onClick={() => onRouteChange('/upload')}
           >
-            ← NEW SURVEY
+            ← New Survey
           </Button>
           <Button
             variant="primary"
             size="sm"
             onClick={() => onRouteChange('/report')}
           >
-            CONSERVATION DOSSIER →
+            Conservation Dossier →
           </Button>
         </div>
       }
@@ -188,9 +187,9 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
           />
 
           {/* Compact Defect Class Toggles */}
-          <div className="bg-[#081E31] border border-white/10 rounded-xs p-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-            <span className="text-[11px] text-[#7E98A8] uppercase font-semibold">
-              TOGGLE MASKS:
+          <div className="bg-[#083358]/80 border border-[#28A9E0]/25 rounded-sm p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <span className="text-xs text-[#8CD8F5] uppercase font-semibold">
+              Toggle Masks:
             </span>
             <div className="flex flex-wrap items-center gap-2">
               {result.vision.detections.map((det) => {
@@ -199,15 +198,15 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
                   <button
                     key={det.class_name}
                     onClick={() => handleToggleClass(det.class_name)}
-                    className={`h-6 px-2 text-[10px] uppercase font-semibold border transition-colors rounded-xs flex items-center gap-1.5 ${
+                    className={`h-7 px-2.5 text-xs font-medium border transition-all rounded-sm flex items-center gap-1.5 ${
                       isVis
-                        ? 'bg-[#0C2B45] text-[#2498D5] border-[#2498D5]/50'
-                        : 'bg-[#04121E] text-[#516A7A] border-white/10 hover:text-[#7E98A8]'
+                        ? 'bg-[#087CC1] text-white border-[#28A9E0]'
+                        : 'bg-[#062B49] text-[#8CD8F5]/80 border-[#28A9E0]/20 hover:text-white'
                     }`}
                   >
-                    <span className={`w-1.5 h-1.5 rounded-none ${isVis ? 'bg-[#2498D5]' : 'bg-[#516A7A]'}`} />
-                    <span>{det.class_name.replace(/_/g, ' ')}</span>
-                    <span className="text-[9px] opacity-75">({det.component_count})</span>
+                    <span className={`w-1.5 h-1.5 rounded-full ${isVis ? 'bg-white' : 'bg-[#587286]'}`} />
+                    <span className="capitalize">{det.class_name.replace(/_/g, ' ')}</span>
+                    <span className="text-[10px] opacity-75">({det.component_count})</span>
                   </button>
                 );
               })}
@@ -216,99 +215,74 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
         </div>
 
         {/* Right 32%: Engineering Diagnostic Rail */}
-        <div className="lg:col-span-4 bg-[#081E31] border border-white/10 rounded-xs p-5 font-mono text-xs space-y-6">
+        <div className="lg:col-span-4 bg-[#083358]/80 border border-[#28A9E0]/25 rounded-sm p-5 text-xs space-y-5 shadow-panel">
           {/* Structure Header */}
           <div>
-            <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider font-semibold mb-1">
-              STRUCTURE IDENTIFIER
+            <div className="text-[11px] text-[#8CD8F5]/70 uppercase tracking-wide font-semibold mb-1">
+              Structure Identifier
             </div>
-            <div className="text-base font-semibold text-white font-sans">
+            <div className="text-base font-bold text-white">
               {result.structure.name || 'Historic Stepwell Structure'}
             </div>
-            <div className="text-[11px] text-[#7E98A8] mt-1 flex items-center justify-between">
-              <span>TYPOLOGY: <strong className="text-white uppercase">{result.structure.type}</strong></span>
+            <div className="text-xs text-[#8CD8F5]/80 mt-1 flex items-center justify-between">
+              <span>Typology: <strong className="text-white uppercase">{result.structure.type}</strong></span>
               <span>{result.structure.region || 'North India'}</span>
             </div>
           </div>
 
           {/* Condition Score: Aligned Numerical Scale */}
-          <div className="pt-4 border-t border-white/10">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-[#7E98A8] uppercase tracking-wider font-semibold">
-                VISUAL CONDITION
-              </span>
-              <span className="text-[10px] text-[#C9902E] font-semibold">PRELIMINARY</span>
-            </div>
-            <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-3xl font-semibold text-white font-sans">
-                {conditionScore.value.toFixed(1)}
-              </span>
-              <span className="text-xs text-[#7E98A8]">/ 100</span>
-            </div>
-            {/* Horizontal Scale Representation */}
-            <div className="w-full bg-[#04121E] h-1.5 border border-white/10 relative">
-              <div
-                className="h-full bg-[#2498D5]"
-                style={{ width: `${Math.min(100, Math.max(0, conditionScore.value))}%` }}
-              />
-            </div>
-            <div className="flex justify-between text-[9px] text-[#516A7A] mt-1">
-              <span>CRITICAL (0)</span>
-              <span>SECURE (100)</span>
-            </div>
+          <div className="pt-4 border-t border-[#28A9E0]/20">
+            <ScoreBar
+              label="VISUAL CONDITION"
+              value={conditionScore.value}
+              max={100}
+              variant="blue"
+              showBenchmark
+              benchmarkLabelLow="CRITICAL (0)"
+              benchmarkLabelHigh="SECURE (100)"
+              subtext="Composite preliminary photographic health rating based on detected damage densities."
+            />
           </div>
 
           {/* Quantified Defect Burdens: Aligned Horizontal Bars */}
-          <div className="pt-4 border-t border-white/10 space-y-3">
-            <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider font-semibold mb-1">
-              FINDINGS &amp; BURDEN INDICES
+          <div className="pt-4 border-t border-[#28A9E0]/20 space-y-3.5">
+            <div className="text-[11px] text-[#8CD8F5]/70 uppercase tracking-wide font-semibold">
+              Findings &amp; Burden Indices
             </div>
 
-            <div>
-              <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-[#94A7B5]">CRACK BURDEN</span>
-                <span className="text-white font-semibold">{crackBurdenScore.value.toFixed(1)} / 100</span>
-              </div>
-              <div className="w-full bg-[#04121E] h-1 border border-white/10">
-                <div className="h-full bg-[#E06C68]" style={{ width: `${crackBurdenScore.value}%` }} />
-              </div>
-            </div>
+            <ScoreBar
+              label="Crack Burden"
+              value={crackBurdenScore.value}
+              variant="red"
+            />
 
-            <div>
-              <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-[#94A7B5]">VEGETATION INTRUSION</span>
-                <span className="text-white font-semibold">58.0 / 100</span>
-              </div>
-              <div className="w-full bg-[#04121E] h-1 border border-white/10">
-                <div className="h-full bg-[#3E8F6B]" style={{ width: '58%' }} />
-              </div>
-            </div>
+            <ScoreBar
+              label="Vegetation Intrusion"
+              value={58.0}
+              variant="green"
+            />
 
-            <div>
-              <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-[#94A7B5]">SPALLING EXTENT</span>
-                <span className="text-white font-semibold">24.0 / 100</span>
-              </div>
-              <div className="w-full bg-[#04121E] h-1 border border-white/10">
-                <div className="h-full bg-[#C9902E]" style={{ width: '24%' }} />
-              </div>
-            </div>
+            <ScoreBar
+              label="Spalling Extent"
+              value={24.0}
+              variant="amber"
+            />
           </div>
 
           {/* Analysis Basis */}
-          <div className="pt-4 border-t border-white/10 text-[11px] text-[#7E98A8] space-y-1">
-            <div className="text-[10px] uppercase font-semibold mb-1">ANALYSIS BASIS</div>
-            <div>• {result.vision.detections.length} defect classes classified</div>
-            <div>• Uncalibrated image-space pixel quantification</div>
-            <div>• Optical resolution: 0.5mm/pixel threshold</div>
+          <div className="pt-4 border-t border-[#28A9E0]/20 text-xs text-[#8CD8F5]/80 space-y-1.5">
+            <div className="text-[11px] uppercase font-semibold text-white mb-1">Analysis Basis</div>
+            <div>• {result.vision.detections.length} defect classes identified</div>
+            <div>• Image-space pixel quantification</div>
+            <div>• Optical resolution: 0.5mm/px sensitivity threshold</div>
             <div>• Latency: {result.vision.processing_metadata?.inference_latency_ms || 142} ms</div>
           </div>
 
           {/* Action CTA */}
-          <div className="pt-4 border-t border-white/10">
+          <div className="pt-4 border-t border-[#28A9E0]/20">
             <button
               onClick={() => onRouteChange('/report')}
-              className="w-full h-9 bg-[#2498D5] hover:bg-[#0A6FB7] text-white text-xs font-mono uppercase tracking-wider font-semibold rounded-xs border border-[#2498D5] transition-colors"
+              className="w-full h-9 bg-[#087CC1] hover:bg-[#28A9E0] text-white text-xs font-semibold rounded-sm border border-[#28A9E0]/40 transition-all duration-150 active:scale-98 shadow-water"
             >
               PREPARE CONSERVATION DOSSIER →
             </button>
@@ -316,57 +290,70 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
         </div>
       </div>
 
-      {/* Quantified Visual Defect Register Table */}
-      <Section
-        tag="DEFECT REGISTER"
-        title="Image-Space Quantified Defect Inventory"
-        subtitle="Tabulated measurements from segmented masks for engineering auditing and material compatibility assessment."
-      >
-        <div className="bg-[#081E31] border border-white/10 rounded-xs overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
+      {/* Light Evidence Section: WHITE/LIGHT CONTENT AREA (Per prompt: dark water header ↓ inspection canvas + side rail ↓ white/light evidence sections) */}
+      <section className="bg-white text-[#09283C] rounded-sm border border-[#28A9E0]/30 p-6 sm:p-8 mt-6 shadow-sm font-sans">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#087CC1]/15">
+          <div>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#087CC1] px-2 py-0.5 rounded-sm bg-[#F3FAFD] border border-[#28A9E0]/20 inline-block mb-1.5">
+              Evidence Dossier
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold text-[#09283C] tracking-tight">
+              Image-Space Quantified Defect Inventory
+            </h2>
+            <p className="text-xs sm:text-sm text-[#587286] mt-1 max-w-2xl leading-relaxed">
+              Tabulated measurements from segmented masks for engineering auditing and material compatibility assessment.
+            </p>
+          </div>
+          <div className="shrink-0 text-xs font-medium text-[#587286]">
+            Total Detections: <strong className="text-[#09283C]">{result.vision.detections.length}</strong>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto border border-[#087CC1]/15 rounded-sm">
+          <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-[#7E98A8] text-[10px] uppercase tracking-wider bg-[#051624]">
-                <th className="py-2.5 px-4 font-semibold">CLASS</th>
-                <th className="py-2.5 px-4 font-semibold">CONFIDENCE</th>
-                <th className="py-2.5 px-4 font-semibold">PIXEL EXTENT</th>
-                <th className="py-2.5 px-4 font-semibold">COVERAGE RATIO</th>
-                <th className="py-2.5 px-4 font-semibold">COMPONENTS</th>
-                <th className="py-2.5 px-4 font-semibold">SKELETON LENGTH</th>
-                <th className="py-2.5 px-4 font-semibold">SEVERITY</th>
+              <tr className="border-b border-[#087CC1]/15 text-[#587286] text-[11px] uppercase tracking-wider bg-[#F3FAFD] font-semibold">
+                <th className="py-3 px-4">Class</th>
+                <th className="py-3 px-4">Confidence</th>
+                <th className="py-3 px-4">Pixel Extent</th>
+                <th className="py-3 px-4">Coverage Ratio</th>
+                <th className="py-3 px-4">Components</th>
+                <th className="py-3 px-4">Skeleton Length</th>
+                <th className="py-3 px-4">Severity</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5 text-[#F4F7F9]">
+            <tbody className="divide-y divide-[#087CC1]/10 text-[#09283C]">
               {result.vision.detections.map((det, idx) => (
-                <tr key={idx} className="hover:bg-white/5 transition-colors">
-                  <td className="py-2.5 px-4 font-semibold capitalize">
+                <tr key={idx} className="hover:bg-[#F3FAFD]/70 transition-colors">
+                  <td className="py-3 px-4 font-semibold capitalize">
                     {det.class_name.replace(/_/g, ' ')}
                   </td>
-                  <td className="py-2.5 px-4 text-[#2498D5]">
+                  <td className="py-3 px-4 font-semibold text-[#087CC1]">
                     {(det.confidence * 100).toFixed(1)}%
                   </td>
-                  <td className="py-2.5 px-4">
+                  <td className="py-3 px-4 text-[#587286]">
                     {det.pixel_area.toLocaleString()} px²
                   </td>
-                  <td className="py-2.5 px-4 text-[#7E98A8]">
+                  <td className="py-3 px-4 text-[#587286]">
                     {(det.coverage_ratio * 100).toFixed(2)}%
                   </td>
-                  <td className="py-2.5 px-4 text-[#7E98A8]">
+                  <td className="py-3 px-4 text-[#587286]">
                     {det.component_count}
                   </td>
-                  <td className="py-2.5 px-4 text-[#7E98A8]">
+                  <td className="py-3 px-4 text-[#587286]">
                     {det.total_length_pixels ? `${det.total_length_pixels} px` : '--'}
                   </td>
-                  <td className="py-2.5 px-4">
+                  <td className="py-3 px-4">
                     <span
-                      className={`px-1.5 py-0.5 text-[10px] uppercase font-semibold rounded-xs border ${
+                      className={`px-2 py-0.5 text-[11px] font-semibold rounded-sm border ${
                         det.relative_severity === 'severe'
-                          ? 'bg-[#2B0E0D] text-[#E06C68] border-[#B64A45]/30'
+                          ? 'bg-rose-50 text-rose-700 border-rose-200'
                           : det.relative_severity === 'moderate'
-                          ? 'bg-[#261B07] text-[#C9902E] border-[#C9902E]/30'
-                          : 'bg-[#052219] text-[#3E8F6B] border-[#3E8F6B]/30'
+                          ? 'bg-amber-50 text-amber-700 border-amber-200'
+                          : 'bg-emerald-50 text-emerald-700 border-emerald-200'
                       }`}
                     >
-                      {det.relative_severity || 'MODERATE'}
+                      {det.relative_severity || 'Moderate'}
                     </span>
                   </td>
                 </tr>
@@ -374,7 +361,7 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
             </tbody>
           </table>
         </div>
-      </Section>
+      </section>
     </PageContainer>
   );
 };

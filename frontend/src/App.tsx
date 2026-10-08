@@ -5,6 +5,8 @@ import { LoadingState } from './components/LoadingState';
 import { HomePage } from './pages/HomePage';
 import { UploadPage } from './pages/UploadPage';
 import { AnalysisPage } from './pages/AnalysisPage';
+import { KnowledgePage } from './pages/KnowledgePage';
+import { DigitalTwinPage } from './pages/DigitalTwinPage';
 import { ReportPage } from './pages/ReportPage';
 import { AppRoute, AnalysisResultContract, AnalysisRequestPayload } from './types';
 import { submitAnalysisRequest, getDevelopmentMockFixture } from './services/api';
@@ -13,7 +15,13 @@ export const App: React.FC = () => {
   // Sync initial route from browser URL or default to '/'
   const getInitialRoute = (): AppRoute => {
     const path = window.location.pathname;
-    if (path === '/upload' || path === '/analysis' || path === '/report') {
+    if (
+      path === '/upload' ||
+      path === '/analysis' ||
+      path === '/knowledge' ||
+      path === '/twin' ||
+      path === '/report'
+    ) {
       return path as AppRoute;
     }
     return '/';
@@ -29,7 +37,14 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path === '/upload' || path === '/analysis' || path === '/report' || path === '/') {
+      if (
+        path === '/upload' ||
+        path === '/analysis' ||
+        path === '/knowledge' ||
+        path === '/twin' ||
+        path === '/report' ||
+        path === '/'
+      ) {
         setCurrentRoute(path as AppRoute);
       } else {
         setCurrentRoute('/');
@@ -77,8 +92,7 @@ export const App: React.FC = () => {
       setIsMockFixture(false);
       handleNavigate('/analysis');
     } catch {
-      // While backend orchestrator POST /analyze is in active Phase 1 development by Swastik,
-      // provide clear feedback and load the development sample fixture for layout inspection
+      // Provide clear feedback and load the development sample fixture for layout inspection
       setLoadingStep('understand');
       await new Promise((r) => setTimeout(r, 400));
       setLoadingStep('assess');
@@ -109,11 +123,12 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#04121E] text-[#F4F7F9] flex flex-col font-sans selection:bg-[#2498D5] selection:text-white">
+    <div className="min-h-screen bg-[#062B49] text-white flex flex-col font-sans selection:bg-[#087CC1] selection:text-white">
       {/* Universal Technical Header */}
       <Header
         currentRoute={currentRoute}
         onRouteChange={handleNavigate}
+        hasAnalysisResult={analysisResult !== null}
       />
 
       {/* Main Tabbed Navigation */}
@@ -154,6 +169,18 @@ export const App: React.FC = () => {
               isMockFixture={isMockFixture}
               onRouteChange={handleNavigate}
               onLoadDemoFixture={handleLoadDemoFixture}
+            />
+          )}
+
+          {currentRoute === '/knowledge' && (
+            <KnowledgePage
+              onRouteChange={handleNavigate}
+            />
+          )}
+
+          {currentRoute === '/twin' && (
+            <DigitalTwinPage
+              onRouteChange={handleNavigate}
             />
           )}
 

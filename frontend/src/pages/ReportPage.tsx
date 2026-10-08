@@ -33,14 +33,16 @@ export const ReportPage: React.FC<ReportPageProps> = ({
         title="Conservation Dossier"
         subtitle="IKS material compatibility assessment and phased restoration roadmap."
       >
-        <div className="bg-[#081E31] border border-white/10 rounded-xs p-10 text-center max-w-xl mx-auto my-8">
-          <div className="w-12 h-12 border border-white/15 flex items-center justify-center text-[#7E98A8] mx-auto mb-4 font-mono text-sm">
-            DOC
+        <div className="bg-[#083358]/80 border border-[#28A9E0]/25 rounded-sm p-10 text-center max-w-xl mx-auto my-8 shadow-panel">
+          <div className="w-12 h-12 rounded-sm border border-[#28A9E0]/30 flex items-center justify-center text-[#28A9E0] mx-auto mb-4 bg-[#062B49]">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
           </div>
-          <h2 className="text-base font-semibold text-[#F4F7F9] font-sans mb-1">
+          <h2 className="text-base font-semibold text-white mb-1.5">
             No Survey Dossier Active
           </h2>
-          <p className="text-xs text-[#7E98A8] font-sans mb-6 leading-relaxed">
+          <p className="text-xs text-[#8CD8F5]/80 mb-6 leading-relaxed">
             A photographic survey must be analyzed to synthesize the IKS material compatibility matrix and the phased conservation roadmap.
           </p>
           <div className="flex justify-center gap-3">
@@ -49,14 +51,14 @@ export const ReportPage: React.FC<ReportPageProps> = ({
               size="md"
               onClick={onLoadDemoFixture}
             >
-              LOAD REFERENCE DOSSIER
+              Load Reference Dossier
             </Button>
             <Button
               variant="secondary"
               size="md"
               onClick={() => onRouteChange('/upload')}
             >
-              + NEW SURVEY
+              + New Survey
             </Button>
           </div>
         </div>
@@ -95,13 +97,13 @@ export const ReportPage: React.FC<ReportPageProps> = ({
       badge={
         isMockFixture ? (
           <StatusBadge
-            label="REFERENCE DOSSIER"
+            label="Reference Dossier"
             variant="sandstone"
             size="sm"
           />
         ) : (
           <StatusBadge
-            label="LIVE DOSSIER"
+            label="Live Dossier"
             variant="success"
             size="sm"
           />
@@ -114,41 +116,41 @@ export const ReportPage: React.FC<ReportPageProps> = ({
             size="sm"
             onClick={() => window.print()}
           >
-            PRINT DOSSIER
+            Print Dossier
           </Button>
           <Button
             variant="secondary"
             size="sm"
             onClick={() => onRouteChange('/analysis')}
           >
-            ← DIAGNOSTIC WORKSPACE
+            ← Diagnostics
           </Button>
         </div>
       }
     >
-      {/* Dossier Section Filter Tabs */}
-      <div className="flex items-center space-x-6 overflow-x-auto no-scrollbar border-b border-white/10 mb-8 text-xs font-mono">
+      {/* Dossier Section Filter Tabs: Poppins typography, subtle blue highlight rule */}
+      <div className="flex items-center space-x-6 overflow-x-auto no-scrollbar border-b border-[#28A9E0]/20 mb-8 text-xs font-sans">
         {[
-          { id: 'all', label: 'ALL SECTIONS' },
-          { id: 'chain', label: '01. CAUSAL CHAIN' },
-          { id: 'material', label: '02. MATERIAL COMPATIBILITY' },
-          { id: 'why', label: '03. ENGINEERING RATIONALE' },
-          { id: 'root_cause', label: '04. ROOT CAUSE' },
-          { id: 'roadmap', label: '05. PHASED ROADMAP' },
+          { id: 'all', label: 'All Sections' },
+          { id: 'chain', label: '01. Causal Chain' },
+          { id: 'material', label: '02. Material Compatibility' },
+          { id: 'why', label: '03. Engineering Rationale' },
+          { id: 'root_cause', label: '04. Root Cause' },
+          { id: 'roadmap', label: '05. Phased Roadmap' },
         ].map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id as ReportTab)}
-            className={`pb-2.5 whitespace-nowrap transition-colors relative uppercase tracking-wider ${
+            className={`pb-2.5 whitespace-nowrap transition-all relative font-medium ${
               activeTab === tab.id
                 ? 'text-white font-semibold'
-                : 'text-[#7E98A8] hover:text-[#F4F7F9]'
+                : 'text-[#8CD8F5]/75 hover:text-white'
             }`}
           >
             <span>{tab.label}</span>
             {activeTab === tab.id && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#2498D5]" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#28A9E0] rounded-t-xs" />
             )}
           </button>
         ))}
@@ -186,7 +188,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({
         </Section>
       )}
 
-      {/* 3. Why This Recommendation? (Prominent Section) */}
+      {/* 3. Why This Recommendation? */}
       {(activeTab === 'all' || activeTab === 'why') && (
         <Section
           tag="Engineering Rationale"

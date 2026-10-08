@@ -87,21 +87,21 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
   };
 
   return (
-    <div className={`bg-[#081E31] border border-white/10 rounded-xs p-6 sm:p-8 ${className}`}>
+    <div className={`bg-[#083358]/80 border border-[#28A9E0]/25 rounded-sm p-6 sm:p-8 font-sans ${className}`}>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Image Ingestion Dropzone */}
+        {/* Left Column: Image Ingestion Workspace */}
         <div className="lg:col-span-7">
-          <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
-            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2498D5]">
-              SURVEY PHOTOGRAMMETRY INGESTION
+          <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#28A9E0]/20">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#28A9E0]">
+              Survey Photogrammetry Ingestion
             </span>
             {selectedFile && (
               <button
                 type="button"
                 onClick={clearSelection}
-                className="text-[11px] font-mono text-[#E06C68] hover:underline"
+                className="text-xs font-medium text-[#D3455B] hover:underline"
               >
-                REMOVE ASSET
+                Remove Asset
               </button>
             )}
           </div>
@@ -120,7 +120,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
 
           {previewUrl ? (
             <div>
-              <div className="relative rounded-xs overflow-hidden border border-white/15 bg-[#030D16] aspect-[16/10] group">
+              <div className="relative rounded-sm overflow-hidden border border-[#28A9E0]/30 bg-[#041B2E] aspect-[16/10] group">
                 <img
                   src={previewUrl}
                   alt="Survey Ingestion Preview"
@@ -128,7 +128,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                 />
                 {/* Active ROI Box Overlay */}
                 <div
-                  className="absolute border border-[#2498D5] bg-[#2498D5]/10 pointer-events-none"
+                  className="absolute border border-[#28A9E0] bg-[#28A9E0]/15 pointer-events-none"
                   style={{
                     left: `${roi.x}%`,
                     top: `${roi.y}%`,
@@ -136,16 +136,16 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                     height: `${roi.height}%`,
                   }}
                 >
-                  <span className="text-[9px] font-mono bg-[#04121E] text-[#2498D5] px-1 py-0.5 ml-1 mt-1 inline-block border border-[#2498D5]/40">
-                    TARGET ROI: {roi.width}% × {roi.height}%
+                  <span className="text-[10px] font-semibold bg-[#062B49] text-[#28A9E0] px-1.5 py-0.5 ml-1 mt-1 inline-block border border-[#28A9E0]/40 rounded-xs">
+                    Target ROI: {roi.width}% × {roi.height}%
                   </span>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#04121E]/90 via-transparent to-transparent flex items-end justify-between p-4 pointer-events-none">
-                  <div className="text-xs font-mono text-white truncate">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#062B49]/90 via-transparent to-transparent flex items-end justify-between p-4 pointer-events-none">
+                  <div className="text-xs text-white truncate">
                     <div className="font-semibold truncate">{selectedFile?.name || 'Reference Asset'}</div>
-                    <div className="text-[10px] text-[#7E98A8]">
-                      {selectedFile ? `${(selectedFile.size / 1024).toFixed(1)} KB` : '1920 × 1080 px'} • Ingestion validated
+                    <div className="text-[11px] text-[#8CD8F5]/80">
+                      {selectedFile ? `${(selectedFile.size / 1024).toFixed(1)} KB` : '1920 × 1080 px'} • Ingestion Validated
                     </div>
                   </div>
                   <div className="pointer-events-auto">
@@ -154,29 +154,29 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                       variant="secondary"
                       onClick={() => fileInputRef.current?.click()}
                     >
-                      CHANGE
+                      Change
                     </Button>
                   </div>
                 </div>
               </div>
 
               {/* Quick ROI selection pills below preview */}
-              <div className="mt-3 p-3 bg-[#051624] border border-white/10 rounded-xs flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                <span className="text-[11px] text-[#7E98A8] uppercase">INSPECTION ROI:</span>
+              <div className="mt-3 p-3 bg-[#062B49] border border-[#28A9E0]/20 rounded-sm flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span className="text-[11px] text-[#8CD8F5]/75 font-semibold uppercase">Inspection ROI:</span>
                 <div className="flex flex-wrap gap-1.5">
                   {[
-                    { label: 'FULL SURFACE (100%)', roi: { x: 0, y: 0, width: 100, height: 100, isNormalized: true } },
-                    { label: 'LOWER BASIN TIER', roi: { x: 10, y: 55, width: 80, height: 42, isNormalized: true } },
-                    { label: 'CENTRAL ARCADE', roi: { x: 25, y: 20, width: 50, height: 55, isNormalized: true } },
+                    { label: 'Full Surface (100%)', roi: { x: 0, y: 0, width: 100, height: 100, isNormalized: true } },
+                    { label: 'Lower Basin Tier', roi: { x: 10, y: 55, width: 80, height: 42, isNormalized: true } },
+                    { label: 'Central Arcade', roi: { x: 25, y: 20, width: 50, height: 55, isNormalized: true } },
                   ].map((item, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setRoi(item.roi)}
-                      className={`text-[10px] font-mono px-2 py-1 transition-colors rounded-xs border ${
+                      className={`text-[11px] font-medium px-2.5 py-1 transition-all rounded-sm border ${
                         roi.x === item.roi.x && roi.width === item.roi.width
-                          ? 'bg-[#2498D5] text-white border-[#2498D5] font-semibold'
-                          : 'bg-[#081E31] text-[#7E98A8] border-white/10 hover:text-white'
+                          ? 'bg-[#087CC1] text-white border-[#28A9E0] font-semibold'
+                          : 'bg-[#083358] text-[#8CD8F5] border-[#28A9E0]/20 hover:text-white'
                       }`}
                     >
                       {item.label}
@@ -191,26 +191,26 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onClick={() => fileInputRef.current?.click()}
-              className={`border border-dashed p-8 text-center cursor-pointer transition-colors duration-150 flex flex-col items-center justify-center aspect-[16/10] rounded-xs ${
+              className={`border border-[#28A9E0]/30 hover:border-[#28A9E0]/60 p-8 text-center cursor-pointer transition-all duration-150 flex flex-col items-center justify-center aspect-[16/10] rounded-sm ${
                 isDragging
-                  ? 'border-[#2498D5] bg-[#0C2B45]'
-                  : 'border-white/20 hover:border-white/40 bg-[#04121E]'
+                  ? 'bg-[#0C3D66] border-[#28A9E0]'
+                  : 'bg-[#062B49]/80'
               }`}
             >
-              <div className="w-12 h-12 border border-white/15 flex items-center justify-center text-[#2498D5] mb-3 bg-[#081E31]">
+              <div className="w-12 h-12 rounded-sm border border-[#28A9E0]/30 flex items-center justify-center text-[#28A9E0] mb-3 bg-[#083358]">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h4 className="text-xs font-mono font-semibold text-white mb-1 uppercase tracking-wider">
-                Upload Survey Photography
+              <h4 className="text-sm font-semibold text-white mb-1">
+                Add Survey Images
               </h4>
-              <p className="text-xs text-[#7E98A8] max-w-xs mb-4 leading-relaxed font-sans">
-                Drag and drop high-resolution photographs of masonry, intake channels, or steps.
+              <p className="text-xs text-[#8CD8F5]/80 max-w-xs mb-4 leading-relaxed">
+                Drag &amp; drop high-resolution photographs of masonry, intake channels, or steps.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <Button size="sm" variant="primary" type="button">
-                  BROWSE FILES
+                  Browse Files
                 </Button>
                 <Button
                   size="sm"
@@ -221,13 +221,13 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                     handleSelectSample();
                   }}
                 >
-                  LOAD REFERENCE DOSSIER ASSET
+                  Load Reference Asset
                 </Button>
               </div>
             </div>
           )}
 
-          <div className="mt-3 text-[11px] font-mono text-[#516A7A] flex items-center justify-between">
+          <div className="mt-3 text-[11px] text-[#587286] flex items-center justify-between">
             <span>Single-view orthogonal photogrammetry</span>
             <span>Image-space pixel quantification</span>
           </div>
@@ -236,20 +236,20 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
         {/* Right Column: Structure Metadata Context Form */}
         <div className="lg:col-span-5 space-y-4">
           <div>
-            <span className="text-[10px] font-mono tracking-widest uppercase text-[#7E98A8] block mb-1">
-              STRUCTURAL ATTRIBUTES
+            <span className="text-[11px] font-semibold tracking-wider uppercase text-[#8CD8F5]/70 block mb-1">
+              Structural Attributes
             </span>
-            <h3 className="text-sm font-semibold text-white font-sans">
+            <h3 className="text-sm font-semibold text-white">
               Typology &amp; Regional Context
             </h3>
-            <p className="text-xs text-[#7E98A8] mt-0.5 font-sans leading-relaxed">
+            <p className="text-xs text-[#8CD8F5]/80 mt-0.5 leading-relaxed">
               Provides geological grounding for IKS material matching algorithms.
             </p>
           </div>
 
           <div>
-            <label className="block text-[10px] font-mono text-[#7E98A8] uppercase tracking-wider mb-1.5 font-semibold">
-              TYPOLOGY CLASSIFICATION
+            <label className="block text-xs font-semibold text-[#DDF6FC] uppercase tracking-wide mb-1.5">
+              Typology Classification
             </label>
             <div className="grid grid-cols-3 gap-1.5">
               {(['baoli', 'kund', 'vav', 'bawari', 'tank', 'other'] as StructureTypology[]).map((t) => (
@@ -257,10 +257,10 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                   key={t}
                   type="button"
                   onClick={() => setStructureType(t)}
-                  className={`h-8 px-2 text-[11px] font-mono uppercase tracking-wider font-semibold border transition-colors text-center rounded-xs ${
+                  className={`h-8 px-2 text-xs font-semibold uppercase tracking-wider border transition-all text-center rounded-sm ${
                     structureType === t
-                      ? 'bg-[#2498D5] text-white border-[#2498D5]'
-                      : 'bg-[#04121E] border-white/10 text-[#7E98A8] hover:text-white'
+                      ? 'bg-[#087CC1] text-white border-[#28A9E0]'
+                      : 'bg-[#062B49] border-[#28A9E0]/20 text-[#8CD8F5] hover:text-white'
                   }`}
                 >
                   {t}
@@ -270,26 +270,26 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
           </div>
 
           <div>
-            <label className="block text-[10px] font-mono text-[#7E98A8] uppercase tracking-wider mb-1.5 font-semibold">
-              STRUCTURE NAME (OPTIONAL)
+            <label className="block text-xs font-semibold text-[#DDF6FC] uppercase tracking-wide mb-1.5">
+              Structure Name (Optional)
             </label>
             <input
               type="text"
               placeholder="e.g. Agrasen ki Baoli, Chand Baori, Rani ki Vav"
               value={structureName}
               onChange={(e) => setStructureName(e.target.value)}
-              className="w-full h-8 bg-[#04121E] border border-white/15 rounded-xs px-3 text-xs font-mono text-white placeholder:text-[#516A7A] focus:outline-none focus:border-[#2498D5] transition-colors"
+              className="w-full h-8 bg-[#062B49] border border-[#28A9E0]/25 rounded-sm px-3 text-xs text-white placeholder:text-[#587286] focus:outline-none focus:border-[#28A9E0] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-[10px] font-mono text-[#7E98A8] uppercase tracking-wider mb-1.5 font-semibold">
-              HYDROLOGICAL &amp; GEOLOGICAL REGION
+            <label className="block text-xs font-semibold text-[#DDF6FC] uppercase tracking-wide mb-1.5">
+              Hydrological &amp; Geological Region
             </label>
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="w-full h-8 bg-[#04121E] border border-white/15 rounded-xs px-2.5 text-xs font-mono text-white focus:outline-none focus:border-[#2498D5] transition-colors"
+              className="w-full h-8 bg-[#062B49] border border-[#28A9E0]/25 rounded-sm px-2.5 text-xs text-white focus:outline-none focus:border-[#28A9E0] transition-colors"
             >
               <option value="Rajasthan">Rajasthan (Arid / Quartzite &amp; Sandstone)</option>
               <option value="Gujarat">Gujarat (Patan / Adalaj Alluvial Sandstone)</option>
@@ -302,10 +302,10 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
             </select>
           </div>
 
-          <div className="pt-3 border-t border-white/10 space-y-3">
-            <div className="flex items-center justify-between text-[11px] font-mono text-[#7E98A8]">
-              <StatusBadge label="READY FOR INGESTION" variant="info" size="sm" />
-              <span>PIPELINE: SEE → REVIVE</span>
+          <div className="pt-3 border-t border-[#28A9E0]/20 space-y-3">
+            <div className="flex items-center justify-between text-xs text-[#8CD8F5]">
+              <StatusBadge label="Ready For Ingestion" variant="info" size="sm" />
+              <span>Pipeline: SEE → REVIVE</span>
             </div>
 
             <Button
@@ -315,7 +315,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
               isLoading={isLoading}
               onClick={handleTriggerAnalysis}
             >
-              {selectedFile ? 'INITIATE COMPUTER VISION ANALYSIS' : 'ANALYSE REFERENCE SURVEY'}
+              {selectedFile ? 'Initiate Computer Vision Analysis' : 'Analyse Reference Survey'}
             </Button>
           </div>
         </div>

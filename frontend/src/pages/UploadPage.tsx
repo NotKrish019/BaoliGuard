@@ -29,12 +29,12 @@ export const UploadPage: React.FC<UploadPageProps> = ({ onAnalyze, isLoading = f
         className="mb-8"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
         <Card
           title="Recommended Photographic Protocols"
           subtitle="Field survey guidelines for optimal defect segmentation"
         >
-          <ul className="text-xs text-slate-300 space-y-2 list-disc list-inside">
+          <ul className="text-xs text-[#8CD8F5]/85 space-y-2.5 list-disc list-inside leading-relaxed">
             <li>Capture orthogonal (perpendicular) views of the masonry face to reduce perspective distortion.</li>
             <li>Ensure diffused natural lighting to minimize harsh subterranean shadows across joints.</li>
             <li>Maintain minimum 1080p resolution to resolve hairline mortar deterioration and micro-cracking.</li>
@@ -43,9 +43,9 @@ export const UploadPage: React.FC<UploadPageProps> = ({ onAnalyze, isLoading = f
 
         <Card
           title="Target Defect Classifications"
-          subtitle="Observable surface damage segments (Krish: YOLOv8)"
+          subtitle="Observable surface damage segments (YOLOv8 Segmentation)"
         >
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1.5 pt-1">
             {[
               'crack',
               'vegetation_root_intrusion',
@@ -57,7 +57,7 @@ export const UploadPage: React.FC<UploadPageProps> = ({ onAnalyze, isLoading = f
             ].map((cls) => (
               <span
                 key={cls}
-                className="text-[11px] font-mono px-2 py-1 rounded bg-slate-900 border border-slate-700/80 text-sandstone-300"
+                className="text-[11px] font-medium px-2 py-1 rounded-sm bg-[#062B49] border border-[#28A9E0]/25 text-[#8CD8F5]"
               >
                 {cls}
               </span>
@@ -69,15 +69,15 @@ export const UploadPage: React.FC<UploadPageProps> = ({ onAnalyze, isLoading = f
           title="Downstream Integration"
           subtitle="Contracts governing output delivery"
         >
-          <div className="text-xs text-slate-400 space-y-2 font-mono">
+          <div className="text-xs text-[#8CD8F5]/80 space-y-2.5">
             <div>
-              <span className="text-slate-200">Vision:</span> contracts/vision_result.schema.json
+              <span className="text-white font-medium">Vision:</span> contracts/vision_result.schema.json
             </div>
             <div>
-              <span className="text-slate-200">Engineering:</span> contracts/engineering_result.schema.json
+              <span className="text-white font-medium">Engineering:</span> contracts/engineering_result.schema.json
             </div>
             <div>
-              <span className="text-slate-200">Unified:</span> contracts/analysis.schema.json
+              <span className="text-white font-medium">Unified:</span> contracts/analysis.schema.json
             </div>
           </div>
         </Card>

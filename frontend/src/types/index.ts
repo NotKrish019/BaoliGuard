@@ -196,7 +196,7 @@ export interface AnalysisResultContract {
 /**
  * Frontend Navigation & Application State Types
  */
-export type AppRoute = '/' | '/upload' | '/analysis' | '/report';
+export type AppRoute = '/' | '/upload' | '/analysis' | '/knowledge' | '/twin' | '/report';
 
 /**
  * Region of Interest (ROI) coordinates for focused defect inspection

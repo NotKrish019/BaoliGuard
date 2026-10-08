@@ -22,21 +22,21 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-mono uppercase tracking-wider font-semibold rounded-xs transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-[#2498D5] disabled:opacity-40 disabled:cursor-not-allowed select-none';
+  const baseClasses = 'inline-flex items-center justify-center font-sans font-medium rounded-sm transition-all duration-150 focus:outline-none focus:ring-1 focus:ring-[#28A9E0] disabled:opacity-40 disabled:cursor-not-allowed select-none active:scale-[0.98]';
 
   const sizeClasses: Record<ButtonSize, string> = {
-    sm: 'h-7 px-2.5 text-[11px] gap-1.5',
-    md: 'h-8 px-3.5 text-xs gap-2',
-    lg: 'h-10 px-5 text-xs sm:text-sm gap-2.5',
+    sm: 'h-7 px-3 text-xs gap-1.5',
+    md: 'h-8 px-4 text-xs sm:text-[13px] gap-2',
+    lg: 'h-10 px-5 text-sm gap-2.5',
   };
 
   const variantClasses: Record<ButtonVariant, string> = {
-    primary: 'bg-[#2498D5] hover:bg-[#0A6FB7] text-white border border-[#2498D5]',
-    secondary: 'bg-[#081E31] hover:bg-[#0C2B45] text-[#F4F7F9] border border-white/15',
-    outline: 'bg-transparent hover:bg-white/5 text-[#94A7B5] hover:text-white border border-white/20',
-    ghost: 'bg-transparent hover:bg-white/5 text-[#7E98A8] hover:text-white border border-transparent',
-    sandstone: 'bg-[#081E31] hover:bg-[#0C2B45] text-[#D8C8B0] border border-[#D8C8B0]/30',
-    danger: 'bg-[#B64A45] hover:bg-[#993A35] text-white border border-[#B64A45]',
+    primary: 'bg-[#087CC1] hover:bg-[#28A9E0] text-white border border-[#28A9E0]/40 shadow-sm',
+    secondary: 'bg-[#083358] hover:bg-[#0C3D66] text-[#DDF6FC] border border-[#28A9E0]/30',
+    outline: 'bg-transparent hover:bg-[#083358]/50 text-[#8CD8F5] hover:text-white border border-[#28A9E0]/40',
+    ghost: 'bg-transparent hover:bg-[#083358]/40 text-[#8CD8F5] hover:text-white border border-transparent',
+    sandstone: 'bg-[#083358] hover:bg-[#0C3D66] text-[#D8C8B0] border border-[#D8C8B0]/30',
+    danger: 'bg-[#D3455B] hover:bg-[#B63D50] text-white border border-[#D3455B]/60',
   };
 
   return (
