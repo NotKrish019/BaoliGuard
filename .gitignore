@@ -41,6 +41,7 @@ data/annotations/*
 vision/datasets/*
 vision/model/*
 vision/outputs/*
+Darbhanga_Fort/
 
 # IDE and Editor
 .vscode/*
