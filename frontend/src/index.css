@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,58 +11,94 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: #070d18;
-  color: #f1f5f9;
+  background-color: #063B63;
+  color: #F8FAFC;
   background-image: 
-    radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.04) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(190, 143, 102, 0.05) 0px, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(36, 152, 213, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 85% 30%, rgba(10, 111, 183, 0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #063B63 0%, #052642 100%);
   background-attachment: fixed;
   overflow-x: hidden;
 }
 
-/* Custom technical scrollbar */
+/* Custom technical scrollbar in ocean blues */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0c1527;
+  background: #041d33;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1d355c;
+  background: #0A6FB7;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #be8f66;
+  background: #2498D5;
 }
 
-/* Engineering blueprint pattern */
-.bg-blueprint {
-  background-size: 32px 32px;
+/* Subtle water light ray / caustic effect */
+.bg-water-caustics {
+  background-image: radial-gradient(circle at 50% 0%, rgba(143, 213, 242, 0.12) 0%, transparent 60%);
+}
+
+/* Architectural & engineering linework */
+.bg-heritage-grid {
+  background-size: 40px 40px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Architectural stepped motif */
-.stepped-border {
-  border-image: linear-gradient(to right, #be8f66, #06b6d4, #ea580c) 1;
-}
-
-/* Glassmorphic card styling */
-.glass-panel {
-  background: rgba(12, 21, 39, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.glass-panel-elevated {
-  background: rgba(16, 28, 51, 0.85);
+/* Restrained engineering panel */
+.jaldrishti-panel {
+  background: rgba(6, 43, 73, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(190, 143, 102, 0.2);
+  border: 1px solid rgba(143, 213, 242, 0.15);
+}
+
+.jaldrishti-panel-elevated {
+  background: rgba(8, 52, 88, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(143, 213, 242, 0.25);
+  box-shadow: 0 15px 35px -10px rgba(2, 20, 36, 0.5);
+}
+
+/* Organic curve mask utilities */
+.curve-transition-white {
+  position: relative;
+  background: #FFFFFF;
+  color: #102433;
+}
+
+/* Water flow micro-animations */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.5deg);
+  }
+}
+
+@keyframes slowPulseGaze {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-subtle-float {
+  animation: subtleFloat 7s ease-in-out infinite;
+}
+
+.animate-gentle-pulse {
+  animation: slowPulseGaze 4s ease-in-out infinite;
 }

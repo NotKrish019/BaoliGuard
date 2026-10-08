@@ -43,6 +43,21 @@ export default {
           900: '#164e63',
           950: '#083344',
         },
+        // JalDrishti Master Palette
+        jaldrishti: {
+          deep: '#063B63',
+          ocean: '#0A6FB7',
+          clear: '#2498D5',
+          light: '#8FD5F2',
+          mist: '#EAF7FB',
+          white: '#FFFFFF',
+          ink: '#102433',
+          muted: '#5E7280',
+          stone: '#D8C8B0',
+          green: '#3E8F6B',
+          amber: '#C9902E',
+          red: '#B64A45',
+        },
         surkhi: {
           50: '#fff7ed',
           100: '#ffedd5',
@@ -72,11 +87,14 @@ export default {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
-        display: ['Cinzel', 'Outfit', 'serif'],
+        display: ['Plus Jakarta Sans', 'sans-serif'],
+        editorial: ['Newsreader', 'Georgia', 'serif'],
+        serif: ['Newsreader', 'Georgia', 'serif'],
       },
       boxShadow: {
         'glow-sandstone': '0 0 25px -5px rgba(190, 143, 102, 0.25)',
-        'glow-jal': '0 0 25px -5px rgba(6, 182, 212, 0.25)',
+        'glow-jal': '0 0 25px -5px rgba(36, 152, 213, 0.35)',
+        'water-depth': '0 20px 40px -15px rgba(6, 59, 99, 0.5)',
       },
     },
   },

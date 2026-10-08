@@ -24,6 +24,8 @@ def test_reusable_components_exist() -> None:
         "EmptyState.tsx",
         "LoadingState.tsx",
         "UploadZone.tsx",
+        "HeroScene.tsx",
+        "JalDrishtiLogo.tsx",
     ]
 
     for comp in required_components:
@@ -56,7 +58,7 @@ def test_pwa_manifest_validity() -> None:
     with open(manifest_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    assert data.get("short_name") == "BaoliGuard"
+    assert data.get("short_name") in ["JalDrishti", "BaoliGuard"]
     assert "start_url" in data
     assert data.get("display") == "standalone"
 

@@ -1,4 +1,4 @@
-# BaoliGuard Frontend & Digital Twin Client
+# JalDrishti Frontend & Digital Twin Client
 
 **Owner:** Anika Jain (Frontend / PWA / Digital Twin)  
 **Primary Directory:** `/frontend` & `/digital_twin`

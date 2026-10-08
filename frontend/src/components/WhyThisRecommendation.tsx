@@ -22,7 +22,7 @@ export const WhyThisRecommendation: React.FC<WhyThisRecommendationProps> = ({
             </h3>
           </div>
           <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
-            Architectural and scientific justification explaining why BaoliGuard recommends traditional lime-pozzolana consolidation over modern Portland cement.
+            Architectural and scientific justification explaining why JalDrishti recommends traditional lime-pozzolana consolidation over modern Portland cement.
           </p>
         </div>
 

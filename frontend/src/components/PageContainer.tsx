@@ -58,12 +58,12 @@ export const PageContainer: React.FC<PageContainerProps> = ({
       {/* Footer */}
       <footer className="mt-16 pt-6 pb-4 border-t border-slate-800/80 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-slate-400">BaoliGuard</span>
+          <span className="font-semibold text-[#8FD5F2]">JalDrishti</span>
           <span>•</span>
-          <span>Jal-Dharohar Digital Intelligence Platform</span>
+          <span>Digital Intelligence for India's Traditional Water Heritage</span>
         </div>
-        <div className="text-[11px] font-mono text-slate-500">
-          Phase 1: PWA Foundation &amp; Design System | Anika Jain
+        <div className="text-[11px] font-mono text-slate-400">
+          Anika Jain (Frontend / PWA / Digital Twin)
         </div>
       </footer>
     </div>

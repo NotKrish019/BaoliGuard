@@ -1,6 +1,6 @@
 {
-  "short_name": "BaoliGuard",
-  "name": "BaoliGuard — Jal-Dharohar Digital Intelligence Platform",
+  "short_name": "JalDrishti",
+  "name": "JalDrishti — Digital Intelligence for India's Traditional Water Heritage",
   "icons": [
     {
       "src": "/vite.svg",
@@ -10,8 +10,8 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#070d18",
-  "theme_color": "#0c1527",
+  "background_color": "#063B63",
+  "theme_color": "#063B63",
   "display": "standalone",
   "orientation": "portrait-primary",
   "description": "AI-assisted digital engineering, IKS material compatibility, and conservation platform for traditional Indian water systems."
