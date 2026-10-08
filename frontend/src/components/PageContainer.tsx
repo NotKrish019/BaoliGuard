@@ -7,6 +7,7 @@ export interface PageContainerProps {
   badge?: React.ReactNode;
   actions?: React.ReactNode;
   className?: string;
+  showNotice?: boolean;
 }
 
 export const PageContainer: React.FC<PageContainerProps> = ({
@@ -16,54 +17,62 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   badge,
   actions,
   className = '',
+  showNotice = true,
 }) => {
   return (
-    <div className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
-      {/* Top Banner Notice: Technical Claim Boundary */}
-      <div className="mb-6 px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm">
-        <div className="flex items-center gap-2">
-          <span className="text-amber-400 font-mono font-bold">[DISCLAIMER]</span>
-          <span>
-            Prototype decision-support system. Visual Condition &amp; Material metrics represent preliminary photographic guidance, not certified structural audits.
+    <div className="flex-1 w-full max-w-[1440px] mx-auto px-4 sm:px-8 pt-28 sm:pt-32 pb-12 flex flex-col">
+      {/* Thin Institutional Notice: Replaces Generic Notification Card */}
+      {showNotice && (
+        <div className="mb-6 py-2 border-y border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-[#7E98A8]">
+          <div className="flex items-center gap-2">
+            <span className="text-[#C9902E] font-semibold tracking-wider uppercase">
+              PROTOTYPE NOTICE
+            </span>
+            <span className="hidden sm:inline text-white/20">|</span>
+            <span className="text-[#94A7B5]">
+              Visual and material indicators are preliminary photographic guidance and do not replace certified structural or conservation assessment.
+            </span>
+          </div>
+          <span className="text-[10px] text-[#516A7A] uppercase tracking-wider shrink-0">
+            IKS &amp; Deterministic Rules
           </span>
         </div>
-        <span className="font-mono text-[10px] text-sandstone-400 shrink-0">
-          Indian Knowledge Systems (IKS) &amp; Deterministic Conservation
-        </span>
-      </div>
+      )}
 
+      {/* Editorial Page Statement / Title Area */}
       {(title || subtitle || actions) && (
-        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-800/80">
+        <div className="mb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-white/10">
           <div>
             <div className="flex items-center gap-3">
               {title && (
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-sans">
+                <h1 className="text-2xl sm:text-3xl font-sans font-semibold tracking-tight text-[#F4F7F9]">
                   {title}
                 </h1>
               )}
               {badge}
             </div>
             {subtitle && (
-              <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#7E98A8] mt-1 max-w-3xl leading-relaxed font-sans">
                 {subtitle}
               </p>
             )}
           </div>
-          {actions && <div className="shrink-0">{actions}</div>}
+          {actions && <div className="shrink-0 flex items-center gap-3">{actions}</div>}
         </div>
       )}
 
+      {/* Main Content Workspace */}
       <main className={`flex-1 ${className}`}>{children}</main>
 
-      {/* Footer */}
-      <footer className="mt-16 pt-6 pb-4 border-t border-slate-800/80 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+      {/* Restrained Architectural Footer */}
+      <footer className="mt-16 pt-6 border-t border-white/10 text-xs font-mono text-[#516A7A] flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-[#8FD5F2]">JalDrishti</span>
+          <span className="font-sans font-semibold text-[#94A7B5]">JalDrishti</span>
           <span>•</span>
           <span>Digital Intelligence for India's Traditional Water Heritage</span>
         </div>
-        <div className="text-[11px] font-mono text-slate-400">
-          Anika Jain (Frontend / PWA / Digital Twin)
+        <div className="text-[11px]">
+          Sovereign Conservation Engineering • IKS Material Preservation
         </div>
       </footer>
     </div>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { JalDrishtiLogo } from './JalDrishtiLogo';
 import { checkBackendHealth } from '../services/api';
 import { AppRoute } from '../types';
 
@@ -15,7 +14,6 @@ export const Header: React.FC<HeaderProps> = ({
   hasAnalysisResult = false,
 }) => {
   const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
@@ -34,17 +32,10 @@ export const Header: React.FC<HeaderProps> = ({
     };
 
     verifyHealth();
-    const interval = setInterval(verifyHealth, 20000);
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const interval = setInterval(verifyHealth, 25000);
     return () => {
       isMounted = false;
       clearInterval(interval);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -54,124 +45,110 @@ export const Header: React.FC<HeaderProps> = ({
     {
       route: '/analysis',
       label: 'DIAGNOSTICS',
-      badge: hasAnalysisResult ? 'Active' : undefined,
+      badge: hasAnalysisResult ? 'ACTIVE' : undefined,
     },
     {
       route: '/report',
       label: 'KNOWLEDGE',
-      badge: hasAnalysisResult ? 'Ready' : undefined,
+      badge: hasAnalysisResult ? 'READY' : undefined,
     },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || currentRoute !== '/'
-          ? 'bg-[#063B63]/92 backdrop-blur-md shadow-lg shadow-[#031c30]/40 border-b border-[#2498D5]/20 py-2.5 sm:py-3'
-          : 'bg-transparent py-4 sm:py-5'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-        {/* Brand Logo & Title */}
+    <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-[#04121E]/95 backdrop-blur-md border-b border-white/10 flex items-center transition-colors">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-6">
+        {/* Brand Lockup: Small, Confident, Architectural */}
         <div
           onClick={() => onRouteChange('/')}
-          className="cursor-pointer group shrink-0"
+          className="flex items-center gap-2.5 cursor-pointer select-none group"
         >
-          <JalDrishtiLogo size="sm" light={true} />
+          <div className="w-6 h-6 border border-[#2498D5] flex items-center justify-center bg-[#081E31] text-[#2498D5] transition-colors group-hover:border-white">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5">
+              <path d="M4 18V8C4 5.79 5.79 4 8 4H16C18.21 4 20 5.79 20 8V18" />
+              <path d="M7 18V12H17V18" />
+              <circle cx="12" cy="8" r="1.5" fill="#2498D5" />
+            </svg>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="font-sans font-semibold tracking-tight text-sm text-[#F4F7F9]">
+              JalDrishti
+            </span>
+            <span className="hidden xl:inline text-[11px] font-mono text-[#7E98A8] uppercase tracking-wider">
+              | Digital Water Heritage
+            </span>
+          </div>
         </div>
 
-        {/* Floating Minimalist Center Navigation */}
-        <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+        {/* Primary Navigation: Restrained Typography, No Capsules */}
+        <nav className="flex items-center space-x-6 sm:space-x-8 h-14">
           {navLinks.map((item) => {
             const isActive = currentRoute === item.route;
             return (
               <button
                 key={item.route}
                 onClick={() => onRouteChange(item.route)}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 uppercase ${
+                className={`relative h-14 flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider transition-colors duration-150 ${
                   isActive
-                    ? 'text-white bg-white/15 backdrop-blur-sm shadow-sm'
-                    : 'text-[#EAF7FB]/80 hover:text-white hover:bg-white/10'
+                    ? 'text-white font-semibold'
+                    : 'text-[#7E98A8] hover:text-[#F4F7F9]'
                 }`}
               >
                 <span>{item.label}</span>
                 {item.badge && (
-                  <span className="ml-1.5 text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-[#2498D5]/40 text-[#8FD5F2] border border-[#8FD5F2]/40">
+                  <span className="text-[9px] font-mono px-1 py-0.2 bg-[#0C2B45] text-[#2498D5] border border-[#2498D5]/30">
                     {item.badge}
                   </span>
                 )}
+                {/* Thin Highlight Rule for Active State */}
                 {isActive && (
-                  <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#8FD5F2] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#2498D5]" />
                 )}
               </button>
             );
           })}
         </nav>
 
-        {/* Right Utility: Clean Rounded Search Pill matching Reference */}
-        <div className="flex items-center gap-3">
-          <div className="relative hidden sm:flex items-center">
+        {/* Instrument Panel Utilities */}
+        <div className="flex items-center gap-4">
+          {/* Restrained Command Search Field */}
+          <div className="relative hidden md:flex items-center">
             <input
               type="text"
               placeholder="Search dharohar..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-40 lg:w-56 pl-3.5 pr-8 py-1.5 text-xs text-[#102433] bg-white rounded-full shadow-sm placeholder:text-[#5E7280] focus:outline-none focus:ring-2 focus:ring-[#2498D5] transition-all"
+              className="w-48 xl:w-56 h-8 pl-3 pr-8 text-xs font-mono text-[#F4F7F9] bg-[#081E31] border border-white/15 rounded-xs placeholder:text-[#516A7A] focus:outline-none focus:border-[#2498D5] transition-colors"
             />
-            <div className="absolute right-1 w-6 h-6 rounded-full bg-[#0A6FB7] flex items-center justify-center text-white pointer-events-none">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
+            <svg
+              className="absolute right-2.5 w-3.5 h-3.5 text-[#7E98A8] pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </div>
 
-          {/* Minimal Backend Status Pip */}
-          <div
-            className="flex items-center gap-1.5 text-[11px] font-mono text-[#EAF7FB]/75 px-2.5 py-1 rounded-full bg-black/20 border border-white/10"
-            title={backendStatus === 'online' ? 'FastAPI Backend Online' : 'Local Standalone Mode'}
-          >
+          {/* System Status Indicator */}
+          <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-[#7E98A8] px-2 py-1 bg-[#081E31] border border-white/10 rounded-xs">
             <span
-              className={`w-2 h-2 rounded-full ${
-                backendStatus === 'online'
-                  ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]'
-                  : 'bg-amber-400 shadow-[0_0_8px_#fbbf24]'
+              className={`w-1.5 h-1.5 rounded-full ${
+                backendStatus === 'online' ? 'bg-emerald-400' : 'bg-amber-400'
               }`}
             />
-            <span className="hidden lg:inline">
-              {backendStatus === 'online' ? 'System Live' : 'Standalone'}
-            </span>
+            <span>{backendStatus === 'online' ? 'ENGINE: LIVE' : 'ENGINE: LOCAL'}</span>
           </div>
 
-          {/* Quick CTA on non-home pages */}
+          {/* Compact Technical Action Button */}
           {currentRoute !== '/upload' && (
             <button
               onClick={() => onRouteChange('/upload')}
-              className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#2498D5] hover:bg-[#8FD5F2] hover:text-[#063B63] text-white shadow-sm transition-all duration-200"
+              className="h-8 px-3.5 bg-[#2498D5] hover:bg-[#0A6FB7] text-white text-xs font-mono uppercase tracking-wider font-semibold rounded-xs border border-[#2498D5] transition-colors"
             >
-              + Scan
+              + SCAN
             </button>
           )}
         </div>
-      </div>
-
-      {/* Mobile Navigation Row */}
-      <div className="flex md:hidden items-center justify-around px-4 pt-2 border-t border-white/10 mt-2 overflow-x-auto no-scrollbar">
-        {navLinks.map((item) => (
-          <button
-            key={item.route}
-            onClick={() => onRouteChange(item.route)}
-            className={`px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase whitespace-nowrap ${
-              currentRoute === item.route ? 'text-white border-b-2 border-[#8FD5F2]' : 'text-white/70'
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
       </div>
     </header>
   );

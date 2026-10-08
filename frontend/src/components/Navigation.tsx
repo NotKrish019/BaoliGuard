@@ -12,79 +12,72 @@ export const Navigation: React.FC<NavigationProps> = ({
   onRouteChange,
   hasAnalysisResult = false,
 }) => {
-  // If on homepage, the top floating header handles primary navigation seamlessly
+  // Hide secondary workflow bar on the homepage
   if (currentRoute === '/') {
     return null;
   }
 
-  const navItems: { route: AppRoute; label: string; subtitle: string; badge?: string }[] = [
+  const workflowSteps: { route: AppRoute; label: string; code: string; activeOn: AppRoute[] }[] = [
     {
       route: '/upload',
-      label: 'Survey Ingestion',
-      subtitle: 'Image & Typology',
+      label: 'SURVEY',
+      code: '01',
+      activeOn: ['/upload'],
     },
     {
       route: '/analysis',
-      label: 'Diagnostic Workspace',
-      subtitle: 'SEE & ASSESS',
-      badge: hasAnalysisResult ? 'Active' : undefined,
+      label: 'DIAGNOSE',
+      code: '02',
+      activeOn: ['/analysis'],
     },
     {
       route: '/report',
-      label: 'Conservation Dossier',
-      subtitle: 'IKS & REVIVE',
-      badge: hasAnalysisResult ? 'Ready' : undefined,
+      label: 'CONSERVE',
+      code: '03',
+      activeOn: ['/report'],
     },
   ];
 
   return (
-    <nav className="mt-14 border-b border-[#2498D5]/20 bg-[#052642]/80 backdrop-blur-md px-4 sm:px-8 py-2.5">
-      <div className="max-w-7xl mx-auto flex items-center justify-between overflow-x-auto no-scrollbar gap-2 sm:gap-4">
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {navItems.map((item) => {
-            const isActive = currentRoute === item.route;
+    <nav className="fixed top-14 left-0 right-0 z-40 h-10 bg-[#061828]/95 backdrop-blur-sm border-b border-white/10 flex items-center">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-between">
+        {/* Restrained Workflow Steps */}
+        <div className="flex items-center space-x-6 sm:space-x-8 h-10">
+          {workflowSteps.map((step) => {
+            const isActive = step.activeOn.includes(currentRoute);
+            const isReady = hasAnalysisResult && (step.route === '/analysis' || step.route === '/report');
             return (
               <button
-                key={item.route}
-                onClick={() => onRouteChange(item.route)}
-                className={`relative px-3.5 py-1.5 rounded-lg text-left transition-all duration-200 flex items-center gap-2 whitespace-nowrap ${
+                key={step.route}
+                onClick={() => onRouteChange(step.route)}
+                className={`relative h-10 flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider transition-colors duration-150 ${
                   isActive
-                    ? 'bg-[#0A6FB7] text-white shadow-sm shadow-[#063B63]'
-                    : 'text-[#EAF7FB]/70 hover:text-white hover:bg-white/10'
+                    ? 'text-white font-semibold'
+                    : 'text-[#7E98A8] hover:text-[#F4F7F9]'
                 }`}
               >
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-xs sm:text-sm font-semibold tracking-tight">
-                      {item.label}
-                    </span>
-                    {item.badge && (
-                      <span className="text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-[#8FD5F2] text-[#063B63] font-bold">
-                        {item.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div className="hidden sm:block text-[10px] text-[#8FD5F2]/80 font-mono">
-                    {item.subtitle}
-                  </div>
-                </div>
-
+                <span className="text-[10px] text-[#2498D5] opacity-75">{step.code}</span>
+                <span>{step.label}</span>
+                {isReady && !isActive && (
+                  <span className="w-1 h-1 bg-[#2498D5] rounded-full" />
+                )}
                 {isActive && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-white rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#2498D5]" />
                 )}
               </button>
             );
           })}
         </div>
 
-        <div className="hidden md:flex items-center gap-2 text-xs font-mono text-[#8FD5F2]/90">
-          <span className="text-white font-bold">SEE</span>
+        {/* Technical Pipeline Sequence */}
+        <div className="hidden md:flex items-center gap-2 text-[11px] font-mono text-[#7E98A8]">
+          <span className={currentRoute === '/analysis' ? 'text-[#2498D5] font-semibold' : ''}>SEE</span>
           <span>→</span>
-          <span className="text-white font-bold">UNDERSTAND</span>
+          <span className={currentRoute === '/report' ? 'text-[#2498D5] font-semibold' : ''}>UNDERSTAND</span>
           <span>→</span>
-          <span className="text-white font-bold">ASSESS</span>
+          <span className={currentRoute === '/analysis' ? 'text-[#2498D5] font-semibold' : ''}>ASSESS</span>
           <span>→</span>
-          <span className="text-white font-bold">REVIVE</span>
+          <span className={currentRoute === '/report' ? 'text-[#2498D5] font-semibold' : ''}>REVIVE</span>
         </div>
       </div>
     </nav>

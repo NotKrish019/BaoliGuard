@@ -22,28 +22,26 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
   const [maskOpacity, setMaskOpacity] = useState<number>(0.75);
   const [showBoxes, setShowBoxes] = useState<boolean>(true);
   const [showLabels, setShowLabels] = useState<boolean>(true);
-  const [splitPos, setSplitPos] = useState<number>(50); // percentage for split slider
+  const [splitPos, setSplitPos] = useState<number>(50);
   const [hoveredDetection, setHoveredDetection] = useState<DetectionItem | null>(null);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { width_pixels, height_pixels } = imageDimensions;
-
-  // Filter detections by currently active visible classes
   const activeDetections = detections.filter((d) => visibleClasses.has(d.class_name));
 
   const getColor = (className: string) => {
     switch (className) {
       case 'crack':
-        return { stroke: '#f43f5e', fill: 'rgba(244, 63, 94, 0.45)', text: '#fda4af' };
+        return { stroke: '#E06C68', fill: 'rgba(224, 108, 104, 0.4)', text: '#FAD2D0' };
       case 'vegetation_root_intrusion':
-        return { stroke: '#10b981', fill: 'rgba(16, 185, 129, 0.45)', text: '#6ee7b7' };
+        return { stroke: '#3E8F6B', fill: 'rgba(62, 143, 107, 0.4)', text: '#A8E5C8' };
       case 'spalling':
-        return { stroke: '#f59e0b', fill: 'rgba(245, 158, 11, 0.45)', text: '#fde68a' };
+        return { stroke: '#C9902E', fill: 'rgba(201, 144, 46, 0.4)', text: '#FDE4B0' };
       case 'efflorescence':
-        return { stroke: '#06b6d4', fill: 'rgba(6, 182, 212, 0.45)', text: '#67e8f9' };
+        return { stroke: '#2498D5', fill: 'rgba(36, 152, 213, 0.4)', text: '#8FD5F2' };
       default:
-        return { stroke: '#a855f7', fill: 'rgba(168, 85, 247, 0.45)', text: '#d8b4fe' };
+        return { stroke: '#8F72A8', fill: 'rgba(143, 114, 168, 0.4)', text: '#D8CEE3' };
     }
   };
 
@@ -56,36 +54,35 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
   };
 
   return (
-    <div className={`glass-panel rounded-2xl overflow-hidden border border-slate-800 ${className}`}>
-      {/* Top Inspection Control Bar */}
-      <div className="px-5 py-3.5 bg-heritage-950/90 border-b border-slate-800/90 flex flex-wrap items-center justify-between gap-4">
+    <div className={`bg-[#081E31] border border-white/10 rounded-xs overflow-hidden ${className}`}>
+      {/* Top Inspection Control Bar: Restrained Instrument Bar */}
+      <div className="h-10 px-3.5 bg-[#051624] border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
         {/* Mode Selector */}
-        <div className="flex items-center gap-1.5 bg-slate-900/90 p-1 rounded-xl border border-slate-800">
+        <div className="flex items-center space-x-1">
           {[
-            { id: 'overlay', label: 'Overlay View', icon: '🔲' },
-            { id: 'side_by_side', label: 'Side-by-Side', icon: '🪟' },
-            { id: 'split_slider', label: 'Comparison Wipe', icon: '↔️' },
-            { id: 'mask_only', label: 'Masks Only', icon: '⬛' },
+            { id: 'overlay', label: 'OVERLAY' },
+            { id: 'side_by_side', label: 'SPLIT-VIEW' },
+            { id: 'split_slider', label: 'WIPE-SLIDER' },
+            { id: 'mask_only', label: 'MASKS-ONLY' },
           ].map((mode) => (
             <button
               key={mode.id}
               onClick={() => setViewMode(mode.id as InspectionViewMode)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 select-none ${
+              className={`h-7 px-2.5 text-[11px] font-semibold tracking-wider uppercase transition-colors rounded-xs border ${
                 viewMode === mode.id
-                  ? 'bg-sandstone-600 text-white shadow-sm font-semibold'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-[#2498D5] text-white border-[#2498D5]'
+                  : 'bg-[#081E31] text-[#7E98A8] border-white/10 hover:text-white'
               }`}
             >
-              <span>{mode.icon}</span>
-              <span>{mode.label}</span>
+              {mode.label}
             </button>
           ))}
         </div>
 
-        {/* Overlay Controls */}
-        <div className="flex items-center gap-4 text-xs font-mono">
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400 text-[11px]">Opacity:</span>
+        {/* Technical Visibility Controls */}
+        <div className="flex items-center space-x-4 text-[11px] text-[#7E98A8]">
+          <div className="flex items-center space-x-2">
+            <span>OPACITY</span>
             <input
               type="range"
               min="0.1"
@@ -93,31 +90,31 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
               step="0.05"
               value={maskOpacity}
               onChange={(e) => setMaskOpacity(parseFloat(e.target.value))}
-              className="w-20 accent-sandstone-500 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+              className="w-16 accent-[#2498D5] cursor-pointer h-1 bg-[#04121E] rounded-none"
             />
-            <span className="text-slate-300 w-8 text-right font-bold">
+            <span className="w-7 text-right text-white font-semibold">
               {(maskOpacity * 100).toFixed(0)}%
             </span>
           </div>
 
-          <label className="flex items-center gap-1.5 cursor-pointer text-slate-300 select-none">
+          <label className="flex items-center space-x-1.5 cursor-pointer text-[#7E98A8] hover:text-white select-none">
             <input
               type="checkbox"
               checked={showBoxes}
               onChange={(e) => setShowBoxes(e.target.checked)}
-              className="rounded border-slate-700 bg-slate-900 text-sandstone-500"
+              className="rounded-none border-white/20 bg-[#04121E] text-[#2498D5]"
             />
-            <span className="text-[11px]">Boxes</span>
+            <span>BOUNDS</span>
           </label>
 
-          <label className="flex items-center gap-1.5 cursor-pointer text-slate-300 select-none">
+          <label className="flex items-center space-x-1.5 cursor-pointer text-[#7E98A8] hover:text-white select-none">
             <input
               type="checkbox"
               checked={showLabels}
               onChange={(e) => setShowLabels(e.target.checked)}
-              className="rounded border-slate-700 bg-slate-900 text-sandstone-500"
+              className="rounded-none border-white/20 bg-[#04121E] text-[#2498D5]"
             />
-            <span className="text-[11px]">Tags</span>
+            <span>LABELS</span>
           </label>
         </div>
       </div>
@@ -126,33 +123,33 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        className="relative bg-slate-950 select-none overflow-hidden"
+        className="relative bg-[#030D16] select-none overflow-hidden"
       >
         {/* Render Mode: SIDE BY SIDE */}
         {viewMode === 'side_by_side' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-3 bg-slate-950">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 p-px">
             {/* Left: Original Survey Image */}
-            <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
-              <div className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded bg-slate-950/80 border border-slate-700 text-[10px] font-mono text-slate-300">
-                Original Photographic Survey
+            <div className="relative bg-[#030D16] p-2">
+              <div className="absolute top-3 left-3 z-10 px-2 py-0.5 bg-[#04121E]/90 border border-white/15 text-[10px] font-mono text-[#7E98A8]">
+                RAW PHOTOGRAMMETRY
               </div>
               <img
                 src={imageSrc}
-                alt="Original Survey"
+                alt="Raw Survey"
                 className="w-full h-full object-contain"
               />
             </div>
 
             {/* Right: Computer Vision Overlay */}
-            <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
-              <div className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded bg-sandstone-950/90 border border-sandstone-700 text-[10px] font-mono text-sandstone-300">
-                Segmented Damage Mask ({activeDetections.length} features)
+            <div className="relative bg-[#030D16] p-2">
+              <div className="absolute top-3 left-3 z-10 px-2 py-0.5 bg-[#04121E]/90 border border-[#2498D5]/30 text-[10px] font-mono text-[#2498D5]">
+                CV ANNOTATIONS ({activeDetections.length})
               </div>
               <div className="relative w-full aspect-[16/10]">
                 <img
                   src={imageSrc}
-                  alt="Survey Backdrop"
-                  className="w-full h-full object-contain opacity-50"
+                  alt="Backdrop"
+                  className="w-full h-full object-contain opacity-40"
                 />
                 <svg
                   viewBox={`0 0 ${width_pixels} ${height_pixels}`}
@@ -181,13 +178,13 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
 
         {/* Render Mode: SPLIT SLIDER / WIPE */}
         {viewMode === 'split_slider' && (
-          <div className="relative w-full aspect-[16/9] cursor-ew-resize">
+          <div className="relative w-full aspect-[16/10] cursor-ew-resize">
             {/* Background Layer: Overlay */}
             <div className="absolute inset-0 w-full h-full">
               <img
                 src={imageSrc}
                 alt="Survey with Defects"
-                className="w-full h-full object-contain opacity-60"
+                className="w-full h-full object-contain opacity-50"
               />
               <svg
                 viewBox={`0 0 ${width_pixels} ${height_pixels}`}
@@ -213,7 +210,7 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
 
             {/* Foreground Layer (Clipped to Split Slider Position) */}
             <div
-              className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-white shadow-2xl transition-[width] duration-75"
+              className="absolute inset-y-0 left-0 overflow-hidden border-r border-[#2498D5]"
               style={{ width: `${splitPos}%` }}
             >
               <div className="relative w-full h-full overflow-hidden" style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%' }}>
@@ -222,31 +219,27 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
                   alt="Original Surface"
                   className="w-full h-full object-contain"
                 />
-                <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-slate-950/80 border border-slate-700 text-[10px] font-mono text-slate-300">
-                  Original Photographic Base
+                <div className="absolute top-3 left-3 px-2 py-0.5 bg-[#04121E]/90 border border-white/15 text-[10px] font-mono text-[#7E98A8]">
+                  BASE BASELINE
                 </div>
               </div>
             </div>
 
-            {/* Split Handle Divider */}
+            {/* Split Handle Divider: Technical Thin Cursor */}
             <div
               className="absolute inset-y-0 flex items-center justify-center pointer-events-none"
               style={{ left: `${splitPos}%` }}
             >
-              <div className="w-7 h-7 -ml-3.5 rounded-full bg-sandstone-500 text-heritage-950 flex items-center justify-center font-bold text-xs shadow-lg shadow-black">
-                ↔
+              <div className="w-5 h-5 -ml-2.5 bg-[#2498D5] text-[#04121E] flex items-center justify-center font-mono font-bold text-[10px] shadow-sm">
+                |
               </div>
-            </div>
-
-            <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-sandstone-950/80 border border-sandstone-700 text-[10px] font-mono text-sandstone-300 pointer-events-none">
-              Defect Overlay: {100 - Math.round(splitPos)}% Revealed
             </div>
           </div>
         )}
 
         {/* Render Mode: OVERLAY or MASK ONLY */}
         {(viewMode === 'overlay' || viewMode === 'mask_only') && (
-          <div className="relative w-full aspect-[16/9] flex items-center justify-center">
+          <div className="relative w-full aspect-[16/10] flex items-center justify-center">
             {viewMode === 'overlay' ? (
               <img
                 src={imageSrc}
@@ -254,7 +247,7 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
                 className="w-full h-full object-contain"
               />
             ) : (
-              <div className="w-full h-full bg-slate-950" />
+              <div className="w-full h-full bg-[#030D16]" />
             )}
 
             {/* SVG Defect Segmentation Overlay */}
@@ -284,74 +277,48 @@ export const InspectionCanvas: React.FC<InspectionCanvasProps> = ({
         {/* Interactive Defect Tooltip */}
         {hoveredDetection && tooltipPos && (
           <div
-            className="absolute z-30 pointer-events-none p-3 rounded-xl bg-slate-950/95 border border-slate-700 shadow-2xl text-xs backdrop-blur-md max-w-xs transition-all duration-150 font-sans"
+            className="absolute z-30 pointer-events-none p-3 bg-[#081E31] border border-white/20 text-xs shadow-panel max-w-xs font-mono"
             style={{
-              left: `${Math.min(tooltipPos.x + 15, (containerRef.current?.clientWidth || 300) - 250)}px`,
-              top: `${Math.max(10, tooltipPos.y - 70)}px`,
+              left: `${Math.min(tooltipPos.x + 10, (containerRef.current?.clientWidth || 300) - 240)}px`,
+              top: `${Math.max(10, tooltipPos.y - 65)}px`,
             }}
           >
-            <div className="flex items-center justify-between gap-2 mb-1.5 pb-1 border-b border-slate-800">
-              <span className="font-bold text-white uppercase font-mono tracking-wider">
+            <div className="flex items-center justify-between gap-2 mb-1.5 pb-1 border-b border-white/10">
+              <span className="font-semibold text-white uppercase">
                 {hoveredDetection.class_name.replace(/_/g, ' ')}
               </span>
-              <span
-                className={`text-[10px] font-mono px-1.5 py-0.2 rounded uppercase font-bold ${
-                  hoveredDetection.relative_severity === 'severe'
-                    ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                    : 'bg-amber-950 text-amber-300 border border-amber-800'
-                }`}
-              >
-                {hoveredDetection.relative_severity || 'moderate'}
+              <span className="text-[10px] text-[#2498D5] font-bold uppercase">
+                {hoveredDetection.relative_severity || 'MODERATE'}
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-3 gap-y-1 font-mono text-[11px] text-slate-300 mb-2">
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[11px] text-[#7E98A8]">
               <div>
-                <span className="text-slate-500">Confidence: </span>
-                <strong className="text-sandstone-300">
+                <span>CONFIDENCE: </span>
+                <strong className="text-white">
                   {(hoveredDetection.confidence * 100).toFixed(1)}%
                 </strong>
               </div>
               <div>
-                <span className="text-slate-500">Components: </span>
-                <strong className="text-white">{hoveredDetection.component_count}</strong>
-              </div>
-              <div>
-                <span className="text-slate-500">Pixel Area: </span>
+                <span>AREA: </span>
                 <strong className="text-white">
                   {hoveredDetection.pixel_area.toLocaleString()} px²
                 </strong>
               </div>
-              <div>
-                <span className="text-slate-500">Coverage: </span>
-                <strong className="text-white">
-                  {(hoveredDetection.coverage_ratio * 100).toFixed(2)}%
-                </strong>
-              </div>
-            </div>
-
-            {hoveredDetection.total_length_pixels && (
-              <div className="text-[10px] font-mono text-sandstone-400 bg-sandstone-950/60 p-1.5 rounded border border-sandstone-900 mb-1.5">
-                Centerline Length: {hoveredDetection.total_length_pixels} px
-              </div>
-            )}
-
-            <div className="text-[9.5px] font-sans text-amber-300/90 pt-1 border-t border-slate-800/80">
-              ⚠️ <strong>Distinction:</strong> Confidence reflects statistical perception certainty; severity reflects physical degradation.
             </div>
           </div>
         )}
       </div>
 
-      {/* Canvas Status Footer */}
-      <div className="px-5 py-2.5 bg-heritage-950/80 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-400">
-        <div className="flex items-center gap-3">
-          <span>Raster: {width_pixels} × {height_pixels} px</span>
+      {/* Canvas Status Footer: Technical Telemetry */}
+      <div className="h-8 px-3.5 bg-[#051624] border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#7E98A8]">
+        <div className="flex items-center space-x-3">
+          <span>FRAME: {width_pixels} × {height_pixels} PX</span>
           <span>•</span>
-          <span>Visible: {activeDetections.length} of {detections.length} detections</span>
+          <span>ACTIVE FEATURES: {activeDetections.length} OF {detections.length}</span>
         </div>
-        <div className="text-sandstone-400">
-          Non-Destructive Optical Inspection
+        <div className="text-[#2498D5]">
+          OPTICAL PERCEPTION MODE
         </div>
       </div>
     </div>
@@ -388,14 +355,14 @@ const SvgOverlayElements: React.FC<SvgOverlayElementsProps> = ({
         return (
           <g
             key={idx}
-            className="cursor-pointer transition-opacity"
+            className="cursor-pointer"
             onMouseEnter={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               onHoverDetection(det, { x: rect.left, y: rect.top });
             }}
             onMouseLeave={onLeave}
           >
-            {/* Defect Contour Mask Simulation */}
+            {/* Defect Contour Mask */}
             <rect
               x={xMin}
               y={yMin}
@@ -404,43 +371,39 @@ const SvgOverlayElements: React.FC<SvgOverlayElementsProps> = ({
               fill={theme.fill}
               fillOpacity={maskOpacity}
               stroke={theme.stroke}
-              strokeWidth={showBoxes ? 3 : 1}
-              strokeDasharray={det.class_name === 'crack' ? '6,3' : undefined}
-              rx={6}
+              strokeWidth={showBoxes ? 2 : 1}
+              strokeDasharray={det.class_name === 'crack' ? '4,2' : undefined}
             />
 
             {/* Skeletonized Line Indicator for Cracks */}
             {det.class_name === 'crack' && (
               <path
-                d={`M ${xMin + 10} ${yMin + 20} Q ${xMin + width / 2} ${yMin + height / 2 + 15} ${xMax - 15} ${yMax - 25}`}
-                stroke="#fff"
-                strokeWidth={3}
+                d={`M ${xMin + 5} ${yMin + 15} Q ${xMin + width / 2} ${yMin + height / 2 + 10} ${xMax - 10} ${yMax - 20}`}
+                stroke="#F4F7F9"
+                strokeWidth={2}
                 fill="none"
-                strokeLinecap="round"
               />
             )}
 
-            {/* Bounding Box Label Tag */}
+            {/* Restrained On-Image Defect Label */}
             {showLabels && (
-              <g transform={`translate(${xMin}, ${Math.max(25, yMin - 10)})`}>
+              <g transform={`translate(${xMin}, ${Math.max(18, yMin - 4)})`}>
                 <rect
                   x={0}
-                  y={-22}
-                  width={Math.max(120, det.class_name.length * 9 + 40)}
-                  height={22}
-                  fill="#0c1527"
-                  fillOpacity={0.95}
+                  y={-14}
+                  width={Math.max(90, det.class_name.length * 7 + 36)}
+                  height={15}
+                  fill="#04121E"
                   stroke={theme.stroke}
-                  strokeWidth={1.5}
-                  rx={4}
+                  strokeWidth={1}
                 />
                 <text
-                  x={6}
-                  y={-7}
+                  x={4}
+                  y={-3}
                   fill={theme.text}
-                  fontSize={12}
-                  fontFamily="JetBrains Mono, monospace"
-                  fontWeight="bold"
+                  fontSize={9.5}
+                  fontFamily="IBM Plex Mono, monospace"
+                  fontWeight="600"
                 >
                   {det.class_name.replace(/_/g, ' ').toUpperCase()} {(det.confidence * 100).toFixed(0)}%
                 </text>

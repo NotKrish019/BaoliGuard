@@ -21,23 +21,20 @@ export const Card: React.FC<CardProps> = ({
   action,
   footer,
   className = '',
-  elevated = false,
   borderAccent = 'none',
   onClick,
 }) => {
   const accentClasses = {
-    sandstone: 'border-l-4 border-l-sandstone-500',
-    jal: 'border-l-4 border-l-jal-500',
-    surkhi: 'border-l-4 border-l-surkhi-500',
+    sandstone: 'border-l-2 border-l-[#D8C8B0]',
+    jal: 'border-l-2 border-l-[#2498D5]',
+    surkhi: 'border-l-2 border-l-[#C9902E]',
     none: '',
   };
 
-  const baseClasses = elevated
-    ? 'glass-panel-elevated rounded-xl shadow-xl'
-    : 'glass-panel rounded-xl shadow-lg';
+  const baseClasses = 'bg-[#081E31] border border-white/10 rounded-xs';
 
   const interactiveClasses = onClick
-    ? 'cursor-pointer hover:border-slate-600 transition-all duration-200 hover:-translate-y-0.5'
+    ? 'cursor-pointer hover:border-white/25 transition-colors duration-150'
     : '';
 
   return (
@@ -46,20 +43,24 @@ export const Card: React.FC<CardProps> = ({
       className={`${baseClasses} ${accentClasses[borderAccent]} ${interactiveClasses} ${className}`}
     >
       {(title || subtitle || badge || action) && (
-        <div className="px-5 py-4 border-b border-slate-800/80 flex items-start justify-between gap-4">
+        <div className="px-4 py-3 border-b border-white/10 flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              {title && <h3 className="text-base font-semibold text-slate-100 tracking-tight">{title}</h3>}
+              {title && (
+                <h3 className="text-xs sm:text-sm font-semibold text-[#F4F7F9] tracking-tight font-sans">
+                  {title}
+                </h3>
+              )}
               {badge}
             </div>
-            {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
+            {subtitle && <p className="text-[11px] text-[#7E98A8] mt-0.5 font-sans leading-snug">{subtitle}</p>}
           </div>
           {action && <div className="shrink-0">{action}</div>}
         </div>
       )}
-      <div className="p-5">{children}</div>
+      <div className="p-4 sm:p-5">{children}</div>
       {footer && (
-        <div className="px-5 py-3 bg-slate-950/40 border-t border-slate-800/80 rounded-b-xl text-xs text-slate-400">
+        <div className="px-4 py-2.5 bg-[#051624] border-t border-white/10 text-xs text-[#7E98A8] font-mono">
           {footer}
         </div>
       )}

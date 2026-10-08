@@ -12,113 +12,92 @@ export interface ConservationChainProps {
 
 export const ConservationChain: React.FC<ConservationChainProps> = ({
   damageFinding = 'Vegetation root expansion along primary ashlar bed joints',
-  probableCause = 'Mortar loss from unmaintained joints followed by seed germination',
-  traditionalPrinciple = 'Aparajitaprccha breathability & flexible hydraulic lime cohesion',
-  materialMatch = 'Slaked fat lime putty + surkhi pozzolana (92.5/100 compatible)',
-  actionTitle = 'Non-destructive vegetation extraction & traditional lime repointing',
-  onSelectStep,
+  probableCause = 'Mortar loss from unmaintained joints followed by seed germination in microclimatic dampness',
+  traditionalPrinciple = 'Aparajitaprccha vapor-permeability & flexible hydraulic lime cohesion',
+  materialMatch = 'Slaked fat lime putty + surkhi pozzolana (1:2 ratio, 92.5/100 compatible)',
+  actionTitle = 'Non-destructive mechanical root extraction & hydraulic lime-surkhi repointing',
   className = '',
 }) => {
-  const steps = [
+  const sequence = [
     {
-      index: 1,
-      tag: '01. OBSERVED DAMAGE',
-      shortName: 'DAMAGE',
-      summary: damageFinding,
-      color: 'border-rose-500/60 bg-rose-950/20 text-rose-300',
-      badge: 'bg-rose-950 text-rose-300 border-rose-800',
-      icon: '🔍',
+      code: '01',
+      phase: 'OBSERVE',
+      label: 'Visible Damage Finding',
+      content: damageFinding,
+      detail: 'Image-space non-invasive perception identifying physical masonry distress.',
     },
     {
-      index: 2,
-      tag: '02. POSSIBLE CAUSE',
-      shortName: 'CAUSE',
-      summary: probableCause,
-      color: 'border-amber-500/60 bg-amber-950/20 text-amber-300',
-      badge: 'bg-amber-950 text-amber-300 border-amber-800',
-      icon: '⚠️',
+      code: '02',
+      phase: 'INTERPRET',
+      label: 'Probable Degradation Mechanism',
+      content: probableCause,
+      detail: 'Deduction connecting surface symptom to moisture infiltration and joint failure.',
     },
     {
-      index: 3,
-      tag: '03. TRADITIONAL PRINCIPLE',
-      shortName: 'IKS TRADITION',
-      summary: traditionalPrinciple,
-      color: 'border-sandstone-500/60 bg-sandstone-950/20 text-sandstone-300',
-      badge: 'bg-sandstone-950 text-sandstone-300 border-sandstone-800',
-      icon: '📜',
+      code: '03',
+      phase: 'PRESERVE',
+      label: 'Indigenous Knowledge Principle',
+      content: traditionalPrinciple,
+      detail: 'Classical hydrological wisdom (Aparajitaprccha / Mayamatam) mandating breathable fabric.',
     },
     {
-      index: 4,
-      tag: '04. MATERIAL COMPATIBILITY',
-      shortName: 'MATERIAL DNA',
-      summary: materialMatch,
-      color: 'border-lime-500/60 bg-lime-950/20 text-lime-300',
-      badge: 'bg-lime-950 text-lime-300 border-lime-800',
-      icon: '🧪',
+      code: '04',
+      phase: 'REPAIR',
+      label: 'Compatible Intervention Material',
+      content: materialMatch,
+      detail: 'Excludes destructive OPC Portland cement; prescribes reversible hydraulic lime binder.',
     },
     {
-      index: 5,
-      tag: '05. CONSERVATION ACTION',
-      shortName: 'REVIVE',
-      summary: actionTitle,
-      color: 'border-emerald-500/60 bg-emerald-950/20 text-emerald-300',
-      badge: 'bg-emerald-950 text-emerald-300 border-emerald-800',
-      icon: '🛠️',
+      code: '05',
+      phase: 'VERIFY',
+      label: 'Execution & Characterization Audit',
+      content: actionTitle,
+      detail: 'Minimum-intervention execution with mandatory petrographic pre-testing.',
     },
   ];
 
   return (
-    <div className={`glass-panel rounded-2xl p-6 border border-slate-800 ${className}`}>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-3 border-b border-slate-800/80">
+    <div className={`bg-[#081E31] border border-white/10 rounded-xs p-6 ${className}`}>
+      <div className="pb-4 mb-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-sandstone-400 font-mono text-xs font-bold px-1.5 py-0.5 rounded bg-sandstone-950 border border-sandstone-800">
-              CAUSAL CHAIN
-            </span>
-            <h3 className="text-base font-bold text-white tracking-tight">
-              Evidence-Based Conservation Narrative
-            </h3>
-          </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Deterministic diagnostic lineage connecting visible surface symptoms to material-compatible interventions.
-          </p>
+          <span className="text-[10px] font-mono tracking-widest uppercase font-semibold text-[#2498D5] block mb-1">
+            CONSERVATION DOSSIER LINEAGE
+          </span>
+          <h3 className="text-base font-sans font-semibold text-white">
+            Sequential Evidence-Based Action Sequence
+          </h3>
         </div>
-
-        <span className="text-[11px] font-mono text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
-          5-Stage Conservation Linkage
+        <span className="text-[11px] font-mono text-[#7E98A8]">
+          ASI / INTACH CHARTER METHODOLOGY
         </span>
       </div>
 
-      {/* Responsive Horizontal / Vertical Chain Steps */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 relative">
-        {steps.map((st, i) => (
-          <div
-            key={st.index}
-            onClick={() => onSelectStep?.(st.index)}
-            className={`p-4 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
-              st.color
-            } hover:scale-[1.02] hover:shadow-lg`}
-          >
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-lg">{st.icon}</span>
-                <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border uppercase ${st.badge}`}>
-                  {st.shortName}
-                </span>
-              </div>
-              <div className="text-[10px] font-mono font-bold tracking-wider opacity-75 uppercase mb-1">
-                {st.tag}
-              </div>
-              <p className="text-xs text-slate-200 leading-snug font-sans">
-                {st.summary}
-              </p>
+      {/* Vertical Editorial Sequence (Replaces 5 Generic Cards) */}
+      <div className="space-y-6 relative before:absolute before:left-4 before:top-2 before:bottom-2 before:w-[1px] before:bg-white/10">
+        {sequence.map((item) => (
+          <div key={item.code} className="relative flex items-start space-x-6 pl-10 group">
+            {/* Number Pin on Hairline Connector */}
+            <div className="absolute left-0 top-0.5 w-8 h-8 bg-[#04121E] border border-white/20 text-[#2498D5] font-mono text-xs font-semibold flex items-center justify-center rounded-xs group-hover:border-[#2498D5] transition-colors">
+              {item.code}
             </div>
 
-            {i < steps.length - 1 && (
-              <div className="hidden md:flex justify-end pt-3 text-slate-500 font-mono text-xs">
-                →
+            <div className="flex-1 pb-4 border-b border-white/5 last:border-b-0">
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-xs font-mono font-semibold text-[#2498D5] tracking-wider uppercase">
+                  {item.phase}
+                </span>
+                <span className="text-white/20">|</span>
+                <span className="text-xs font-mono text-[#7E98A8] uppercase">
+                  {item.label}
+                </span>
               </div>
-            )}
+              <p className="text-sm font-sans font-medium text-[#F4F7F9] leading-snug">
+                {item.content}
+              </p>
+              <p className="text-xs font-sans text-[#7E98A8] mt-1 leading-relaxed">
+                {item.detail}
+              </p>
+            </div>
           </div>
         ))}
       </div>

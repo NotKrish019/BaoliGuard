@@ -39,7 +39,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
 
   const handleFileSelect = (file: File) => {
     if (!file.type.startsWith('image/')) {
-      alert('Please upload a valid photographic image (JPEG, PNG).');
+      alert('Please upload a valid photographic image (JPEG, PNG, WebP).');
       return;
     }
     setSelectedFile(file);
@@ -87,21 +87,21 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
   };
 
   return (
-    <div className={`glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800 ${className}`}>
+    <div className={`bg-[#081E31] border border-white/10 rounded-xs p-6 sm:p-8 ${className}`}>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Image Ingestion Dropzone */}
         <div className="lg:col-span-7">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-sandstone-300">
-              Survey Imagery Ingestion
+          <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#2498D5]">
+              SURVEY PHOTOGRAMMETRY INGESTION
             </span>
             {selectedFile && (
               <button
                 type="button"
                 onClick={clearSelection}
-                className="text-xs text-rose-400 hover:text-rose-300 transition-colors"
+                className="text-[11px] font-mono text-[#E06C68] hover:underline"
               >
-                Clear Image
+                REMOVE ASSET
               </button>
             )}
           </div>
@@ -120,7 +120,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
 
           {previewUrl ? (
             <div>
-              <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[16/10] group">
+              <div className="relative rounded-xs overflow-hidden border border-white/15 bg-[#030D16] aspect-[16/10] group">
                 <img
                   src={previewUrl}
                   alt="Survey Ingestion Preview"
@@ -128,7 +128,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                 />
                 {/* Active ROI Box Overlay */}
                 <div
-                  className="absolute border-2 border-sandstone-400 bg-sandstone-500/15 pointer-events-none transition-all duration-200"
+                  className="absolute border border-[#2498D5] bg-[#2498D5]/10 pointer-events-none"
                   style={{
                     left: `${roi.x}%`,
                     top: `${roi.y}%`,
@@ -136,16 +136,16 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                     height: `${roi.height}%`,
                   }}
                 >
-                  <span className="text-[9px] font-mono bg-sandstone-950 text-sandstone-200 px-1 py-0.5 rounded ml-1 mt-1 inline-block">
-                    Target ROI: {roi.width}% × {roi.height}%
+                  <span className="text-[9px] font-mono bg-[#04121E] text-[#2498D5] px-1 py-0.5 ml-1 mt-1 inline-block border border-[#2498D5]/40">
+                    TARGET ROI: {roi.width}% × {roi.height}%
                   </span>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end justify-between p-4 pointer-events-none">
-                  <div className="text-xs font-mono text-slate-200 truncate">
-                    <div className="font-semibold text-white truncate">{selectedFile?.name || 'Survey Base Asset'}</div>
-                    <div className="text-[10px] text-slate-400">
-                      {selectedFile ? `${(selectedFile.size / 1024).toFixed(1)} KB` : '1920 × 1080 px'} • Ready for segmentation
+                <div className="absolute inset-0 bg-gradient-to-t from-[#04121E]/90 via-transparent to-transparent flex items-end justify-between p-4 pointer-events-none">
+                  <div className="text-xs font-mono text-white truncate">
+                    <div className="font-semibold truncate">{selectedFile?.name || 'Reference Asset'}</div>
+                    <div className="text-[10px] text-[#7E98A8]">
+                      {selectedFile ? `${(selectedFile.size / 1024).toFixed(1)} KB` : '1920 × 1080 px'} • Ingestion validated
                     </div>
                   </div>
                   <div className="pointer-events-auto">
@@ -154,29 +154,29 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
                       variant="secondary"
                       onClick={() => fileInputRef.current?.click()}
                     >
-                      Change
+                      CHANGE
                     </Button>
                   </div>
                 </div>
               </div>
 
               {/* Quick ROI selection pills below preview */}
-              <div className="mt-3 p-3 bg-slate-900/60 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-2">
-                <span className="text-[11px] font-mono text-slate-400">Inspection ROI:</span>
+              <div className="mt-3 p-3 bg-[#051624] border border-white/10 rounded-xs flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                <span className="text-[11px] text-[#7E98A8] uppercase">INSPECTION ROI:</span>
                 <div className="flex flex-wrap gap-1.5">
                   {[
-                    { label: 'Full Image (100%)', roi: { x: 0, y: 0, width: 100, height: 100, isNormalized: true } },
-                    { label: 'Lower Basin Tier', roi: { x: 10, y: 55, width: 80, height: 42, isNormalized: true } },
-                    { label: 'Central Archway', roi: { x: 25, y: 20, width: 50, height: 55, isNormalized: true } },
+                    { label: 'FULL SURFACE (100%)', roi: { x: 0, y: 0, width: 100, height: 100, isNormalized: true } },
+                    { label: 'LOWER BASIN TIER', roi: { x: 10, y: 55, width: 80, height: 42, isNormalized: true } },
+                    { label: 'CENTRAL ARCADE', roi: { x: 25, y: 20, width: 50, height: 55, isNormalized: true } },
                   ].map((item, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setRoi(item.roi)}
-                      className={`text-[10px] font-mono px-2 py-1 rounded transition-colors ${
+                      className={`text-[10px] font-mono px-2 py-1 transition-colors rounded-xs border ${
                         roi.x === item.roi.x && roi.width === item.roi.width
-                          ? 'bg-sandstone-600 text-white font-bold'
-                          : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                          ? 'bg-[#2498D5] text-white border-[#2498D5] font-semibold'
+                          : 'bg-[#081E31] text-[#7E98A8] border-white/10 hover:text-white'
                       }`}
                     >
                       {item.label}
@@ -191,69 +191,76 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onClick={() => fileInputRef.current?.click()}
-              className={`rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all duration-200 flex flex-col items-center justify-center aspect-[16/10] bg-blueprint ${
+              className={`border border-dashed p-8 text-center cursor-pointer transition-colors duration-150 flex flex-col items-center justify-center aspect-[16/10] rounded-xs ${
                 isDragging
-                  ? 'border-sandstone-400 bg-sandstone-950/20'
-                  : 'border-slate-700/80 hover:border-slate-500 bg-slate-950/40'
+                  ? 'border-[#2498D5] bg-[#0C2B45]'
+                  : 'border-white/20 hover:border-white/40 bg-[#04121E]'
               }`}
             >
-              <div className="w-16 h-16 rounded-2xl bg-heritage-900 border border-slate-700 flex items-center justify-center text-3xl mb-3 shadow-lg">
-                📷
+              <div className="w-12 h-12 border border-white/15 flex items-center justify-center text-[#2498D5] mb-3 bg-[#081E31]">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
               </div>
-              <h4 className="text-sm font-semibold text-white mb-1">
-                Upload Heritage Survey Image
+              <h4 className="text-xs font-mono font-semibold text-white mb-1 uppercase tracking-wider">
+                Upload Survey Photography
               </h4>
-              <p className="text-xs text-slate-400 max-w-xs mb-4 leading-relaxed">
-                Drag and drop high-resolution photographic survey image (Baoli wall, steps, inlet, or basin masonry).
+              <p className="text-xs text-[#7E98A8] max-w-xs mb-4 leading-relaxed font-sans">
+                Drag and drop high-resolution photographs of masonry, intake channels, or steps.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-2">
-                <Button size="sm" variant="sandstone" type="button">
-                  Browse Files (JPEG / PNG)
+                <Button size="sm" variant="primary" type="button">
+                  BROWSE FILES
                 </Button>
                 <Button
                   size="sm"
-                  variant="outline"
+                  variant="secondary"
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleSelectSample();
                   }}
                 >
-                  Load Sample Stepwell Asset
+                  LOAD REFERENCE DOSSIER ASSET
                 </Button>
               </div>
             </div>
           )}
 
-          <div className="mt-3 text-[11px] text-slate-500 flex items-center justify-between">
-            <span>Supports single-view surface photography</span>
-            <span>Non-destructive optical input</span>
+          <div className="mt-3 text-[11px] font-mono text-[#516A7A] flex items-center justify-between">
+            <span>Single-view orthogonal photogrammetry</span>
+            <span>Image-space pixel quantification</span>
           </div>
         </div>
 
-        {/* Right Column: Structure Metadata Context */}
-        <div className="lg:col-span-5 space-y-5">
+        {/* Right Column: Structure Metadata Context Form */}
+        <div className="lg:col-span-5 space-y-4">
           <div>
-            <h3 className="text-sm font-semibold text-white mb-1">Structure Context & Typology</h3>
-            <p className="text-xs text-slate-400">
-              Provide context to anchor IKS principles and material compatibility formulas.
+            <span className="text-[10px] font-mono tracking-widest uppercase text-[#7E98A8] block mb-1">
+              STRUCTURAL ATTRIBUTES
+            </span>
+            <h3 className="text-sm font-semibold text-white font-sans">
+              Typology &amp; Regional Context
+            </h3>
+            <p className="text-xs text-[#7E98A8] mt-0.5 font-sans leading-relaxed">
+              Provides geological grounding for IKS material matching algorithms.
             </p>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5 font-mono">
+            <label className="block text-[10px] font-mono text-[#7E98A8] uppercase tracking-wider mb-1.5 font-semibold">
               TYPOLOGY CLASSIFICATION
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1.5">
               {(['baoli', 'kund', 'vav', 'bawari', 'tank', 'other'] as StructureTypology[]).map((t) => (
                 <button
                   key={t}
                   type="button"
                   onClick={() => setStructureType(t)}
-                  className={`px-3 py-2 rounded-lg text-xs font-medium capitalize border transition-all text-center ${
+                  className={`h-8 px-2 text-[11px] font-mono uppercase tracking-wider font-semibold border transition-colors text-center rounded-xs ${
                     structureType === t
-                      ? 'bg-amber-500/20 border-amber-500 text-amber-300 shadow-sm'
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
+                      ? 'bg-[#2498D5] text-white border-[#2498D5]'
+                      : 'bg-[#04121E] border-white/10 text-[#7E98A8] hover:text-white'
                   }`}
                 >
                   {t}
@@ -263,31 +270,31 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5 font-mono">
-              HERITAGE MONUMENT NAME (OPTIONAL)
+            <label className="block text-[10px] font-mono text-[#7E98A8] uppercase tracking-wider mb-1.5 font-semibold">
+              STRUCTURE NAME (OPTIONAL)
             </label>
             <input
               type="text"
-              placeholder="e.g. Chand Baori, Agrasen ki Baoli, Rani ki Vav"
+              placeholder="e.g. Agrasen ki Baoli, Chand Baori, Rani ki Vav"
               value={structureName}
               onChange={(e) => setStructureName(e.target.value)}
-              className="w-full bg-slate-950/80 border border-slate-800 rounded-lg px-3.5 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sandstone-400 focus:ring-1 focus:ring-sandstone-400 font-sans"
+              className="w-full h-8 bg-[#04121E] border border-white/15 rounded-xs px-3 text-xs font-mono text-white placeholder:text-[#516A7A] focus:outline-none focus:border-[#2498D5] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5 font-mono">
-              GEOGRAPHICAL / HYDROLOGICAL REGION
+            <label className="block text-[10px] font-mono text-[#7E98A8] uppercase tracking-wider mb-1.5 font-semibold">
+              HYDROLOGICAL &amp; GEOLOGICAL REGION
             </label>
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className="w-full bg-slate-950/80 border border-slate-800 rounded-lg px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-sandstone-400 focus:ring-1 focus:ring-sandstone-400"
+              className="w-full h-8 bg-[#04121E] border border-white/15 rounded-xs px-2.5 text-xs font-mono text-white focus:outline-none focus:border-[#2498D5] transition-colors"
             >
-              <option value="Rajasthan">Rajasthan (Arid / Quartzite & Sandstone)</option>
+              <option value="Rajasthan">Rajasthan (Arid / Quartzite &amp; Sandstone)</option>
               <option value="Gujarat">Gujarat (Patan / Adalaj Alluvial Sandstone)</option>
               <option value="Delhi NCR">Delhi NCR (Aravalli Quartzite / Lakhori Brick)</option>
-              <option value="Madhya Pradesh">Madhya Pradesh (Malwa Plateau / Basalt & Sandstone)</option>
+              <option value="Madhya Pradesh">Madhya Pradesh (Malwa Plateau / Basalt &amp; Sandstone)</option>
               <option value="Bihar">Bihar (Darbhanga / Gangetic Alluvium Brick)</option>
               <option value="Maharashtra">Maharashtra (Deccan Traps / Basalt Masonry)</option>
               <option value="Karnataka">Karnataka (Hampi / Granite Stepped Tanks)</option>
@@ -295,26 +302,20 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
             </select>
           </div>
 
-          <div className="pt-3 border-t border-slate-800/80 space-y-3">
-            <div className="flex items-center gap-2">
-              <StatusBadge
-                label="Preliminary Prototype"
-                variant="sandstone"
-                size="sm"
-              />
-              <span className="text-[11px] text-slate-500 font-mono">
-                Pipeline: SEE → UNDERSTAND → ASSESS → REVIVE
-              </span>
+          <div className="pt-3 border-t border-white/10 space-y-3">
+            <div className="flex items-center justify-between text-[11px] font-mono text-[#7E98A8]">
+              <StatusBadge label="READY FOR INGESTION" variant="info" size="sm" />
+              <span>PIPELINE: SEE → REVIVE</span>
             </div>
 
             <Button
-              variant="sandstone"
+              variant="primary"
               size="lg"
               className="w-full"
               isLoading={isLoading}
               onClick={handleTriggerAnalysis}
             >
-              {selectedFile ? 'Begin Conservation Inspection' : 'Start Inspection with Sample Asset'}
+              {selectedFile ? 'INITIATE COMPUTER VISION ANALYSIS' : 'ANALYSE REFERENCE SURVEY'}
             </Button>
           </div>
         </div>

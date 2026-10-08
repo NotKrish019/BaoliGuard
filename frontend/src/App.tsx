@@ -109,8 +109,8 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-heritage-950 text-slate-100 flex flex-col font-sans selection:bg-sandstone-500 selection:text-white">
-      {/* Universal Heritage Header */}
+    <div className="min-h-screen bg-[#04121E] text-[#F4F7F9] flex flex-col font-sans selection:bg-[#2498D5] selection:text-white">
+      {/* Universal Technical Header */}
       <Header
         currentRoute={currentRoute}
         onRouteChange={handleNavigate}

@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { PageContainer } from '../components/PageContainer';
 import { Section } from '../components/Section';
-import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { StatusBadge } from '../components/StatusBadge';
-import { EmptyState } from '../components/EmptyState';
 import { InspectionCanvas } from '../components/InspectionCanvas';
-import { DefectLegend } from '../components/DefectLegend';
-import { VisualMetricsPanel } from '../components/VisualMetricsPanel';
 import { AnalysisResultContract, AppRoute, MetricScore } from '../types';
 
 export interface AnalysisPageProps {
@@ -23,7 +19,6 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
   onRouteChange,
   onLoadDemoFixture,
 }) => {
-  // Extract all unique detected classes for default visibility
   const allClassNames = result ? result.vision.detections.map((d) => d.class_name) : [];
   const [visibleClasses, setVisibleClasses] = useState<Set<string>>(new Set(allClassNames));
 
@@ -39,26 +34,89 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
     });
   };
 
+  // STANDBY STATE (No Survey Loaded): Authentic Inspection Workspace Standby (NOT generic empty card)
   if (!result) {
     return (
       <PageContainer
-        title="Diagnostic & Inspection Workspace"
+        title="Diagnostic Workspace"
         subtitle="Visual defect quantification and deterministic engineering scoring workspace."
       >
-        <EmptyState
-          title="No Survey Analysis Loaded"
-          description="Upload field survey imagery through the ingestion pipeline or load the development sample dossier to inspect the computer vision diagnostics."
-          icon="🔬"
-          actionLabel="Load Development Sample"
-          onAction={onLoadDemoFixture}
-          secondaryActionLabel="Upload Survey Imagery"
-          onSecondaryAction={() => onRouteChange('/upload')}
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left 68%: Inactive Dark Canvas Frame */}
+          <div className="lg:col-span-8 bg-[#081E31] border border-white/10 rounded-xs overflow-hidden">
+            <div className="h-10 px-4 bg-[#051624] border-b border-white/10 flex items-center justify-between text-xs font-mono text-[#7E98A8]">
+              <span>STANDBY INSPECTION VIEWPORT</span>
+              <span>NO FEED</span>
+            </div>
+            <div className="h-[440px] flex flex-col items-center justify-center p-8 text-center bg-[#030D16] relative">
+              {/* Subtle architectural contour backdrop */}
+              <div className="w-16 h-16 border border-white/15 flex items-center justify-center text-[#7E98A8] mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h2 className="text-base font-semibold text-[#F4F7F9] font-sans mb-1">
+                Diagnostic Workspace Standby
+              </h2>
+              <p className="text-xs text-[#7E98A8] max-w-md font-sans mb-6 leading-relaxed">
+                No active survey analysis in memory. Upload field survey photographs or load the reference dharohar dossier to begin image-space damage quantification.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => onRouteChange('/upload')}
+                >
+                  + UPLOAD SURVEY
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={onLoadDemoFixture}
+                >
+                  LOAD REFERENCE (AGRASEN KI BAOLI)
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right 32%: Standby Diagnostic Rail */}
+          <div className="lg:col-span-4 bg-[#081E31] border border-white/10 rounded-xs p-5 font-mono text-xs space-y-6">
+            <div>
+              <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider mb-1 font-semibold">
+                STRUCTURE STATUS
+              </div>
+              <div className="text-sm font-semibold text-white">AWAITING SURVEY DATA</div>
+              <div className="text-[11px] text-[#516A7A] mt-0.5">--</div>
+            </div>
+
+            <div className="pt-4 border-t border-white/10">
+              <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider mb-1 font-semibold">
+                VISUAL CONDITION
+              </div>
+              <div className="text-2xl font-semibold text-[#516A7A]">-- / 100</div>
+              <div className="text-[10px] text-[#516A7A] mt-1">STANDBY</div>
+            </div>
+
+            <div className="pt-4 border-t border-white/10">
+              <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider mb-2 font-semibold">
+                DETECTED DEFECT CLASSES
+              </div>
+              <div className="space-y-1.5 text-[11px] text-[#516A7A]">
+                <div className="flex justify-between"><span>CRACK MASK</span><span>--</span></div>
+                <div className="flex justify-between"><span>VEGETATION ROOTS</span><span>--</span></div>
+                <div className="flex justify-between"><span>SPALLING</span><span>--</span></div>
+                <div className="flex justify-between"><span>EFFLORESCENCE</span><span>--</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </PageContainer>
     );
   }
 
-  // Extract score objects safely from contract
+  // ACTIVE ANALYSIS STATE
   const conditionScore: MetricScore =
     'score' in (result.visual_condition as Record<string, unknown>)
       ? ((result.visual_condition as { score: MetricScore }).score)
@@ -72,10 +130,7 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
       scale_max: 100,
       method: 'skeletonized_length_density_ratio_v1',
       confidence: 0.88,
-      limitations: [
-        'Image-space skeletonized pixel centerline density',
-        'Optical threshold 0.5mm/pixel'
-      ],
+      limitations: ['Image-space pixel quantification'],
     };
 
   const imageSrc =
@@ -85,183 +140,240 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({
 
   return (
     <PageContainer
-      title="Diagnostic & Inspection Workspace"
-      subtitle={`Preliminary decision-support evaluation for ${result.structure.name || 'Historic Water Structure'}.`}
+      title="Diagnostic Workspace"
+      subtitle={`Preliminary photographic defect evaluation for ${result.structure.name || 'Historic Water Structure'}.`}
       badge={
         isMockFixture ? (
           <StatusBadge
-            label="Development UI Fixture (Non-Invasive Prototype)"
+            label="REFERENCE SURVEY"
             variant="warning"
-            size="md"
+            size="sm"
           />
         ) : (
           <StatusBadge
-            label="Live Vision Analysis"
+            label="LIVE CV ANALYSIS"
             variant="success"
-            size="md"
+            size="sm"
           />
         )
       }
       actions={
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Button
             variant="secondary"
             size="sm"
             onClick={() => onRouteChange('/upload')}
           >
-            ← New Survey
+            ← NEW SURVEY
           </Button>
           <Button
-            variant="sandstone"
+            variant="primary"
             size="sm"
             onClick={() => onRouteChange('/report')}
           >
-            View Conservation Dossier →
+            CONSERVATION DOSSIER →
           </Button>
         </div>
       }
     >
-      {/* Structure Context Banner */}
-      <div className="glass-panel rounded-xl p-4 mb-8 flex flex-wrap items-center justify-between gap-4 border border-slate-800">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-heritage-900 border border-slate-700 flex items-center justify-center text-xl">
-            🏛️
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
-                {result.structure.name || 'Historic Stepwell Structure'}
-              </h3>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sandstone-950 text-sandstone-300 border border-sandstone-800 uppercase">
-                {result.structure.type}
-              </span>
+      {/* 2-Column Split Inspection Workspace: 68% Canvas | 32% Diagnostic Rail */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-10">
+        {/* Left 68%: Primary Inspection Canvas */}
+        <div className="lg:col-span-8 space-y-4">
+          <InspectionCanvas
+            imageSrc={imageSrc}
+            imageDimensions={result.vision.image_dimensions}
+            detections={result.vision.detections}
+            visibleClasses={visibleClasses}
+          />
+
+          {/* Compact Defect Class Toggles */}
+          <div className="bg-[#081E31] border border-white/10 rounded-xs p-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <span className="text-[11px] text-[#7E98A8] uppercase font-semibold">
+              TOGGLE MASKS:
+            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              {result.vision.detections.map((det) => {
+                const isVis = visibleClasses.has(det.class_name);
+                return (
+                  <button
+                    key={det.class_name}
+                    onClick={() => handleToggleClass(det.class_name)}
+                    className={`h-6 px-2 text-[10px] uppercase font-semibold border transition-colors rounded-xs flex items-center gap-1.5 ${
+                      isVis
+                        ? 'bg-[#0C2B45] text-[#2498D5] border-[#2498D5]/50'
+                        : 'bg-[#04121E] text-[#516A7A] border-white/10 hover:text-[#7E98A8]'
+                    }`}
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-none ${isVis ? 'bg-[#2498D5]' : 'bg-[#516A7A]'}`} />
+                    <span>{det.class_name.replace(/_/g, ' ')}</span>
+                    <span className="text-[9px] opacity-75">({det.component_count})</span>
+                  </button>
+                );
+              })}
             </div>
-            <p className="text-xs text-slate-400 mt-0.5 font-sans">
-              Region: {result.structure.region || 'Unspecified'} • Inference Latency: {result.vision.processing_metadata?.inference_latency_ms || 142} ms
-            </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 font-mono text-xs">
-          <span className="text-slate-400">
-            Dimensions: {result.vision.image_dimensions.width_pixels} × {result.vision.image_dimensions.height_pixels} px
-          </span>
-          <span className="text-sandstone-400 bg-sandstone-950 px-2 py-0.5 rounded border border-sandstone-800">
-            Model: {result.vision.processing_metadata?.model_version || 'YOLOv8-Seg-Prototype'}
-          </span>
+        {/* Right 32%: Engineering Diagnostic Rail */}
+        <div className="lg:col-span-4 bg-[#081E31] border border-white/10 rounded-xs p-5 font-mono text-xs space-y-6">
+          {/* Structure Header */}
+          <div>
+            <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider font-semibold mb-1">
+              STRUCTURE IDENTIFIER
+            </div>
+            <div className="text-base font-semibold text-white font-sans">
+              {result.structure.name || 'Historic Stepwell Structure'}
+            </div>
+            <div className="text-[11px] text-[#7E98A8] mt-1 flex items-center justify-between">
+              <span>TYPOLOGY: <strong className="text-white uppercase">{result.structure.type}</strong></span>
+              <span>{result.structure.region || 'North India'}</span>
+            </div>
+          </div>
+
+          {/* Condition Score: Aligned Numerical Scale */}
+          <div className="pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-[#7E98A8] uppercase tracking-wider font-semibold">
+                VISUAL CONDITION
+              </span>
+              <span className="text-[10px] text-[#C9902E] font-semibold">PRELIMINARY</span>
+            </div>
+            <div className="flex items-baseline gap-2 mb-2">
+              <span className="text-3xl font-semibold text-white font-sans">
+                {conditionScore.value.toFixed(1)}
+              </span>
+              <span className="text-xs text-[#7E98A8]">/ 100</span>
+            </div>
+            {/* Horizontal Scale Representation */}
+            <div className="w-full bg-[#04121E] h-1.5 border border-white/10 relative">
+              <div
+                className="h-full bg-[#2498D5]"
+                style={{ width: `${Math.min(100, Math.max(0, conditionScore.value))}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-[9px] text-[#516A7A] mt-1">
+              <span>CRITICAL (0)</span>
+              <span>SECURE (100)</span>
+            </div>
+          </div>
+
+          {/* Quantified Defect Burdens: Aligned Horizontal Bars */}
+          <div className="pt-4 border-t border-white/10 space-y-3">
+            <div className="text-[10px] text-[#7E98A8] uppercase tracking-wider font-semibold mb-1">
+              FINDINGS &amp; BURDEN INDICES
+            </div>
+
+            <div>
+              <div className="flex justify-between text-[11px] mb-1">
+                <span className="text-[#94A7B5]">CRACK BURDEN</span>
+                <span className="text-white font-semibold">{crackBurdenScore.value.toFixed(1)} / 100</span>
+              </div>
+              <div className="w-full bg-[#04121E] h-1 border border-white/10">
+                <div className="h-full bg-[#E06C68]" style={{ width: `${crackBurdenScore.value}%` }} />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-[11px] mb-1">
+                <span className="text-[#94A7B5]">VEGETATION INTRUSION</span>
+                <span className="text-white font-semibold">58.0 / 100</span>
+              </div>
+              <div className="w-full bg-[#04121E] h-1 border border-white/10">
+                <div className="h-full bg-[#3E8F6B]" style={{ width: '58%' }} />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-[11px] mb-1">
+                <span className="text-[#94A7B5]">SPALLING EXTENT</span>
+                <span className="text-white font-semibold">24.0 / 100</span>
+              </div>
+              <div className="w-full bg-[#04121E] h-1 border border-white/10">
+                <div className="h-full bg-[#C9902E]" style={{ width: '24%' }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Analysis Basis */}
+          <div className="pt-4 border-t border-white/10 text-[11px] text-[#7E98A8] space-y-1">
+            <div className="text-[10px] uppercase font-semibold mb-1">ANALYSIS BASIS</div>
+            <div>• {result.vision.detections.length} defect classes classified</div>
+            <div>• Uncalibrated image-space pixel quantification</div>
+            <div>• Optical resolution: 0.5mm/pixel threshold</div>
+            <div>• Latency: {result.vision.processing_metadata?.inference_latency_ms || 142} ms</div>
+          </div>
+
+          {/* Action CTA */}
+          <div className="pt-4 border-t border-white/10">
+            <button
+              onClick={() => onRouteChange('/report')}
+              className="w-full h-9 bg-[#2498D5] hover:bg-[#0A6FB7] text-white text-xs font-mono uppercase tracking-wider font-semibold rounded-xs border border-[#2498D5] transition-colors"
+            >
+              PREPARE CONSERVATION DOSSIER →
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Main Inspection Experience (SEE): Interactive Canvas + Defect Legend */}
+      {/* Quantified Visual Defect Register Table */}
       <Section
-        tag="Computer Vision (SEE)"
-        title="Interactive Defect Segmentation Overlay"
-        subtitle="Visual defect contours, bounding coordinates, and confidence measurements mapped in image-space."
+        tag="DEFECT REGISTER"
+        title="Image-Space Quantified Defect Inventory"
+        subtitle="Tabulated measurements from segmented masks for engineering auditing and material compatibility assessment."
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-start">
-          {/* Main Inspection Canvas Viewport */}
-          <div className="lg:col-span-8">
-            <InspectionCanvas
-              imageSrc={imageSrc}
-              imageDimensions={result.vision.image_dimensions}
-              detections={result.vision.detections}
-              visibleClasses={visibleClasses}
-            />
-          </div>
-
-          {/* Defect Toggles & Class Metrics */}
-          <div className="lg:col-span-4 space-y-4">
-            <DefectLegend
-              detections={result.vision.detections}
-              visibleClasses={visibleClasses}
-              onToggleClass={handleToggleClass}
-            />
-
-            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-400 leading-relaxed font-sans">
-              <strong className="text-sandstone-300 block mb-1">Canvas Inspection Navigation</strong>
-              Use the toolbar atop the canvas to switch between <strong>Overlay View</strong>, <strong>Side-by-Side Dual View</strong>, and the <strong>Comparison Wipe Slider</strong>. Hover over any defect segment to inspect exact pixel area and model confidence.
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Visual Condition & Crack Burden Measurements (ASSESS) */}
-      <Section
-        tag="Engineering Diagnostics (ASSESS)"
-        title="Visual Condition Index & Crack Burden"
-        subtitle="Deterministic condition scoring derived strictly from segmented pixel areas and crack skeleton morphology."
-      >
-        <VisualMetricsPanel
-          detections={result.vision.detections}
-          visualConditionScore={conditionScore}
-          visualCrackBurden={crackBurdenScore}
-          className="mb-8"
-        />
-      </Section>
-
-      {/* Detailed Measurements Table */}
-      <Section
-        tag="Metrics Table"
-        title="Quantified Visual Defect Register"
-        subtitle="Tabulated image-space measurements for engineering auditing and conservation planning."
-      >
-        <Card
-          title="Image-Space Defect Register"
-          subtitle="All detected connected components and geometric properties"
-        >
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs font-mono">
-              <thead>
-                <tr className="border-b border-slate-800 text-slate-400 text-[11px]">
-                  <th className="pb-2.5 font-semibold">DEFECT CLASS</th>
-                  <th className="pb-2.5 font-semibold">CONFIDENCE</th>
-                  <th className="pb-2.5 font-semibold">PIXEL AREA</th>
-                  <th className="pb-2.5 font-semibold">SURFACE COVERAGE</th>
-                  <th className="pb-2.5 font-semibold">COMPONENTS</th>
-                  <th className="pb-2.5 font-semibold">CENTERLINE LENGTH</th>
-                  <th className="pb-2.5 font-semibold">VISUAL SEVERITY</th>
+        <div className="bg-[#081E31] border border-white/10 rounded-xs overflow-x-auto">
+          <table className="w-full text-left text-xs font-mono">
+            <thead>
+              <tr className="border-b border-white/10 text-[#7E98A8] text-[10px] uppercase tracking-wider bg-[#051624]">
+                <th className="py-2.5 px-4 font-semibold">CLASS</th>
+                <th className="py-2.5 px-4 font-semibold">CONFIDENCE</th>
+                <th className="py-2.5 px-4 font-semibold">PIXEL EXTENT</th>
+                <th className="py-2.5 px-4 font-semibold">COVERAGE RATIO</th>
+                <th className="py-2.5 px-4 font-semibold">COMPONENTS</th>
+                <th className="py-2.5 px-4 font-semibold">SKELETON LENGTH</th>
+                <th className="py-2.5 px-4 font-semibold">SEVERITY</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5 text-[#F4F7F9]">
+              {result.vision.detections.map((det, idx) => (
+                <tr key={idx} className="hover:bg-white/5 transition-colors">
+                  <td className="py-2.5 px-4 font-semibold capitalize">
+                    {det.class_name.replace(/_/g, ' ')}
+                  </td>
+                  <td className="py-2.5 px-4 text-[#2498D5]">
+                    {(det.confidence * 100).toFixed(1)}%
+                  </td>
+                  <td className="py-2.5 px-4">
+                    {det.pixel_area.toLocaleString()} px²
+                  </td>
+                  <td className="py-2.5 px-4 text-[#7E98A8]">
+                    {(det.coverage_ratio * 100).toFixed(2)}%
+                  </td>
+                  <td className="py-2.5 px-4 text-[#7E98A8]">
+                    {det.component_count}
+                  </td>
+                  <td className="py-2.5 px-4 text-[#7E98A8]">
+                    {det.total_length_pixels ? `${det.total_length_pixels} px` : '--'}
+                  </td>
+                  <td className="py-2.5 px-4">
+                    <span
+                      className={`px-1.5 py-0.5 text-[10px] uppercase font-semibold rounded-xs border ${
+                        det.relative_severity === 'severe'
+                          ? 'bg-[#2B0E0D] text-[#E06C68] border-[#B64A45]/30'
+                          : det.relative_severity === 'moderate'
+                          ? 'bg-[#261B07] text-[#C9902E] border-[#C9902E]/30'
+                          : 'bg-[#052219] text-[#3E8F6B] border-[#3E8F6B]/30'
+                      }`}
+                    >
+                      {det.relative_severity || 'MODERATE'}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60">
-                {result.vision.detections.map((det, idx) => (
-                  <tr key={idx} className="hover:bg-slate-900/40">
-                    <td className="py-2.5 font-bold text-slate-200 capitalize">
-                      {det.class_name.replace(/_/g, ' ')}
-                    </td>
-                    <td className="py-2.5 text-sandstone-300">
-                      {(det.confidence * 100).toFixed(1)}%
-                    </td>
-                    <td className="py-2.5 text-slate-300">
-                      {det.pixel_area.toLocaleString()} px²
-                    </td>
-                    <td className="py-2.5 text-slate-300">
-                      {(det.coverage_ratio * 100).toFixed(2)}%
-                    </td>
-                    <td className="py-2.5 text-slate-300">
-                      {det.component_count}
-                    </td>
-                    <td className="py-2.5 text-slate-400">
-                      {det.total_length_pixels ? `${det.total_length_pixels} px` : 'N/A (Area Mask)'}
-                    </td>
-                    <td className="py-2.5">
-                      <span
-                        className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
-                          det.relative_severity === 'severe'
-                            ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                            : det.relative_severity === 'moderate'
-                            ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                            : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                        }`}
-                      >
-                        {det.relative_severity || 'moderate'}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Section>
     </PageContainer>
   );

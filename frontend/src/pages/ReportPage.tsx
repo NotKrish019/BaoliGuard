@@ -3,7 +3,6 @@ import { PageContainer } from '../components/PageContainer';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { StatusBadge } from '../components/StatusBadge';
-import { EmptyState } from '../components/EmptyState';
 import { ConservationChain } from '../components/ConservationChain';
 import { MaterialDnaCard } from '../components/MaterialDnaCard';
 import { WhyThisRecommendation } from '../components/WhyThisRecommendation';
@@ -31,18 +30,36 @@ export const ReportPage: React.FC<ReportPageProps> = ({
   if (!result) {
     return (
       <PageContainer
-        title="Conservation Dossier & Action Plan"
-        subtitle="Comprehensive IKS material compatibility and phased restoration roadmap."
+        title="Conservation Dossier"
+        subtitle="IKS material compatibility assessment and phased restoration roadmap."
       >
-        <EmptyState
-          title="No Survey Dossier Available"
-          description="A survey must be inspected first to synthesize the IKS material compatibility assessment and phased restoration roadmap."
-          icon="📜"
-          actionLabel="Load Development Sample Dossier"
-          onAction={onLoadDemoFixture}
-          secondaryActionLabel="Upload New Survey"
-          onSecondaryAction={() => onRouteChange('/upload')}
-        />
+        <div className="bg-[#081E31] border border-white/10 rounded-xs p-10 text-center max-w-xl mx-auto my-8">
+          <div className="w-12 h-12 border border-white/15 flex items-center justify-center text-[#7E98A8] mx-auto mb-4 font-mono text-sm">
+            DOC
+          </div>
+          <h2 className="text-base font-semibold text-[#F4F7F9] font-sans mb-1">
+            No Survey Dossier Active
+          </h2>
+          <p className="text-xs text-[#7E98A8] font-sans mb-6 leading-relaxed">
+            A photographic survey must be analyzed to synthesize the IKS material compatibility matrix and the phased conservation roadmap.
+          </p>
+          <div className="flex justify-center gap-3">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={onLoadDemoFixture}
+            >
+              LOAD REFERENCE DOSSIER
+            </Button>
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={() => onRouteChange('/upload')}
+            >
+              + NEW SURVEY
+            </Button>
+          </div>
+        </div>
       </PageContainer>
     );
   }
@@ -73,63 +90,66 @@ export const ReportPage: React.FC<ReportPageProps> = ({
 
   return (
     <PageContainer
-      title="Conservation Dossier & Action Plan"
+      title="Conservation Dossier"
       subtitle={`Evidence-based restoration roadmap & IKS material compatibility for ${result.structure.name || 'Historic Water Structure'}.`}
       badge={
         isMockFixture ? (
           <StatusBadge
-            label="Development Sample Dossier"
+            label="REFERENCE DOSSIER"
             variant="sandstone"
-            size="md"
+            size="sm"
           />
         ) : (
           <StatusBadge
-            label="Conservation Dossier"
+            label="LIVE DOSSIER"
             variant="success"
-            size="md"
+            size="sm"
           />
         )
       }
       actions={
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Button
             variant="outline"
             size="sm"
             onClick={() => window.print()}
           >
-            🖨️ Export Dossier (PDF)
+            PRINT DOSSIER
           </Button>
           <Button
             variant="secondary"
             size="sm"
             onClick={() => onRouteChange('/analysis')}
           >
-            ← Diagnostic Workspace
+            ← DIAGNOSTIC WORKSPACE
           </Button>
         </div>
       }
     >
       {/* Dossier Section Filter Tabs */}
-      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-2 mb-8 bg-slate-900/60 p-1.5 rounded-xl border border-slate-800 text-xs font-mono">
+      <div className="flex items-center space-x-6 overflow-x-auto no-scrollbar border-b border-white/10 mb-8 text-xs font-mono">
         {[
-          { id: 'all', label: 'Complete Dossier' },
-          { id: 'chain', label: '1. Causal Chain' },
-          { id: 'material', label: '2. IKS Material DNA' },
-          { id: 'why', label: '3. Why This Recommendation?' },
-          { id: 'root_cause', label: '4. Root Cause Analysis' },
-          { id: 'roadmap', label: '5. Phased Roadmap' },
+          { id: 'all', label: 'ALL SECTIONS' },
+          { id: 'chain', label: '01. CAUSAL CHAIN' },
+          { id: 'material', label: '02. MATERIAL COMPATIBILITY' },
+          { id: 'why', label: '03. ENGINEERING RATIONALE' },
+          { id: 'root_cause', label: '04. ROOT CAUSE' },
+          { id: 'roadmap', label: '05. PHASED ROADMAP' },
         ].map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id as ReportTab)}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
+            className={`pb-2.5 whitespace-nowrap transition-colors relative uppercase tracking-wider ${
               activeTab === tab.id
-                ? 'bg-sandstone-600 text-white font-bold shadow'
-                : 'text-slate-400 hover:text-white'
+                ? 'text-white font-semibold'
+                : 'text-[#7E98A8] hover:text-[#F4F7F9]'
             }`}
           >
-            {tab.label}
+            <span>{tab.label}</span>
+            {activeTab === tab.id && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#2498D5]" />
+            )}
           </button>
         ))}
       </div>
