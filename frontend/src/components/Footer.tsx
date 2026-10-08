@@ -47,12 +47,6 @@ export const Footer: React.FC<FooterProps> = ({ onRouteChange, className = '' })
             >
               Knowledge
             </button>
-            <button
-              onClick={() => onRouteChange('/twin')}
-              className="hover:text-[#28A9E0] transition-colors"
-            >
-              Digital Twin
-            </button>
           </div>
         </div>
 

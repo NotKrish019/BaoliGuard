@@ -52,10 +52,6 @@ export const Header: React.FC<HeaderProps> = ({
       route: '/knowledge',
       label: 'Knowledge',
     },
-    {
-      route: '/twin',
-      label: 'Digital Twin',
-    },
   ];
 
   return (

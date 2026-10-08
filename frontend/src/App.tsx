@@ -6,7 +6,6 @@ import { HomePage } from './pages/HomePage';
 import { UploadPage } from './pages/UploadPage';
 import { AnalysisPage } from './pages/AnalysisPage';
 import { KnowledgePage } from './pages/KnowledgePage';
-import { DigitalTwinPage } from './pages/DigitalTwinPage';
 import { ReportPage } from './pages/ReportPage';
 import { AppRoute, AnalysisResultContract, AnalysisRequestPayload } from './types';
 import { submitAnalysisRequest, getDevelopmentMockFixture } from './services/api';
@@ -19,7 +18,6 @@ export const App: React.FC = () => {
       path === '/upload' ||
       path === '/analysis' ||
       path === '/knowledge' ||
-      path === '/twin' ||
       path === '/report'
     ) {
       return path as AppRoute;
@@ -41,7 +39,6 @@ export const App: React.FC = () => {
         path === '/upload' ||
         path === '/analysis' ||
         path === '/knowledge' ||
-        path === '/twin' ||
         path === '/report' ||
         path === '/'
       ) {
@@ -174,12 +171,6 @@ export const App: React.FC = () => {
 
           {currentRoute === '/knowledge' && (
             <KnowledgePage
-              onRouteChange={handleNavigate}
-            />
-          )}
-
-          {currentRoute === '/twin' && (
-            <DigitalTwinPage
               onRouteChange={handleNavigate}
             />
           )}

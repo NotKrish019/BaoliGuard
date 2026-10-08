@@ -36,12 +36,6 @@ export const Navigation: React.FC<NavigationProps> = ({
       code: '03',
       activeOn: ['/report'],
     },
-    {
-      route: '/twin',
-      label: 'Digital Twin',
-      code: '04',
-      activeOn: ['/twin'],
-    },
   ];
 
   return (
