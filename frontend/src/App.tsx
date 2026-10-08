@@ -1,72 +1,172 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Header } from './components/Header';
+import { Navigation } from './components/Navigation';
+import { LoadingState } from './components/LoadingState';
+import { HomePage } from './pages/HomePage';
+import { UploadPage } from './pages/UploadPage';
+import { AnalysisPage } from './pages/AnalysisPage';
+import { ReportPage } from './pages/ReportPage';
+import { AppRoute, AnalysisResultContract, AnalysisRequestPayload } from './types';
+import { submitAnalysisRequest, getDevelopmentMockFixture } from './services/api';
 
-/**
- * BaoliGuard Root Application Component.
- *
- * Phase 0 Scaffold:
- * Provides the base shell and confirms architecture readiness.
- * Feature development will be led by Anika Jain in Phase 1.
- */
 export const App: React.FC = () => {
+  // Sync initial route from browser URL or default to '/'
+  const getInitialRoute = (): AppRoute => {
+    const path = window.location.pathname;
+    if (path === '/upload' || path === '/analysis' || path === '/report') {
+      return path as AppRoute;
+    }
+    return '/';
+  };
+
+  const [currentRoute, setCurrentRoute] = useState<AppRoute>(getInitialRoute);
+  const [analysisResult, setAnalysisResult] = useState<AnalysisResultContract | null>(null);
+  const [isMockFixture, setIsMockFixture] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loadingStep, setLoadingStep] = useState<'see' | 'understand' | 'assess' | 'revive'>('see');
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === '/upload' || path === '/analysis' || path === '/report' || path === '/') {
+        setCurrentRoute(path as AppRoute);
+      } else {
+        setCurrentRoute('/');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (route: AppRoute) => {
+    if (route !== currentRoute) {
+      window.history.pushState(null, '', route);
+      setCurrentRoute(route);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleLoadDemoFixture = async () => {
+    setIsLoading(true);
+    setLoadingStep('see');
+
+    setTimeout(() => setLoadingStep('understand'), 300);
+    setTimeout(() => setLoadingStep('assess'), 600);
+    setTimeout(() => setLoadingStep('revive'), 900);
+
+    try {
+      const fixture = await getDevelopmentMockFixture();
+      setAnalysisResult(fixture);
+      setIsMockFixture(true);
+      handleNavigate('/analysis');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleAnalyze = async (payload: AnalysisRequestPayload) => {
+    setIsLoading(true);
+    setLoadingStep('see');
+
+    try {
+      // First attempt live backend API submission
+      const result = await submitAnalysisRequest(payload);
+      setAnalysisResult(result);
+      setIsMockFixture(false);
+      handleNavigate('/analysis');
+    } catch {
+      // While backend orchestrator POST /analyze is in active Phase 1 development by Swastik,
+      // provide clear feedback and load the development sample fixture for layout inspection
+      setLoadingStep('understand');
+      await new Promise((r) => setTimeout(r, 400));
+      setLoadingStep('assess');
+      await new Promise((r) => setTimeout(r, 400));
+      setLoadingStep('revive');
+      await new Promise((r) => setTimeout(r, 400));
+
+      const fixture = await getDevelopmentMockFixture();
+      if (payload.structureType) {
+        fixture.structure.type = payload.structureType;
+      }
+      if (payload.structureName) {
+        fixture.structure.name = payload.structureName;
+      }
+      if (payload.region) {
+        fixture.structure.region = payload.region;
+      }
+      if (payload.imagePreviewUrl) {
+        fixture.structure.source_images = [payload.imagePreviewUrl];
+      }
+
+      setAnalysisResult(fixture);
+      setIsMockFixture(true);
+      handleNavigate('/analysis');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
-      <header className="border-b border-slate-800 bg-slate-900/60 backdrop-blur px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <span className="text-2xl">🏛️</span>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight text-white">BaoliGuard</h1>
-              <p className="text-xs text-amber-400 font-mono">
-                Jal-Dharohar Digital Intelligence &amp; Conservation Platform
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="inline-flex items-center rounded-full bg-emerald-950 px-2.5 py-0.5 text-xs font-medium text-emerald-400 border border-emerald-800">
-              Phase 0: Scaffold Initialized
-            </span>
-          </div>
+    <div className="min-h-screen bg-heritage-950 text-slate-100 flex flex-col font-sans selection:bg-sandstone-500 selection:text-white">
+      {/* Universal Heritage Header */}
+      <Header
+        currentRoute={currentRoute}
+        onRouteChange={handleNavigate}
+      />
+
+      {/* Main Tabbed Navigation */}
+      <Navigation
+        currentRoute={currentRoute}
+        onRouteChange={handleNavigate}
+        hasAnalysisResult={analysisResult !== null}
+      />
+
+      {/* Loading Overlay */}
+      {isLoading ? (
+        <div className="flex-1 flex items-center justify-center p-6">
+          <LoadingState
+            step={loadingStep}
+            title="Executing Jal-Dharohar Pipeline"
+            message="Evaluating non-invasive imagery through computer vision and deterministic conservation rules..."
+          />
         </div>
-      </header>
+      ) : (
+        <>
+          {currentRoute === '/' && (
+            <HomePage
+              onRouteChange={handleNavigate}
+              onLoadDemoFixture={handleLoadDemoFixture}
+            />
+          )}
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 flex flex-col items-center justify-center text-center">
-        <div className="max-w-2xl bg-slate-900 border border-slate-800 rounded-xl p-8 shadow-2xl">
-          <h2 className="text-2xl font-semibold text-slate-100 mb-3">
-            Jal-Dharohar Conservation Engineering
-          </h2>
-          <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-            AI-assisted digital engineering, IKS material compatibility, and conservation
-            planning for traditional Indian water infrastructure (Baolis, Kunds, Vavs, and Bawaris).
-          </p>
+          {currentRoute === '/upload' && (
+            <UploadPage
+              onAnalyze={handleAnalyze}
+              isLoading={isLoading}
+            />
+          )}
 
-          <div className="grid grid-cols-4 gap-2 text-xs font-mono mb-6">
-            <div className="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <div className="text-amber-400 font-bold mb-1">SEE</div>
-              <div className="text-slate-400">Computer Vision</div>
-            </div>
-            <div className="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <div className="text-amber-400 font-bold mb-1">UNDERSTAND</div>
-              <div className="text-slate-400">IKS &amp; Materials</div>
-            </div>
-            <div className="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <div className="text-amber-400 font-bold mb-1">ASSESS</div>
-              <div className="text-slate-400">Engineering Rules</div>
-            </div>
-            <div className="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <div className="text-amber-400 font-bold mb-1">REVIVE</div>
-              <div className="text-slate-400">Restoration Engine</div>
-            </div>
-          </div>
+          {currentRoute === '/analysis' && (
+            <AnalysisPage
+              result={analysisResult}
+              isMockFixture={isMockFixture}
+              onRouteChange={handleNavigate}
+              onLoadDemoFixture={handleLoadDemoFixture}
+            />
+          )}
 
-          <div className="text-xs text-slate-500 border-t border-slate-800 pt-4">
-            Repository bootstrap complete. Ready for Phase 1 feature implementation.
-          </div>
-        </div>
-      </main>
-
-      <footer className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-        BaoliGuard — Phase 0 Bootstrap | Prototype Decision Support System
-      </footer>
+          {currentRoute === '/report' && (
+            <ReportPage
+              result={analysisResult}
+              isMockFixture={isMockFixture}
+              onRouteChange={handleNavigate}
+              onLoadDemoFixture={handleLoadDemoFixture}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };

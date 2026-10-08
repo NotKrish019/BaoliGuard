@@ -1,0 +1,18 @@
+{
+  "short_name": "BaoliGuard",
+  "name": "BaoliGuard — Jal-Dharohar Digital Intelligence Platform",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#070d18",
+  "theme_color": "#0c1527",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "description": "AI-assisted digital engineering, IKS material compatibility, and conservation platform for traditional Indian water systems."
+}
