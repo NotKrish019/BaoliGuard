@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IKSSourceTraceability",
+  "description": "Schema enforcing academic and research traceability for all IKS and conservation assertions.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "source_id",
+      "title",
+      "publisher",
+      "year",
+      "url",
+      "topic",
+      "claim_supported"
+    ],
+    "properties": {
+      "source_id": {
+        "type": "string",
+        "description": "Unique identifier e.g. SRC_ASI_LIME_2019"
+      },
+      "title": {
+        "type": "string"
+      },
+      "publisher": {
+        "type": "string"
+      },
+      "year": {
+        "type": "integer"
+      },
+      "url": {
+        "type": "string"
+      },
+      "topic": {
+        "type": "string"
+      },
+      "claim_supported": {
+        "type": "string",
+        "description": "Specific conservation principle or material rule substantiated by this source"
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/restoration_result.schema.json",
+  "title": "RestorationResultContract",
+  "description": "Standardized output schema for conservation intervention planning and restoration roadmaps (Kirti Antil & Swastik Parmar). Integrates IKS traditional materials with modern conservation ethics.",
+  "type": "object",
+  "required": [
+    "restoration_strategy",
+    "prioritized_actions",
+    "incompatible_practices",
+    "iks_guidelines"
+  ],
+  "properties": {
+    "restoration_strategy": {
+      "type": "string",
+      "enum": [
+        "minimal_stabilization",
+        "material_consolidation",
+        "hydrological_revival",
+        "comprehensive_heritage_rehabilitation"
+      ],
+      "description": "Overarching conservation strategy classification"
+    },
+    "prioritized_actions": {
+      "type": "array",
+      "description": "Sequenced conservation interventions ordered by urgency and prerequisite dependencies",
+      "items": {
+        "type": "object",
+        "required": [
+          "step",
+          "phase",
+          "action_title",
+          "target_defect",
+          "recommended_technique",
+          "material_specification",
+          "urgency"
+        ],
+        "properties": {
+          "step": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "phase_1_immediate_stabilization",
+              "phase_2_hydrological_remediation",
+              "phase_3_masonry_and_iks_consolidation",
+              "phase_4_long_term_monitoring"
+            ]
+          },
+          "action_title": {
+            "type": "string"
+          },
+          "target_defect": {
+            "type": "string"
+          },
+          "recommended_technique": {
+            "type": "string"
+          },
+          "material_specification": {
+            "type": "string"
+          },
+          "urgency": {
+            "type": "string",
+            "enum": [
+              "immediate",
+              "high",
+              "medium",
+              "routine"
+            ]
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "incompatible_practices": {
+      "type": "array",
+      "description": "Explicit warnings of destructive modern practices to avoid (e.g., OPC cement rendering, non-breathable polymer sealers)",
+      "items": {
+        "type": "object",
+        "required": [
+          "prohibited_action",
+          "failure_mechanism",
+          "severity"
+        ],
+        "properties": {
+          "prohibited_action": {
+            "type": "string"
+          },
+          "failure_mechanism": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "destructive",
+              "high_risk",
+              "moderate_risk"
+            ]
+          }
+        }
+      }
+    },
+    "iks_guidelines": {
+      "type": "object",
+      "description": "Indigenous Knowledge Systems principles supporting restoration execution",
+      "required": [
+        "traditional_mortar_recipe",
+        "craftsmanship_references",
+        "seasonal_curing_rules"
+      ],
+      "properties": {
+        "traditional_mortar_recipe": {
+          "type": "string",
+          "description": "Traditional mortar blend (e.g., slaked fat lime + surkhi brick-dust + fermented jaggery/urad/methi additives)"
+        },
+        "craftsmanship_references": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seasonal_curing_rules": {
+          "type": "string",
+          "description": "Traditional wet-jute curing and weather timing considerations"
+        }
+      }
+    }
+  }
+}

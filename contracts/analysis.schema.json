@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/analysis.schema.json",
+  "title": "BaoliGuardUnifiedAnalysisContract",
+  "description": "Unified pipeline contract connecting Vision (Krish), Engineering & IKS (Kirti Antil), Backend Orchestration (Swastik Parmar), and Frontend Visualization (Anika Jain).",
+  "type": "object",
+  "required": [
+    "project_version",
+    "structure",
+    "vision",
+    "visual_condition",
+    "water_functionality",
+    "material",
+    "root_cause",
+    "restoration",
+    "metadata"
+  ],
+  "properties": {
+    "project_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "structure": {
+      "type": "object",
+      "required": [
+        "type",
+        "source_images"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "baoli",
+            "bawari",
+            "kund",
+            "vav",
+            "tank",
+            "other"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "source_images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "vision": {
+      "type": "object",
+      "description": "Vision inference payload matching vision_result.schema.json"
+    },
+    "visual_condition": {
+      "type": "object",
+      "description": "Condition evaluation score matching engineering_result.schema.json"
+    },
+    "water_functionality": {
+      "type": "object",
+      "description": "Hydrological assessment matching engineering_result.schema.json"
+    },
+    "material": {
+      "type": "object",
+      "description": "Material compatibility and characterization matching material_compatibility.schema.json"
+    },
+    "root_cause": {
+      "type": "object",
+      "description": "Deterministic root cause analysis identifying degradation mechanisms"
+    },
+    "restoration": {
+      "type": "object",
+      "description": "Restoration roadmap and IKS intervention strategy matching restoration_result.schema.json"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "created_at",
+        "pipeline_status"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "pipeline_status": {
+          "type": "string",
+          "enum": [
+            "completed",
+            "partial",
+            "failed"
+          ]
+        },
+        "orchestrated_by": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

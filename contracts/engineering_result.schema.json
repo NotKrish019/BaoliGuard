@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/engineering_result.schema.json",
+  "title": "EngineeringResultContract",
+  "description": "Output schema for deterministic engineering rules, condition scores, and functionality assessment (Kirti Antil). Distinguishes prototype decision-support metrics from certified structural engineering.",
+  "type": "object",
+  "required": [
+    "visual_condition_score",
+    "water_functionality_score",
+    "restoration_priority_score",
+    "engineering_disclaimer"
+  ],
+  "properties": {
+    "visual_condition_score": {
+      "$ref": "#/$defs/score_metric",
+      "description": "Quantified condition index calculated deterministically from visual defect coverage and severity."
+    },
+    "water_functionality_score": {
+      "$ref": "#/$defs/score_metric",
+      "description": "Assessment of hydrological viability (aquifer recharge, siltation, inlet/outlet obstruction, catchment continuity)."
+    },
+    "restoration_priority_score": {
+      "$ref": "#/$defs/score_metric",
+      "description": "Action priority score synthesizing structural degradation urgency and hydrological revival potential."
+    },
+    "sub_scores": {
+      "type": "object",
+      "properties": {
+        "vegetation_intrusion_index": {
+          "$ref": "#/$defs/score_metric"
+        },
+        "masonry_integrity_index": {
+          "$ref": "#/$defs/score_metric"
+        },
+        "siltation_obstruction_index": {
+          "$ref": "#/$defs/score_metric"
+        }
+      }
+    },
+    "root_cause_analysis": {
+      "type": "array",
+      "description": "Deterministic rule deductions identifying underlying mechanisms of failure",
+      "items": {
+        "type": "object",
+        "required": [
+          "finding",
+          "probable_cause",
+          "evidence_rules"
+        ],
+        "properties": {
+          "finding": {
+            "type": "string"
+          },
+          "probable_cause": {
+            "type": "string"
+          },
+          "evidence_rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "urgency": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          }
+        }
+      }
+    },
+    "engineering_disclaimer": {
+      "type": "string",
+      "description": "Mandatory disclaimer stating that outputs represent non-invasive prototype assessments and cannot replace on-site structural/geotechnical audits."
+    }
+  },
+  "$defs": {
+    "score_metric": {
+      "type": "object",
+      "required": [
+        "value",
+        "scale_min",
+        "scale_max",
+        "method",
+        "confidence",
+        "limitations"
+      ],
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Calculated score value"
+        },
+        "scale_min": {
+          "type": "number",
+          "description": "Minimum boundary of the scale (typically 0 or 0.0)"
+        },
+        "scale_max": {
+          "type": "number",
+          "description": "Maximum boundary of the scale (typically 100 or 1.0)"
+        },
+        "method": {
+          "type": "string",
+          "description": "Deterministic calculation rule or formula identifier"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Confidence based on visual coverage and input quality"
+        },
+        "limitations": {
+          "type": "array",
+          "description": "Explicit limitations and assumptions of this calculation",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

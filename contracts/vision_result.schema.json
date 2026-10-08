@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/vision_result.schema.json",
+  "title": "VisionResultContract",
+  "description": "Standardized output contract for the BaoliGuard computer vision inference pipeline (Krish). Supports relative/image-space measurements without premature physical scaling.",
+  "type": "object",
+  "required": [
+    "structure_type",
+    "image_dimensions",
+    "detections"
+  ],
+  "properties": {
+    "structure_type": {
+      "type": "string",
+      "description": "Identified structural classification (e.g. baoli, bawari, kund, vav, tank, unknown)",
+      "enum": [
+        "baoli",
+        "bawari",
+        "kund",
+        "vav",
+        "tank",
+        "unknown"
+      ]
+    },
+    "image_dimensions": {
+      "type": "object",
+      "required": [
+        "width_pixels",
+        "height_pixels"
+      ],
+      "properties": {
+        "width_pixels": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height_pixels": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "scale_reference": {
+      "type": "object",
+      "description": "Optional calibrated spatial reference if a physical marker or known dimension was detected.",
+      "properties": {
+        "calibrated": {
+          "type": "boolean"
+        },
+        "pixels_per_millimeter": {
+          "type": "number",
+          "minimum": 0
+        },
+        "method": {
+          "type": "string"
+        }
+      }
+    },
+    "detections": {
+      "type": "array",
+      "description": "Visual defects, vegetative intrusion, and structural degradation segments detected in image-space.",
+      "items": {
+        "type": "object",
+        "required": [
+          "class_name",
+          "confidence",
+          "bounding_box",
+          "pixel_area",
+          "coverage_ratio",
+          "component_count"
+        ],
+        "properties": {
+          "class_name": {
+            "type": "string",
+            "description": "Defect classification label (e.g. crack, vegetation_root_intrusion, spalling, efflorescence, biological_growth, stone_dislodgement)"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Confidence score of the model detection"
+          },
+          "bounding_box": {
+            "type": "array",
+            "description": "Image coordinates [x_min, y_min, x_max, y_max] in pixels",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "segmentation_mask_reference": {
+            "type": "string",
+            "description": "Relative URI or mask file identifier referencing RLE / binary mask array"
+          },
+          "pixel_area": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Total defect pixel area in image space"
+          },
+          "coverage_ratio": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Ratio of defect pixel area relative to total image / region area"
+          },
+          "component_count": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of connected components identified for this defect group"
+          },
+          "total_length_pixels": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Estimated skeletonized center-line length in pixel space"
+          },
+          "largest_component_length_pixels": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Pixel length of the largest contiguous defect component"
+          },
+          "relative_severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "moderate",
+              "severe"
+            ],
+            "description": "Relative visual severity based strictly on visual coverage and morphology"
+          }
+        }
+      }
+    },
+    "processing_metadata": {
+      "type": "object",
+      "properties": {
+        "inference_latency_ms": {
+          "type": "number"
+        },
+        "model_version": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

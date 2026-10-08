@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/material_compatibility.schema.json",
+  "title": "MaterialCompatibilityContract",
+  "description": "Schema for evaluating heritage material compatibility against candidate conservation interventions (Kirti Antil). Distinguishes inferred photo-based material hypotheses from lab-verified testing.",
+  "type": "object",
+  "required": [
+    "original_material",
+    "original_material_confidence",
+    "verification_required",
+    "candidate_interventions"
+  ],
+  "properties": {
+    "original_material": {
+      "type": "string",
+      "description": "Identified or inferred original historic substrate (e.g. lime_mortar_hydraulic, sandstone_dholpur, basalt_rubble, quartzite_ashlar, lakhori_brick)"
+    },
+    "original_material_confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Confidence of photographic/contextual material identification. Must reflect that photo-identification is probabilistic."
+    },
+    "verification_required": {
+      "type": "boolean",
+      "description": "True if laboratory material characterization (e.g. petrography, XRD, binder-aggregate ratio) is mandatory before physical intervention."
+    },
+    "recommended_tests": {
+      "type": "array",
+      "description": "Recommended on-site or lab testing procedures to verify substrate composition.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "candidate_interventions": {
+      "type": "array",
+      "description": "Evaluated intervention options (e.g. slaked_lime_putty, surkhi_lime_mortar, opc_portland_cement, acrylic_sealant)",
+      "items": {
+        "type": "object",
+        "required": [
+          "intervention_material",
+          "compatibility_score",
+          "compatibility_dimensions",
+          "recommendation",
+          "warnings"
+        ],
+        "properties": {
+          "intervention_material": {
+            "type": "string",
+            "description": "Candidate mortar, grout, or conservation consolidant"
+          },
+          "compatibility_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "description": "Composite compatibility score (0-100)"
+          },
+          "compatibility_dimensions": {
+            "type": "object",
+            "required": [
+              "mechanical",
+              "moisture",
+              "thermal",
+              "chemical",
+              "reversibility",
+              "heritage",
+              "visual"
+            ],
+            "properties": {
+              "mechanical": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Elastic modulus matching, compressive strength compatibility (avoiding over-strength)"
+              },
+              "moisture": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Breathability, vapor permeability, capillarity matching"
+              },
+              "thermal": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Thermal expansion coefficient compatibility"
+              },
+              "chemical": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Chemical inertness, absence of deleterious salts (e.g. sulfates, alkali)"
+              },
+              "reversibility": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Degree to which intervention can be removed without damaging original fabric"
+              },
+              "heritage": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Alignment with traditional IKS construction methods and authentic regional recipes"
+              },
+              "visual": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "description": "Texture, color, and aging compatibility with surrounding historic masonry"
+              }
+            }
+          },
+          "recommendation": {
+            "type": "string",
+            "enum": [
+              "strongly_recommended",
+              "recommended",
+              "acceptable_conditional",
+              "prohibited_incompatible"
+            ],
+            "description": "Conservation decision classification"
+          },
+          "warnings": {
+            "type": "array",
+            "description": "Critical alerts regarding risks (e.g., trapping moisture with cementitious renders)",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.vite/
+frontend/.vite/
+
+# ML Models and Weights
+*.pt
+*.pth
+*.onnx
+*.engine
+*.safetensors
+*.bin
+runs/
+wandb/
+
+# Datasets and Large Folders
+data/raw/*
+data/processed/*
+data/annotations/*
+vision/datasets/*
+vision/model/*
+vision/outputs/*
+
+# IDE and Editor
+.vscode/*
+.idea/*
+*.swp
+*.swo
+
+# Operating System
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Always track .gitkeep files
+!**/.gitkeep

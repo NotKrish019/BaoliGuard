@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "baoliguard"
+version = "0.1.0"
+description = "Jal-Dharohar Digital Intelligence & Conservation Platform"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Krish", email = "krish@example.com" },
+    { name = "Kirti Antil", email = "kirti@example.com" },
+    { name = "Anika Jain", email = "anika@example.com" },
+    { name = "Swastik Parmar", email = "swastik@example.com" }
+]
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "jsonschema>=4.18.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "httpx>=0.24.0"
+]
+vision = [
+    "ultralytics>=8.0.0",
+    "opencv-python>=4.8.0",
+    "scikit-image>=0.21.0",
+    "numpy>=1.24.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+pythonpath = ["backend", "."]
