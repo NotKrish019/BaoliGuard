@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --color-deep-water: #062B49;
-  --color-primary-blue: #087CC1;
-  --color-water-accent: #28A9E0;
-  --color-light-water: #8CD8F5;
-  --color-aqua-light: #DDF6FC;
+  --color-deep-water: #063B63;
+  --color-ocean-blue: #0A6FB7;
+  --color-clear-water: #2498D5;
+  --color-light-water: #8FD5F2;
+  --color-mist: #EAF7FB;
   --color-white: #FFFFFF;
-  --color-blue-white: #F3FAFD;
-  --color-text-dark: #09283C;
-  --color-text-secondary: #587286;
-  --color-success: #2E8B57;
-  --color-warning: #E08A1E;
-  --color-error: #D3455B;
+  --color-ink: #102433;
+  --color-muted-ink: #5E7280;
+  --color-stone: #D8C8B0;
+  --color-green: #3E8F6B;
+  --color-amber: #C9902E;
+  --color-red: #B64A45;
 
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color-scheme: dark;
@@ -24,14 +24,14 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: #062B49;
+  background-color: #063B63;
   color: #FFFFFF;
   font-family: 'Poppins', sans-serif;
-  background-image: 
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(40, 169, 224, 0.10) 0%, transparent 75%),
-    linear-gradient(180deg, #062B49 0%, #041B2E 100%);
-  background-attachment: fixed;
   overflow-x: hidden;
+}
+
+.font-editorial {
+  font-family: 'IBM Plex Serif', Georgia, serif;
 }
 
 /* Custom technical scrollbar in ocean water blues */
@@ -41,66 +41,30 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #041D33;
+  background: #04253e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #087CC1;
+  background: #0A6FB7;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #28A9E0;
+  background: #2498D5;
 }
 
-/* Subtle water atmospheric background caustics */
+/* Subtle water atmospheric caustics */
 .water-caustic-layer {
-  background-image: radial-gradient(circle at 50% -10%, rgba(140, 216, 245, 0.12) 0%, transparent 65%);
+  background-image: radial-gradient(circle at 50% -10%, rgba(143, 213, 242, 0.15) 0%, transparent 65%);
 }
 
-/* Water flow lines */
-.water-flow-pattern {
-  background-size: 60px 60px;
-  background-image: 
-    radial-gradient(ellipse at 50% 50%, rgba(40, 169, 224, 0.04) 20%, transparent 60%);
-}
-
-/* Technical surface panels */
-.water-panel {
-  background: rgba(8, 51, 88, 0.70);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(40, 169, 224, 0.18);
-}
-
-.water-panel-elevated {
-  background: rgba(12, 61, 102, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(40, 169, 224, 0.28);
-  box-shadow: 0 12px 32px -8px rgba(2, 20, 36, 0.45);
-}
-
-/* Light content sections for high readability */
-.water-content-light {
-  background-color: #FFFFFF;
-  color: #09283C;
-}
-
-.water-content-soft {
-  background-color: #F3FAFD;
-  color: #09283C;
-}
-
-/* Water flow keyframe micro-animations */
-@keyframes subtleCurrent {
+/* Floating micro-animation for fish & particles */
+@keyframes subtleFloat {
   0%, 100% {
-    transform: translateY(0px) scale(1);
-    opacity: 0.8;
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-4px) scale(1.01);
-    opacity: 0.95;
+    transform: translateY(-6px) rotate(0.5deg);
   }
 }
 
@@ -109,21 +73,21 @@ body {
     transform: translateX(0px);
   }
   50% {
-    transform: translateX(6px);
+    transform: translateX(8px);
   }
 }
 
-.animate-water-current {
-  animation: subtleCurrent 8s ease-in-out infinite;
+.animate-subtle-float {
+  animation: subtleFloat 7s ease-in-out infinite;
 }
 
-.animate-water-drift {
+.animate-gentle-drift {
   animation: gentleDrift 10s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-water-current,
-  .animate-water-drift {
+  .animate-subtle-float,
+  .animate-gentle-drift {
     animation: none;
   }
 }
