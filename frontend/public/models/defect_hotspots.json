@@ -1,0 +1,112 @@
+{
+  "model_version": "1.0.0",
+  "structure_id": "stepwell_dholpur_sandstone_01",
+  "name": "Subterranean Baoli Digital Twin",
+  "camera_defaults": {
+    "position": [0, 8, 26],
+    "target": [0, -0.5, 0],
+    "fov": 48
+  },
+  "hotspots": [
+    {
+      "id": "hotspot_crack_north_ashlar",
+      "type": "crack",
+      "name": "North Ashlar Bedding Fracture",
+      "position": [2.5, 1.2, -10.5],
+      "normal": [0, 0, 1],
+      "severity": "moderate",
+      "confidence": 0.88,
+      "pixel_area": 12450,
+      "length_pixels": 640,
+      "status_before": "active_fracture",
+      "status_after": "repointed_hydraulic_lime",
+      "description": "Contiguous bedding joint fracture extending across 3 ashlar courses in northern pavilion gallery."
+    },
+    {
+      "id": "hotspot_vegetation_parapet",
+      "type": "vegetation",
+      "name": "Upper Parapet Root Intrusion",
+      "position": [9.5, 3.8, 2.0],
+      "normal": [-1, 0, 0],
+      "severity": "severe",
+      "confidence": 0.92,
+      "pixel_area": 28900,
+      "status_before": "invasive_ficus_roots",
+      "status_after": "biocidally_extracted",
+      "description": "Deep woody root network penetrating dry-jointed sandstone facing, displacing crest coping stones."
+    },
+    {
+      "id": "hotspot_spalling_lower_tier",
+      "type": "spalling",
+      "name": "South Lower Tier Surface Delamination",
+      "position": [-3.5, -2.2, 5.0],
+      "normal": [0, 1, 0],
+      "severity": "moderate",
+      "confidence": 0.79,
+      "pixel_area": 18200,
+      "status_before": "delaminated_stone_face",
+      "status_after": "lime_grout_consolidated",
+      "description": "Sub-surface cryptoflorescence causing stone flaking and 15mm surface detachment."
+    },
+    {
+      "id": "hotspot_blocked_inlet",
+      "type": "blocked_inlet",
+      "name": "West Catchment Stormwater Intake",
+      "position": [-9.8, 0.6, 6.0],
+      "normal": [1, 0, 0],
+      "severity": "critical",
+      "confidence": 0.95,
+      "pixel_area": 34100,
+      "status_before": "choked_debris_silt",
+      "status_after": "hydraulically_cleared",
+      "description": "Stormwater feeder duct clogged with alluvial silt and agricultural runoff debris, halting monsoon recharge."
+    },
+    {
+      "id": "hotspot_bottom_silt_mound",
+      "type": "siltation",
+      "name": "Bottom Basin Sediment Layer",
+      "position": [1.0, -3.2, 3.0],
+      "normal": [0, 1, 0],
+      "severity": "high",
+      "confidence": 0.85,
+      "pixel_area": 42000,
+      "status_before": "1.2m_silt_accumulation",
+      "status_after": "desilted_aquifer_exposed",
+      "description": "Heavy silt deposition covering ancient stone pavement and suffocating bed aquifer seepage pores."
+    }
+  ],
+  "restoration_zones": [
+    {
+      "zone_id": "zone_vegetation_clearance",
+      "title": "Clear Vegetation",
+      "action_key": "clear_vegetation",
+      "target_hotspots": ["hotspot_vegetation_parapet"],
+      "phase": "phase_1_immediate_stabilization",
+      "technique": "Selective stem cutting and heritage biocidal poulticing"
+    },
+    {
+      "zone_id": "zone_inlet_restoration",
+      "title": "Restore Inlet",
+      "action_key": "restore_inlet",
+      "target_hotspots": ["hotspot_blocked_inlet"],
+      "phase": "phase_2_hydrological_remediation",
+      "technique": "Manual aperture dredging and silt trap clearance"
+    },
+    {
+      "zone_id": "zone_basin_desilting",
+      "title": "Desilt Basin",
+      "action_key": "desilt",
+      "target_hotspots": ["hotspot_bottom_silt_mound"],
+      "phase": "phase_2_hydrological_remediation",
+      "technique": "Non-mechanical suction desiltation down to original stone ambulatory"
+    },
+    {
+      "zone_id": "zone_catchment_revival",
+      "title": "Restore Catchment",
+      "action_key": "restore_catchment",
+      "target_hotspots": ["hotspot_crack_north_ashlar", "hotspot_spalling_lower_tier"],
+      "phase": "phase_3_masonry_and_iks_consolidation",
+      "technique": "Traditional hydraulic lime-surkhi gravity repointing and micro-grouting"
+    }
+  ]
+}
