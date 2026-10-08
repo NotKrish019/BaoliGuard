@@ -4,57 +4,47 @@
 
 ---
 
-## 1. Branch Strategy
+## 1. Single Branch Strategy (main)
 
-The primary stable branch is `main`. Direct commits to `main` are prohibited after Phase 0 initialization.
-
-### Designated Feature Branches:
-| Teammate | Focus Area | Branch Name |
-| :--- | :--- | :--- |
-| **Krish** | Computer Vision / AI | `feat/krish-vision` |
-| **Kirti Antil** | IKS / Conservation Engineering | `feat/kirti-iks-engineering` |
-| **Anika Jain** | Frontend / PWA / Digital Twin | `feat/anika-frontend-twin` |
-| **Swastik Parmar** | Backend / System Integration | `feat/swastik-backend-integration` |
+To accelerate hackathon velocity and keep all team members continuously integrated:
+- **Everyone works directly on the `main` branch.**
+- No feature branches (`feat/*`) are created or maintained.
+- Zero merge conflicts are guaranteed by the **strict directory ownership architecture**:
+  - **Krish:** [`/vision`](file:///vision), [`/scripts/vision`](file:///scripts/vision), `/vision/tests`
+  - **Kirti Antil:** [`/knowledge`](file:///knowledge), [`/engineering`](file:///engineering), `/tests/engineering`
+  - **Anika Jain:** [`/frontend`](file:///frontend), [`/digital_twin`](file:///digital_twin), `/tests/frontend`
+  - **Swastik Parmar:** [`/backend`](file:///backend), [`/integration`](file:///integration), `/tests/backend`, `/tests/integration`
+  - Shared files (`/contracts`, root configs) require team coordination before modification.
 
 ---
 
-## 2. Standard 10-Step Development Cycle
+## 2. Standard Team Workflow on main
 
-Every teammate must follow this workflow for every development task:
+Every teammate follows this continuous integration routine:
 
-1. **Pull Latest Main:**
+1. **Pull Latest Changes Before Starting:**
    ```bash
    git checkout main
    git pull origin main
    ```
-2. **Switch / Create Feature Branch:**
-   ```bash
-   git checkout -b feat/krish-vision
-   ```
-3. **Work Strictly Within Owned Directories:**
-   - Krish: `vision/`, `scripts/vision/`, `vision/tests`
-   - Kirti: `knowledge/`, `engineering/`, `tests/engineering`
-   - Anika: `frontend/`, `digital_twin/`, `tests/frontend`
-   - Swastik: `backend/`, `integration/`, `tests/backend/`, `tests/integration`
-4. **Make Small, Focused Commits:**
-   Write descriptive commit messages following Conventional Commits (e.g., `feat(vision): implement skeletonization metrics`).
-5. **Run Local Verification & Tests:**
+2. **Work Strictly Within Owned Directory:**
+   Stay within your assigned module directory to guarantee zero conflicts.
+3. **Run Local Verification & Tests:**
    ```bash
    python -m pytest
    ```
-6. **Review Git Diff for Cleanliness:**
+4. **Check Git Status & Diff:**
    ```bash
    git status
-   git diff
    ```
-   *Verify that no datasets, models, or node_modules are tracked.*
-7. **Push Feature Branch:**
+   *Verify only files in your owned directory are staged. Never stage raw datasets or model weights.*
+5. **Commit with Clear Conventional Messages:**
    ```bash
-   git push -u origin feat/<your-branch-name>
+   git add <your-directory>
+   git commit -m "feat(<subsystem>): implement <feature-description>"
    ```
-8. **Open a Pull Request:**
-   Fill in the PR template located at [`.github/pull_request_template.md`](file:///.github/pull_request_template.md).
-9. **Integration Owner Review:**
-   Swastik Parmar (Backend & Integration Lead) conducts peer review and verifies contract conformance.
-10. **Merge Only After Checks Pass:**
-    PR is merged into `main` using squash or rebase merge.
+6. **Pull with Rebase & Push Directly to main:**
+   ```bash
+   git pull --rebase origin main
+   git push origin main
+   ```
