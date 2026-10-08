@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { StructureTypology, AnalysisRequestPayload } from '../types';
+import { StructureTypology, AnalysisRequestPayload, InspectionROI } from '../types';
 import { Button } from './Button';
 import { StatusBadge } from './StatusBadge';
 
@@ -20,7 +20,22 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
   const [structureName, setStructureName] = useState<string>('');
   const [region, setRegion] = useState<string>('Rajasthan');
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [roi, setRoi] = useState<InspectionROI>({
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+    isNormalized: true,
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSelectSample = () => {
+    setPreviewUrl('/samples/stepwell_ashlar_wall.svg');
+    setSelectedFile(null);
+    setStructureType('baoli');
+    setStructureName('Sample Stepwell (Dholpur Sandstone Ashlar)');
+    setRegion('Rajasthan');
+  };
 
   const handleFileSelect = (file: File) => {
     if (!file.type.startsWith('image/')) {
@@ -51,10 +66,10 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
 
   const clearSelection = () => {
     setSelectedFile(null);
-    if (previewUrl) {
+    if (previewUrl && previewUrl.startsWith('blob:')) {
       URL.revokeObjectURL(previewUrl);
-      setPreviewUrl(null);
     }
+    setPreviewUrl(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -67,6 +82,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
       structureType,
       structureName: structureName.trim() || undefined,
       region: region.trim() || undefined,
+      roi,
     });
   };
 
@@ -103,26 +119,70 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
           />
 
           {previewUrl ? (
-            <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[16/10] group">
-              <img
-                src={previewUrl}
-                alt="Survey Ingestion Preview"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end justify-between p-4">
-                <div className="text-xs font-mono text-slate-200 truncate">
-                  <div className="font-semibold text-white truncate">{selectedFile?.name || 'Uploaded image'}</div>
-                  <div className="text-[10px] text-slate-400">
-                    {selectedFile ? `${(selectedFile.size / 1024).toFixed(1)} KB` : ''} • Ready for segmentation
+            <div>
+              <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[16/10] group">
+                <img
+                  src={previewUrl}
+                  alt="Survey Ingestion Preview"
+                  className="w-full h-full object-cover"
+                />
+                {/* Active ROI Box Overlay */}
+                <div
+                  className="absolute border-2 border-sandstone-400 bg-sandstone-500/15 pointer-events-none transition-all duration-200"
+                  style={{
+                    left: `${roi.x}%`,
+                    top: `${roi.y}%`,
+                    width: `${roi.width}%`,
+                    height: `${roi.height}%`,
+                  }}
+                >
+                  <span className="text-[9px] font-mono bg-sandstone-950 text-sandstone-200 px-1 py-0.5 rounded ml-1 mt-1 inline-block">
+                    Target ROI: {roi.width}% × {roi.height}%
+                  </span>
+                </div>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end justify-between p-4 pointer-events-none">
+                  <div className="text-xs font-mono text-slate-200 truncate">
+                    <div className="font-semibold text-white truncate">{selectedFile?.name || 'Survey Base Asset'}</div>
+                    <div className="text-[10px] text-slate-400">
+                      {selectedFile ? `${(selectedFile.size / 1024).toFixed(1)} KB` : '1920 × 1080 px'} • Ready for segmentation
+                    </div>
+                  </div>
+                  <div className="pointer-events-auto">
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      Change
+                    </Button>
                   </div>
                 </div>
-                <Button
-                  size="sm"
-                  variant="secondary"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  Change
-                </Button>
+              </div>
+
+              {/* Quick ROI selection pills below preview */}
+              <div className="mt-3 p-3 bg-slate-900/60 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                <span className="text-[11px] font-mono text-slate-400">Inspection ROI:</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    { label: 'Full Image (100%)', roi: { x: 0, y: 0, width: 100, height: 100, isNormalized: true } },
+                    { label: 'Lower Basin Tier', roi: { x: 10, y: 55, width: 80, height: 42, isNormalized: true } },
+                    { label: 'Central Archway', roi: { x: 25, y: 20, width: 50, height: 55, isNormalized: true } },
+                  ].map((item, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setRoi(item.roi)}
+                      className={`text-[10px] font-mono px-2 py-1 rounded transition-colors ${
+                        roi.x === item.roi.x && roi.width === item.roi.width
+                          ? 'bg-sandstone-600 text-white font-bold'
+                          : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           ) : (
@@ -146,9 +206,22 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
               <p className="text-xs text-slate-400 max-w-xs mb-4 leading-relaxed">
                 Drag and drop high-resolution photographic survey image (Baoli wall, steps, inlet, or basin masonry).
               </p>
-              <Button size="sm" variant="sandstone" type="button">
-                Browse Files (JPEG / PNG)
-              </Button>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <Button size="sm" variant="sandstone" type="button">
+                  Browse Files (JPEG / PNG)
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelectSample();
+                  }}
+                >
+                  Load Sample Stepwell Asset
+                </Button>
+              </div>
             </div>
           )}
 

@@ -70,6 +70,7 @@ export interface EngineeringSubScores {
   vegetation_intrusion_index?: MetricScore;
   masonry_integrity_index?: MetricScore;
   siltation_obstruction_index?: MetricScore;
+  visual_crack_burden?: MetricScore;
 }
 
 export type RootCauseUrgency = 'low' | 'medium' | 'high' | 'critical';
@@ -182,8 +183,10 @@ export interface AnalysisResultContract {
   structure: StructureContext;
   vision: VisionResultContract;
   visual_condition: MetricScore | { score: MetricScore } | Record<string, unknown>;
+  visual_crack_burden?: MetricScore;
   water_functionality: MetricScore | { score: MetricScore } | Record<string, unknown>;
   restoration_priority_score?: MetricScore;
+  sub_scores?: EngineeringSubScores;
   material: MaterialCompatibilityContract;
   root_cause: Record<string, unknown> | RootCauseItem[];
   restoration: RestorationResultContract;
@@ -195,6 +198,17 @@ export interface AnalysisResultContract {
  */
 export type AppRoute = '/' | '/upload' | '/analysis' | '/report';
 
+/**
+ * Region of Interest (ROI) coordinates for focused defect inspection
+ */
+export interface InspectionROI {
+  x: number; // percentage (0-100) or pixel coordinate
+  y: number;
+  width: number;
+  height: number;
+  isNormalized?: boolean;
+}
+
 export interface AnalysisRequestPayload {
   imageFile?: File;
   imagePreviewUrl?: string;
@@ -202,4 +216,5 @@ export interface AnalysisRequestPayload {
   structureName?: string;
   region?: string;
   notes?: string;
+  roi?: InspectionROI;
 }

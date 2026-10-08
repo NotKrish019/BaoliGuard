@@ -68,3 +68,24 @@ def test_api_service_and_mock_fixtures_exist() -> None:
     assert (frontend_src / "services" / "api.ts").exists(), "services/api.ts must exist"
     assert (frontend_src / "types" / "index.ts").exists(), "types/index.ts must exist"
     assert (frontend_src / "mocks" / "fixtures.ts").exists(), "mocks/fixtures.ts must exist"
+
+
+def test_phase2_inspection_components_exist() -> None:
+    """Verify presence of Phase 2 inspection, ROI selection, and visualization components."""
+    frontend_src = Path(__file__).resolve().parent.parent.parent / "frontend" / "src"
+    components_dir = frontend_src / "components"
+
+    phase2_components = [
+        "InspectionCanvas.tsx",
+        "ROISelector.tsx",
+        "DefectLegend.tsx",
+        "VisualMetricsPanel.tsx",
+    ]
+
+    for comp in phase2_components:
+        target = components_dir / comp
+        assert target.exists(), f"Missing required Phase 2 component: {comp}"
+
+    sample_asset = Path(__file__).resolve().parent.parent.parent / "frontend" / "public" / "samples" / "stepwell_ashlar_wall.svg"
+    assert sample_asset.exists(), "Sample stepwell SVG asset must exist in public/samples/"
+

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Sandstone texture patterns -->
+    <linearGradient id="wallBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a3728"/>
+      <stop offset="30%" stop-color="#5c4533"/>
+      <stop offset="70%" stop-color="#423124"/>
+      <stop offset="100%" stop-color="#2a1f17"/>
+    </linearGradient>
+
+    <linearGradient id="stoneBlock1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#916c4c"/>
+      <stop offset="50%" stop-color="#7e5c3e"/>
+      <stop offset="100%" stop-color="#694c32"/>
+    </linearGradient>
+
+    <linearGradient id="stoneBlock2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#825f41"/>
+      <stop offset="50%" stop-color="#6f4f34"/>
+      <stop offset="100%" stop-color="#593e28"/>
+    </linearGradient>
+
+    <linearGradient id="archGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1610"/>
+      <stop offset="100%" stop-color="#120d09"/>
+    </linearGradient>
+
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a2c38" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#05171f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1920" height="1080" fill="url(#wallBg)"/>
+
+  <!-- Ashlar Stone Coursing Grid -->
+  <!-- Row 1 -->
+  <rect x="60" y="80" width="380" height="160" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+  <rect x="460" y="80" width="520" height="160" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+  <rect x="1000" y="80" width="440" height="160" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+  <rect x="1460" y="80" width="400" height="160" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+
+  <!-- Row 2 -->
+  <rect x="60" y="260" width="540" height="180" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+  <rect x="620" y="260" width="460" height="180" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+  <rect x="1100" y="260" width="420" height="180" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+  <rect x="1540" y="260" width="320" height="180" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+
+  <!-- Center Cusped Archway (Historic Subterranean Niche) -->
+  <path d="M 720 460 C 720 320, 840 220, 960 220 C 1080 220, 1200 320, 1200 460 L 1200 780 L 720 780 Z" fill="url(#archGradient)" stroke="#221811" stroke-width="8"/>
+  <path d="M 760 480 C 760 370, 860 300, 960 300 C 1060 300, 1160 370, 1160 480 L 1160 760 L 760 760 Z" fill="#0d0906"/>
+
+  <!-- Row 3 & 4 Blocks around Arch -->
+  <rect x="60" y="460" width="300" height="180" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+  <rect x="380" y="460" width="320" height="180" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+  <rect x="1220" y="460" width="320" height="180" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+  <rect x="1560" y="460" width="300" height="180" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+
+  <rect x="60" y="660" width="380" height="180" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+  <rect x="460" y="660" width="240" height="180" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+  <rect x="1220" y="660" width="260" height="180" fill="url(#stoneBlock2)" stroke="#221811" stroke-width="6"/>
+  <rect x="1500" y="660" width="360" height="180" fill="url(#stoneBlock1)" stroke="#221811" stroke-width="6"/>
+
+  <!-- Stepped Tier Base (Plinth) -->
+  <polygon points="60,860 1860,860 1780,940 140,940" fill="#3b2b1f" stroke="#1d150e" stroke-width="6"/>
+  <polygon points="140,940 1780,940 1700,1020 220,1020" fill="#2d2017" stroke="#140e09" stroke-width="6"/>
+
+  <!-- Subterranean Water Table (Bottom Basin) -->
+  <rect x="0" y="960" width="1920" height="120" fill="url(#waterGradient)"/>
+  <ellipse cx="960" cy="1010" rx="480" ry="25" fill="#0891b2" opacity="0.15"/>
+</svg>

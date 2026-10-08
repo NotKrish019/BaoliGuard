@@ -26,7 +26,7 @@ export const MOCK_ANALYSIS_FIXTURE: AnalysisResultContract = {
     name: "Sample Subterranean Stepwell (Architectural Study)",
     region: "Rajasthan / Shekhawati Region",
     source_images: [
-      "/sample_baoli_wall.jpg"
+      "/samples/stepwell_ashlar_wall.svg"
     ]
   },
   vision: {
@@ -89,6 +89,51 @@ export const MOCK_ANALYSIS_FIXTURE: AnalysisResultContract = {
       "Internal masonry voiding and foundation settlement cannot be detected from single-angle photography",
       "Requires physical on-site conservation engineering audit"
     ]
+  },
+  visual_crack_burden: {
+    value: 42.0,
+    scale_min: 0,
+    scale_max: 100,
+    method: "skeletonized_length_density_ratio_v1",
+    confidence: 0.88,
+    limitations: [
+      "Image-space skeletonized pixel centerline length relative to segmented masonry area",
+      "Micro-fractures smaller than optical camera resolution (sub-pixel) are not registered"
+    ]
+  },
+  sub_scores: {
+    vegetation_intrusion_index: {
+      value: 65.0,
+      scale_min: 0,
+      scale_max: 100,
+      method: "root_canopy_joint_penetration_index_v1",
+      confidence: 0.92,
+      limitations: ["Calculated from visible vegetation foliage and root bounding extent"]
+    },
+    masonry_integrity_index: {
+      value: 71.0,
+      scale_min: 0,
+      scale_max: 100,
+      method: "ashlar_bedding_spalling_cohesion_v1",
+      confidence: 0.84,
+      limitations: ["Evaluates surface loss without core ultrasonic velocity testing"]
+    },
+    siltation_obstruction_index: {
+      value: 48.0,
+      scale_min: 0,
+      scale_max: 100,
+      method: "catchment_aperture_sediment_ratio_v1",
+      confidence: 0.76,
+      limitations: ["Depth of bottom silt layer estimated from lower step submersion"]
+    },
+    visual_crack_burden: {
+      value: 42.0,
+      scale_min: 0,
+      scale_max: 100,
+      method: "skeletonized_length_density_ratio_v1",
+      confidence: 0.88,
+      limitations: ["Centerline pixels per square meter of surveyed surface"]
+    }
   },
   water_functionality: {
     value: 54.0,

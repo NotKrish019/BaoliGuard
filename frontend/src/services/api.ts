@@ -76,6 +76,9 @@ export async function submitAnalysisRequest(payload: AnalysisRequestPayload): Pr
   if (payload.notes) {
     formData.append('notes', payload.notes);
   }
+  if (payload.roi) {
+    formData.append('roi_box', JSON.stringify([payload.roi.x, payload.roi.y, payload.roi.width, payload.roi.height]));
+  }
 
   try {
     const response = await fetch(`${API_BASE_URL}/analyze`, {
