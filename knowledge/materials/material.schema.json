@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/material.schema.json",
+  "title": "MaterialDNAProfileContract",
+  "description": "Schema enforcing physical, chemical, hygric, and mechanical characterization of historic and intervention materials.",
+  "type": "object",
+  "required": [
+    "material_id",
+    "name",
+    "material_family",
+    "category",
+    "traditional_use",
+    "known_properties",
+    "moisture_behavior",
+    "mechanical_characteristics",
+    "thermal_characteristics",
+    "chemical_considerations",
+    "reversibility",
+    "heritage_compatibility",
+    "source_references",
+    "limitations"
+  ],
+  "properties": {
+    "material_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "material_family": {
+      "type": "string",
+      "enum": [
+        "stone",
+        "brick",
+        "lime-based mortar",
+        "lime + compatible aggregate systems",
+        "cement-rich repair",
+        "generic modern filler"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "historic_substrate",
+        "candidate_intervention",
+        "incompatible_modern_intervention"
+      ]
+    },
+    "traditional_use": {
+      "type": "string"
+    },
+    "known_properties": {
+      "type": "object",
+      "required": [
+        "compressive_strength_mpa_range",
+        "elastic_modulus_gpa_range",
+        "porosity_pct_range",
+        "vapor_permeability_perm_range"
+      ],
+      "properties": {
+        "compressive_strength_mpa_range": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "elastic_modulus_gpa_range": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "porosity_pct_range": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "vapor_permeability_perm_range": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "thermal_expansion_coeff_1e6_k": {
+          "type": "number"
+        }
+      }
+    },
+    "moisture_behavior": {
+      "type": "object",
+      "required": ["breathability", "capillary_suction", "drying_rate", "summary"],
+      "properties": {
+        "breathability": { "type": "string" },
+        "capillary_suction": { "type": "string" },
+        "drying_rate": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "mechanical_characteristics": {
+      "type": "object",
+      "required": ["stiffness", "ductility", "sacrificial_behavior", "summary"],
+      "properties": {
+        "stiffness": { "type": "string" },
+        "ductility": { "type": "string" },
+        "sacrificial_behavior": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "thermal_characteristics": {
+      "type": "object",
+      "required": ["thermal_shock_resilience", "compatibility_with_historic_stones", "summary"],
+      "properties": {
+        "thermal_shock_resilience": { "type": "string" },
+        "compatibility_with_historic_stones": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "chemical_considerations": {
+      "type": "object",
+      "required": ["ph_nature", "soluble_salts_risk", "reactivity_with_limestone", "summary"],
+      "properties": {
+        "ph_nature": { "type": "string" },
+        "soluble_salts_risk": { "type": "string" },
+        "reactivity_with_limestone": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "reversibility": {
+      "type": "object",
+      "required": ["reversibility_score", "extraction_method", "retreatability"],
+      "properties": {
+        "reversibility_score": { "type": "number", "minimum": 0.0, "maximum": 10.0 },
+        "extraction_method": { "type": "string" },
+        "retreatability": { "type": "string" }
+      }
+    },
+    "heritage_compatibility": {
+      "type": "object",
+      "required": ["iks_alignment", "asi_intach_compliance", "authenticity_status"],
+      "properties": {
+        "iks_alignment": { "type": "string" },
+        "asi_intach_compliance": { "type": "string" },
+        "authenticity_status": { "type": "string" }
+      }
+    },
+    "source_references": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  }
+}

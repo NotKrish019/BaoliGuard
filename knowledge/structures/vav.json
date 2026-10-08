@@ -1,0 +1,115 @@
+{
+  "id": "vav",
+  "name": "Vav",
+  "alternate_names": [
+    "Stepwell",
+    "Baoli of Gujarat",
+    "Vapi",
+    "Vaav"
+  ],
+  "regions": [
+    "Western India",
+    "Gujarat (Patan, Ahmedabad, Adalaj, Modhera, Junagadh)",
+    "Southwestern Rajasthan"
+  ],
+  "traditional_function": [
+    "Monumental multi-tier subterranean civic water sanctuary serving pilgrimage routes and caravan rest-stops.",
+    "Perennial groundwater extraction reaching deep unconfined and semi-confined alluvial aquifers (up to 30+ meters deep).",
+    "Subterranean microclimatic pavilion retreat for socio-religious assemblies, providing 6-10°C thermal moderation during desert summers."
+  ],
+  "engineering_principles": [
+    {
+      "principle": "Multi-Storey Subterranean Pillared Pavilions (Kutas) as Structural Struts",
+      "what": "Sequential colonnaded multi-tier pavilions stepped down along a linear corridor from ground surface to well shaft.",
+      "why": "Deep vertical cuts (up to 30 meters) in loose alluvial sand and silt generate massive active lateral soil pressure that would collapse unbraced retaining walls.",
+      "how": "Horizontal beams, lintels, and stone floor slabs within each pavilion (kuta) act as continuous structural compression struts spanning opposing masonry retaining walls, counter-balancing inward lateral soil forces.",
+      "engineering_significance": "Prevents inward buckling and overturning failure of tall retaining walls across multiple subterranean levels without modern reinforced concrete or ground anchors."
+    },
+    {
+      "principle": "Battered Retaining Masonry with Structural Counter-balancing",
+      "what": "Stepwell side walls constructed with an inward batter (slope) and reinforced by stepped buttresses at each tier.",
+      "why": "Lateral earth pressure increases linearly with depth; lower levels require higher sectional modulus and moment resistance.",
+      "how": "Retaining walls widen progressively toward the foundation, transferring deep hydrostatic and lateral soil thrusts downward into consolidated alluvial bed strata.",
+      "engineering_significance": "Ensures global structural stability and seismic energy dissipation through ductile, interlocking dry-and-lime stone ashlar joints."
+    },
+    {
+      "principle": "Convective Subterranean Microclimatic Ventilation",
+      "what": "Linear open-shaft orientation combined with tiered colonnades creating natural down-draft air circulation.",
+      "why": "Arid Gujarat summers produce surface ambient heat >46°C with dry, desiccating winds; subterranean air requires natural ventilation without mechanical blowers.",
+      "how": "Cooler, dense subterranean air settles at the lowest water pool level; air warmed by occupants rises through open light wells in intermediate kutas, driving a continuous gentle convective breeze.",
+      "engineering_significance": "Reduces subterranean temperatures by 6°C to 10°C relative to ambient surface heat while suppressing water surface evaporation."
+    },
+    {
+      "principle": "Hydraulic Separation of Descending Corridor and Potable Well Cylinder",
+      "what": "Strict spatial division between the long stepped corridor and the terminal circular or octagonal deep well shaft (kupa).",
+      "why": "Continuous human pedestrian contact in stepped pools contaminates open water with skin pathogens, laundry debris, and animal residue.",
+      "how": "The well shaft penetrates deeper into the water-bearing sand aquifer and is accessed from upper pavilion balconies via rope pulleys (charkhis), isolating drinking water from bathing steps.",
+      "engineering_significance": "Establishes a dual-tier public health hydraulic zoning architecture in a single unified monument."
+    }
+  ],
+  "water_management_principles": [
+    {
+      "principle": "Alluvial Sandstone Aquifer Coupling",
+      "description": "The circular well cylinder cuts through successive layers of clay, silt, and water-bearing coarse sand, directly tapping regional unconfined alluvial aquifers.",
+      "hydrological_mechanism": "Natural geological sand filtration purifies incoming groundwater seepage; seasonal water table rises replenish all tiers during monsoon inundation."
+    },
+    {
+      "principle": "Perimeter Stormwater Diversion and Surface Drainage",
+      "description": "Stone aprons, sloped pavings, and projecting gargoyles divert surface stormwater cascades away from the subterranean staircase.",
+      "hydrological_mechanism": "Prevents muddy, contaminated overland runoff from cascading down the sculpted pavilions and washing out delicate lime pointing."
+    }
+  ],
+  "environmental_adaptations": [
+    "Engineered for deep water tables of the semi-arid Gujarat plains, where water can only be accessed at depths of 15m to 35m.",
+    "Axis oriented strictly East-West (e.g. Adalaj, Rani-ki-Vav) to limit direct solar exposure inside the deep corridor to short noon periods.",
+    "Carved iconography and deep friezes create high surface area for boundary-layer air cooling and humidity buffering."
+  ],
+  "traditional_materials": [
+    {
+      "material_family": "Dressed Quartzitic and Calcareous Sandstone",
+      "usage": "Ashlar retaining walls, columns, beams, brackets, and sculpted friezes.",
+      "traditional_role": "Locally quarried sandstone (e.g. Dhrangadhra, Himmatnagar) with fine bedding planes, carved and assembled with interlocking stone dowels and tenon-mortise joints to distribute seismic and static shear stresses."
+    },
+    {
+      "material_family": "Hydraulic Lime-Surkhi Structural Mortar",
+      "usage": "Core masonry bedding, subterranean shaft joints, and moisture-resistant backing.",
+      "traditional_role": "Slow-slaked fat lime blended with pulverized terracotta brick (surkhi) and herbal binder extracts (urad pulse, jaggery, bael fruit), offering self-healing microcrack elasticity under ground movement."
+    },
+    {
+      "material_family": "Metal Dowels and Cramps (Copper / Bronze / Lead)",
+      "usage": "Interlocking joints between horizontal lintels and column capitals.",
+      "traditional_role": "Corrosion-resistant non-ferrous metal cramps cast into stone pockets to prevent beam dislodgement under dynamic earth movements."
+    }
+  ],
+  "construction_features": [
+    "Linear stepped corridor descending through one to seven subterranean storeys (kutas).",
+    "Tiered pillared open pavilions functioning as structural struts and microclimate galleries.",
+    "Terminal deep circular or octagonal masonry well shaft (kupa).",
+    "Cantilevered balconies (jharokhas) and ornamented stone brackets supporting horizontal floor spans.",
+    "Spiral staircases built inside the circular well wall for maintenance and desiltation access."
+  ],
+  "common_deterioration_factors": [
+    "Ground subsidence and foundation differential settlement resulting from massive regional over-extraction of groundwater (loss of buoyant hydrostatic pore pressure).",
+    "Salt weathering (crypto-efflorescence): capillary rise of saline soil water into porous sandstone followed by sub-surface salt crystallization, causing flaking and blistering of carved relief work.",
+    "Woody root intrusion (peepal, banyan) into column-lintel joints and upper retaining wall coping.",
+    "Inappropriate modern repairs using hard, impermeable Portland cement pointing and epoxy resin injections, which lock in salts and cause destructive spalling of historic sandstone edges."
+  ],
+  "conservation_considerations": [
+    "Preserve subterranean ventilation cycles and avoid sealing pavilions with non-breathing enclosures.",
+    "Poulticing with high-purity sepiolite or cellulose pulp to desalt salt-laden sandstone masonry without chemical erosion.",
+    "Gentle mechanical extraction of cementitious repointing and replacement with low-strength, high-permeability natural hydraulic lime (NHL 2) mortars.",
+    "Structural consolidation of internal masonry voids using micro-fine lime grouts compatible with original sandstone elasticity and porosity."
+  ],
+  "sources": [
+    "SRC_UNESCO_RANI_KI_VAV_2014",
+    "SRC_JAIN_NEUBAUER_1981",
+    "SRC_LIVINGSTON_2002",
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_CPWD_HERITAGE_2013"
+  ],
+  "limitations": [
+    "Structural stability of deep multi-tiered pavilions cannot be judged from 2D photographs; geotechnical and 3D laser-scan structural analysis is mandatory.",
+    "In situ salt crystallization depth profile requires micro-core sampling and chemical ion chromatography.",
+    "Groundwater recharge viability depends on regional aquifer status across the broader river basin."
+  ]
+}

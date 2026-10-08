@@ -1,0 +1,56 @@
+{
+  "material_id": "generic_acrylic_filler",
+  "name": "Generic Modern Synthetic Polymer / Epoxy Crack Filler",
+  "material_family": "generic modern filler",
+  "category": "incompatible_modern_intervention",
+  "traditional_use": "Ad-hoc modern emergency crack injection, mastic sealing, and synthetic bonding.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [30.0, 75.0],
+    "elastic_modulus_gpa_range": [3.0, 10.0],
+    "porosity_pct_range": [0.1, 2.0],
+    "vapor_permeability_perm_range": [0.01, 0.5],
+    "thermal_expansion_coeff_1e6_k": 35.0
+  },
+  "moisture_behavior": {
+    "breathability": "Total vapor barrier (impermeable polymer film)",
+    "capillary_suction": "Zero capillary suction; non-wetting polymer matrix",
+    "drying_rate": "Zero evaporation through the polymer plug",
+    "summary": "Completely seals crack mouth while moisture continues to accumulate in the masonry core behind it."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Rigid bond in epoxy; rubbery elastomeric in mastic",
+    "ductility": "High tensile strength prevents sacrificial joint yielding",
+    "sacrificial_behavior": "Adhesive bond strength to stone often exceeds the tensile strength of weathered historic stone",
+    "summary": "When masonry moves, crack opens through new fractures in the historic stone rather than the synthetic plug."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "Very poor thermal compatibility",
+    "compatibility_with_historic_stones": "Thermal expansion coefficient (30-60 x 10^-6 /K) is 4 to 8 times higher than historic sandstone",
+    "summary": "Severe differential expansion under direct sunlight leads to interfacial debonding or tearing of host stone arrises."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Neutral to slightly acidic organic polymer resin",
+    "soluble_salts_risk": "Can leach organic solvents, plasticizers, and amine curing agents into porous stone pores",
+    "reactivity_with_limestone": "Degrades irreversibly under UV radiation, turning yellow, brittle, and insoluble",
+    "summary": "Irreversible chemical aging cross-links within the stone pore network."
+  },
+  "reversibility": {
+    "reversibility_score": 1.0,
+    "extraction_method": "Virtually impossible without toxic organic solvents (dichloromethane/acetone) or mechanical grinding",
+    "retreatability": "Totally non-reversible; deeply penetrates and stains historic porous stone"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Zero alignment; antithetical to vernacular craftsmanship and material breathability",
+    "asi_intach_compliance": "Strictly discouraged under international conservation standards (Venice Charter, ICOMOS)",
+    "authenticity_status": "Alien synthetic intervention"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_RILEM_HISTORIC_MORTARS_2012"
+  ],
+  "limitations": [
+    "Synthetic polymers are irreversibly locked into stone pores once cured.",
+    "Must never be used as a general mortar replacement or aesthetic crack infill on historic facade masonry."
+  ]
+}

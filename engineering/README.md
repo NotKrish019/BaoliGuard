@@ -1,38 +1,124 @@
 # BaoliGuard Conservation Engineering Subsystem
 
-**Owner:** Kirti Antil (IKS / Material Compatibility / Conservation Engineering)  
-**Primary Ownership:**
-- `/knowledge`
-- `/engineering`
-- `/tests/engineering`
+**Owner:** Kirti Antil (IKS / Material Compatibility / Conservation Engineering Lead)  
+**Status:** **PHASE 4 COMPLETE (Engineering Validation + Integration Readiness)**  
+**Version:** 1.0.0
 
 ---
 
-## 1. Overview
-The Engineering subsystem drives the **ASSESS** and **REVIVE** stages of BaoliGuard through deterministic rules:
-- **Condition Scoring:** Algorithmic calculation of visual degradation indices based on computer vision defect areas, crack lengths, and component counts.
-- **Water Functionality:** Quantitative evaluation of aquifer recharge viability, desiltation priority, and catchment flow continuity.
-- **Material Compatibility:** Multi-dimensional matrix analysis comparing proposed intervention materials with inferred historic stone and lime substrates.
-- **Root-Cause Analysis:** Logic trees tracing visible symptoms (e.g., dampness + spalling) to underlying hydrological failures.
-- **Restoration Prioritization:** Multi-criteria ranking generating phased conservation roadmaps.
+## 1. Subsystem Architecture & Purpose
+The Engineering & IKS subsystem provides the deterministic, scientific backbone of BaoliGuard, translating visual defect detections into evidence-based conservation assessments, material compatibility evaluations, and authentic restoration roadmaps:
+
+$$\mathbf{\text{SEE (Krish)}} \longrightarrow \mathbf{\text{UNDERSTAND (Kirti)}} \longrightarrow \mathbf{\text{ASSESS (Kirti)}} \longrightarrow \mathbf{\text{REVIVE (Kirti)}}$$
 
 ---
 
-## 2. Architectural Boundary: AI vs. Deterministic Engineering
-- **Deterministic Rules Only:** All scores (`visual_condition_score`, `water_functionality_score`, `restoration_priority_score`) and material compatibility checks are calculated using deterministic, inspectable Python rules and formulas.
-- **No LLM Hallucinations:** Large Language Models (LLMs) are **strictly forbidden** from generating numerical scores, inventing material strengths, or determining structural safety.
-- **Explicit Limitations:** Every score output adheres to [`/contracts/engineering_result.schema.json`](file:///contracts/engineering_result.schema.json) and must provide explicit metadata on confidence, scale, and limitations to ensure it is never confused with a certified on-site structural audit.
+## 2. Public Integration API
 
----
+All functions are exported directly from `engineering`:
 
-## 3. Directory Layout
+```python
+from engineering import (
+    # 1. Master Facade (Recommended for Backend)
+    analyze_heritage_structure,
+    ConservationEngineeringService,
+
+    # 2. Knowledge Retrieval (IKS Foundations)
+    get_structure,
+    list_structures,
+    get_source,
+
+    # 3. Material Compatibility (7-Dimension Matrix)
+    evaluate_compatibility,
+    COMPATIBILITY_WEIGHTS,
+
+    # 4. Condition & Water Functionality Scoring
+    calculate_visual_condition,
+    calculate_water_functionality,
+
+    # 5. Diagnostic Deduction & Restoration Planning
+    deduce_root_causes,
+    plan_restoration,
+    run_engineering_assessment,
+)
 ```
-engineering/
-├── README.md
-├── material_compatibility/ # Multi-attribute compatibility matrix logic
-├── restoration/            # Phased intervention planning rules
-├── root_cause/             # Defect deduction logic trees
-├── scoring/                # Deterministic condition scoring formulas
-├── tests/                  # Engineering rule unit tests
-└── water_functionality/    # Hydrological & catchment viability logic
+
+---
+
+## 3. Integration with Swastik's FastAPI Backend
+
+Swastik's backend can invoke `analyze_heritage_structure(...)` with Krish's vision output and survey parameters to generate contract-validated responses:
+
+```python
+from fastapi import APIRouter
+from engineering import analyze_heritage_structure
+
+router = APIRouter()
+
+@router.post("/analyze/heritage")
+def analyze_monument(vision_payload: dict, survey_data: dict):
+    # Execute deterministic engineering analysis
+    result = analyze_heritage_structure(
+        structure_type=vision_payload.get("structure_type"),
+        vision_data=vision_payload,
+        inspection_data=survey_data,
+        inferred_material=survey_data.get("observed_material"),
+    )
+
+    # Output directly conforms to contracts/engineering_result.schema.json,
+    # contracts/material_compatibility.schema.json, and contracts/restoration_result.schema.json
+    return {
+        "status": "success",
+        "engineering_result": result["engineering_result"],
+        "material_compatibility": result["material"],
+        "restoration_plan": result["restoration"],
+        "warnings": result["warnings"],
+        "limitations": result["limitations"],
+    }
 ```
+
+---
+
+## 4. Integration with Anika's Frontend (React & Three.js)
+
+The payload emitted by `analyze_heritage_structure(...)` maps directly to Anika's frontend dashboard components:
+1. **2D Condition Gauge & Sub-Scores:**
+   - `visual_condition.value` (0–100)
+   - `sub_scores.vegetation_intrusion_index`
+   - `sub_scores.masonry_integrity_index`
+2. **Hydrological Viability Card:**
+   - `water_functionality.value` (0–100)
+   - `sub_scores.siltation_obstruction_index`
+3. **Material Compatibility Radar / Matrix:**
+   - `material.candidate_interventions` (7 dimensions: mechanical, moisture, thermal, chemical, reversibility, heritage, visual)
+   - Highlight: `strongly_recommended` vs `prohibited_incompatible` with detailed warning text explaining *why* cement damages breathing stone.
+4. **Phased Restoration Visualizer:**
+   - `restoration.prioritized_actions` (ordered step 1 $\to$ N across Phase 1 immediate stabilization $\to$ Phase 2 hydrological remediation $\to$ Phase 3 masonry consolidation $\to$ Phase 4 monitoring).
+5. **Authentic IKS Guidelines & Recipes:**
+   - `restoration.iks_guidelines.traditional_mortar_recipe` (chuna-surkhi pozzolana with fermented herbal admixtures).
+
+---
+
+## 5. Input Resilience & Fallback Guarantees
+
+| Edge Case | Engineering Engine Handling |
+| :--- | :--- |
+| **Missing Vision Data** (`vision_data=None`) | Generates baseline assessment with documented confidence penalty ($0.50$) and explicit limitation warning. |
+| **Empty Detections** (`detections=[]`) | Evaluates condition score as $100.0$ (clean/intact) with high confidence. |
+| **Unspecified Material** (`inferred_material=None`) | Auto-infers canonical regional material based on structure typology (e.g. Baoli $\to$ `hydraulic_lime_mortar`), flags `verification_required: true`. |
+| **Unrecognized Typology** | Falls back safely to generalized traditional water engineering rules with a warning. |
+| **Over-Confident Inputs** | Capped at maximum $\le 0.85$ to maintain scientific credibility (photographs cannot certify chemical composition). |
+
+---
+
+## 6. Contract Conformance Summary
+
+| Contract | File Path | Validation Status |
+| :--- | :--- | :---: |
+| **Engineering Result** | [`contracts/engineering_result.schema.json`](file:///contracts/engineering_result.schema.json) | **100% Validated** |
+| **Material Compatibility** | [`contracts/material_compatibility.schema.json`](file:///contracts/material_compatibility.schema.json) | **100% Validated** |
+| **Restoration Result** | [`contracts/restoration_result.schema.json`](file:///contracts/restoration_result.schema.json) | **100% Validated** |
+| **Unified Analysis** | [`contracts/analysis.schema.json`](file:///contracts/analysis.schema.json) | **100% Compatible** |
+| **IKS Sources** | [`knowledge/sources/sources.schema.json`](file:///knowledge/sources/sources.schema.json) | **100% Validated** |
+| **Structure Knowledge** | [`knowledge/structures/structure.schema.json`](file:///knowledge/structures/structure.schema.json) | **100% Validated** |
+| **Material DNA Profile** | [`knowledge/materials/material.schema.json`](file:///knowledge/materials/material.schema.json) | **100% Validated** |

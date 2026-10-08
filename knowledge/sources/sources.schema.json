@@ -1,5 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://baoliguard.org/schemas/sources.schema.json",
   "title": "IKSSourceTraceability",
   "description": "Schema enforcing academic and research traceability for all IKS and conservation assertions.",
   "type": "array",
@@ -11,13 +12,12 @@
       "publisher",
       "year",
       "url",
-      "topic",
-      "claim_supported"
+      "topic"
     ],
     "properties": {
       "source_id": {
         "type": "string",
-        "description": "Unique identifier e.g. SRC_ASI_LIME_2019"
+        "description": "Unique identifier e.g. SRC_ASI_CONSERVATION_MANUAL_2020"
       },
       "title": {
         "type": "string"
@@ -26,7 +26,7 @@
         "type": "string"
       },
       "year": {
-        "type": "integer"
+        "type": ["integer", "string"]
       },
       "url": {
         "type": "string"
@@ -37,6 +37,13 @@
       "claim_supported": {
         "type": "string",
         "description": "Specific conservation principle or material rule substantiated by this source"
+      },
+      "claims_supported": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of specific conservation, engineering, or hydrological claims substantiated by this source"
       }
     }
   }

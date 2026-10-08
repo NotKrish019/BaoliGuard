@@ -1,0 +1,55 @@
+{
+  "material_id": "historic_quartzite",
+  "name": "Delhi Quartzite Rubble and Ashlar Masonry",
+  "material_family": "stone",
+  "category": "historic_substrate",
+  "traditional_use": "Massive retaining walls, foundations, and well shafts in Delhi NCR, Haryana, and Northern Rajasthan baolis (e.g. Agrasen ki Baoli, Rajon ki Baoli).",
+  "known_properties": {
+    "compressive_strength_mpa_range": [50.0, 120.0],
+    "elastic_modulus_gpa_range": [25.0, 55.0],
+    "porosity_pct_range": [1.0, 4.0],
+    "vapor_permeability_perm_range": [0.5, 2.0],
+    "thermal_expansion_coeff_1e6_k": 11.0
+  },
+  "moisture_behavior": {
+    "breathability": "Very low intrinsic porosity; impervious crystalline rock matrix",
+    "capillary_suction": "Minimal capillary suction through stone matrix",
+    "drying_rate": "Moisture transport occurs almost exclusively through the mortar joint network",
+    "summary": "Because quartzite is nearly impermeable, the mortar joints must perform 100% of the masonry breathing function."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Very high modulus of elasticity and extreme hardness (Mohs hardness 7)",
+    "ductility": "Brittle, high shear and compressive strength",
+    "sacrificial_behavior": "Historic substrate; joints must accommodate all shear movement",
+    "summary": "Requires ductile, yielding mortar joints to prevent stress concentrations at uneven contact points."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High thermal expansion coefficient",
+    "compatibility_with_historic_stones": "High internal thermal strain",
+    "summary": "Large temperature swings induce significant expansion; joints must flex to relieve thermal strain."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Inert pure silica (SiO2)",
+    "soluble_salts_risk": "Resistant to chemical attack, but joint mortar can leach salts onto stone surface",
+    "reactivity_with_limestone": "Chemically unreactive with lime mortars",
+    "summary": "Stone is chemically durable, but impermeable nature concentrates salt efflorescence directly on joint edges."
+  },
+  "reversibility": {
+    "reversibility_score": 10.0,
+    "extraction_method": "Permanent historic fabric",
+    "retreatability": "Original historic fabric"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Traditional Delhi ridge quarry stone extensively used in Sultanate and Mughal hydraulic architecture",
+    "asi_intach_compliance": "Protected historic fabric",
+    "authenticity_status": "Original authentic fabric"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_LIVINGSTON_2002"
+  ],
+  "limitations": [
+    "Irregular rubble bedding requires flexible, thick-joint lime mortar rather than thin modern grouts.",
+    "Non-breathable cement pointing on quartzite traps water entirely behind the retaining wall, building destabilizing hydrostatic pressure."
+  ]
+}

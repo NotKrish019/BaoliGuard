@@ -1,0 +1,58 @@
+{
+  "material_id": "surkhi_lime_mortar",
+  "name": "Traditional Lime-Surkhi Pozzolanic Mortar (Chuna-Surkhi)",
+  "material_family": "lime + compatible aggregate systems",
+  "category": "candidate_intervention",
+  "traditional_use": "Primary conservation intervention mortar, joint repointing, and hydraulic render for traditional Indian water heritage.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [2.5, 6.0],
+    "elastic_modulus_gpa_range": [2.0, 4.5],
+    "porosity_pct_range": [20.0, 30.0],
+    "vapor_permeability_perm_range": [14.0, 24.0],
+    "thermal_expansion_coeff_1e6_k": 8.0
+  },
+  "moisture_behavior": {
+    "breathability": "Superior vapor breathability exceeding 15 Perm",
+    "capillary_suction": "Controlled microporosity preventing rapid capillary water uptake",
+    "drying_rate": "Rapid drying ensures dampness escapes outwards without building internal pore hydrostatic pressure",
+    "summary": "Acts as the preferential evaporation path, protecting adjacent stone blocks from moisture entrapment and sub-florescence."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Low modulus of elasticity (2.0-4.5 GPa), significantly lower than historic stone",
+    "ductility": "High plastic deformation capacity, absorbs structural settlement and thermal expansion",
+    "sacrificial_behavior": "Strictly sacrificial: relieves stress by microscopic internal deformation rather than splitting the host stone",
+    "summary": "Guarantees that joint mortar yields first before historic stone units suffer edge fractures or spalling."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High compatibility with extreme diurnal heat cycles (0°C to 48°C)",
+    "compatibility_with_historic_stones": "Thermal dilation matches sandstone, quartzite, and brickwork",
+    "summary": "Eliminates shear stress at the interface during daytime solar heating and nocturnal desert cooling."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Alkaline buffer (pH 11.5 - 12.0)",
+    "soluble_salts_risk": "Zero deleterious sulfate or alkali salt introduction",
+    "reactivity_with_limestone": "Pozzolanic reaction forms amorphous calcium silicate hydrates (C-S-H) that resist water dissolution",
+    "summary": "Hydraulically stable under continuous water contact; free of alkali-silica reactivity (ASR)."
+  },
+  "reversibility": {
+    "reversibility_score": 9.2,
+    "extraction_method": "Gentle manual raking or vibration-free micro-chisel without abrasion of host stone arrises",
+    "retreatability": "Fully retreatable; historical masonry remains intact upon removal"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Exemplary indigenous formulation leveraging under-fired calcined clay (surkhi) and organic herbal slaking binders",
+    "asi_intach_compliance": "Primary mortar recommended by ASI and INTACH guidelines for stone masonry repointing",
+    "authenticity_status": "Historically and culturally authentic intervention material"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_INTACH_CHARTER_2004",
+    "SRC_CPWD_HERITAGE_2013",
+    "SRC_BIS_IS3115_POZZOLANA",
+    "SRC_RILEM_HISTORIC_MORTARS_2012"
+  ],
+  "limitations": [
+    "Requires proper Pozzolanic reactivity testing of surkhi aggregate (lime reactivity > 4.0 MPa per IS 1344).",
+    "Requires careful 21-day moist-jute curing to attain full carbonation and hydraulic strength."
+  ]
+}

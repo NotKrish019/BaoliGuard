@@ -1,0 +1,55 @@
+{
+  "material_id": "natural_hydraulic_lime_nhl",
+  "name": "Natural Hydraulic Lime Mortar (NHL 2 / NHL 3.5)",
+  "material_family": "lime-based mortar",
+  "category": "candidate_intervention",
+  "traditional_use": "Modern standard conservation mortar for structural masonry, foundation consolidation, and damp subterranean repointing where traditional slaking pits are unavailable.",
+  "known_properties": {
+    "compressive_strength_mpa_range": [2.0, 5.0],
+    "elastic_modulus_gpa_range": [2.0, 5.0],
+    "porosity_pct_range": [18.0, 28.0],
+    "vapor_permeability_perm_range": [12.0, 20.0],
+    "thermal_expansion_coeff_1e6_k": 8.2
+  },
+  "moisture_behavior": {
+    "breathability": "High vapor permeability",
+    "capillary_suction": "Moderate capillary suction",
+    "drying_rate": "Rapid drying preventing trapped moisture accumulation",
+    "summary": "Maintains breathability of historic stone masonry while setting reliably in damp subterranean conditions."
+  },
+  "mechanical_characteristics": {
+    "stiffness": "Low modulus of elasticity (2.0-5.0 GPa)",
+    "ductility": "Moderate ductility with good elastic recovery",
+    "sacrificial_behavior": "Sacrificial relative to medium and hard sandstones/quartzites",
+    "summary": "Provides predictable initial hydraulic set without exceeding historic stone strength."
+  },
+  "thermal_characteristics": {
+    "thermal_shock_resilience": "High compatibility",
+    "compatibility_with_historic_stones": "Coefficient of thermal expansion compatible with historic sandstones",
+    "summary": "Minimizes thermal fatigue at the stone-mortar interface."
+  },
+  "chemical_considerations": {
+    "ph_nature": "Alkaline (pH 12.0)",
+    "soluble_salts_risk": "Very low; manufactured without gypsum or synthetic additives",
+    "reactivity_with_limestone": "Chemical set via calcium silicates followed by long-term carbonation",
+    "summary": "Free of deleterious free alkalis; low sulfate content."
+  },
+  "reversibility": {
+    "reversibility_score": 8.5,
+    "extraction_method": "Soft mechanical joint raking without substrate injury",
+    "retreatability": "High retreatability"
+  },
+  "heritage_compatibility": {
+    "iks_alignment": "Modern standardized equivalent of traditional hydraulic kankar lime; preserves breathability and mechanical compatibility",
+    "asi_intach_compliance": "Widely endorsed in international (ICOMOS/RILEM) and modern Indian heritage conservation practice",
+    "authenticity_status": "Acceptable modern conservation-grade binder"
+  },
+  "source_references": [
+    "SRC_ASI_CONSERVATION_MANUAL_2020",
+    "SRC_RILEM_HISTORIC_MORTARS_2012"
+  ],
+  "limitations": [
+    "NHL 5.0 (eminently hydraulic) must be avoided as its high compressive strength (>10 MPa) violates sacrificiality on soft sandstones.",
+    "Must be matched with clean, well-graded local river sand aggregates."
+  ]
+}
